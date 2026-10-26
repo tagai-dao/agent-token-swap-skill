@@ -1,8 +1,10 @@
-# Live Runtime Operations
+# Optional Repository Script Runner
 
-## Commands
+## Optional commands
 
-Run `npm ci --ignore-scripts` once. Node.js 22+ is required. The runtime uses a default public BSC RPC and `https://bsc-api.tagai.fun`. Optional `BSC_RPC_URL` and `TAGAI_API_URL` overrides belong to the execution environment; do not ask ordinary users to choose endpoints or expose credential-bearing URLs.
+The default [direct tool workflow](tool-native.md) does not require this runner or its dependencies. Use this section only when a checkout is already available or the agent chooses repository automation; do not require the user to clone or install it to trade.
+
+For this optional runner only, run `npm ci --ignore-scripts` once. Node.js 22+ is required. The runtime uses a default public BSC RPC and `https://bsc-api.tagai.fun`. Optional `BSC_RPC_URL` and `TAGAI_API_URL` overrides belong to the execution environment; do not ask ordinary users to choose endpoints or expose credential-bearing URLs.
 
 ```bash
 node scripts/trade.mjs info --token AIPRO

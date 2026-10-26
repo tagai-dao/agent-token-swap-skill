@@ -1,8 +1,8 @@
 # Offline TagAI Interaction Tools
 
-These are auxiliary maintenance tools. For normal price queries, quotes, transaction previews and confirmed execution, use the live [runtime commands](../runtime.md). Their offline-only behavior must not be used to refuse the live workflow.
+These are optional auxiliary maintenance tools. For normal price queries, quotes, previews and confirmed execution, use [direct execution with existing tools](../tool-native.md). Neither these helpers nor the optional [repository runner](../runtime.md) is required. Their installation needs or offline-only behavior must not be used to refuse the direct workflow.
 
-Install the locked dependency set with `npm ci`. These tools use ethers for exact ABI encoding, decoding, and nested tuples. They never contact RPC, API, or wallet endpoints and never sign or broadcast. Run from any working directory using the actual script path. All amounts in request files are decimal base-unit strings, not JSON numbers.
+Only when choosing these optional helpers, install their locked dependency set with `npm ci`. These tools use ethers for exact ABI encoding, decoding, and nested tuples. They never contact RPC, API, or wallet endpoints and never sign or broadcast. Run from any working directory using the actual script path. All amounts in request files are decimal base-unit strings, not JSON numbers.
 
 ## Deployment reference
 

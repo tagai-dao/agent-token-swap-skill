@@ -25,7 +25,7 @@ Do not independently apply the full route's slippage allowance to every step wit
 
 ## Persistent execution state
 
-The live executor saves records atomically under local `.state/`, outside Git, without session credentials. See the minimum fields in the [data model](data-model.md). Record preparation state before a wallet command and save requestId / orderId / txHash immediately after its response.
+Persist the direct workflow’s intent, exact transaction, successful preview requestId, expiry and submission status in available agent task state or secure local storage, without session credentials. The optional repository runner saves equivalent records atomically under `.state/`, outside Git; that directory and a repository planId are not direct-mode requirements. See the minimum fields in the [data model](data-model.md). Record preparation state before a wallet command and save requestId / orderId / txHash immediately after its response.
 
 Step states:
 

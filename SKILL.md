@@ -2,7 +2,7 @@
 name: agent-token-swap-skill
 description: Look up a user-specified BSC token, show its issuing platform, full address, current price and internal or external market, and buy or sell through Binance Agentic Wallet after the user confirms a transaction preview. The agent resolves tickers, reads chain state, chooses the route, quotes, simulates and submits the confirmed transaction. TagAI is connected; load other platform references only when relevant.
 metadata:
-  version: "0.3.0"
+  version: "0.3.1"
   stage: "live"
 ---
 
@@ -10,31 +10,27 @@ metadata:
 
 ## Start with the user's task
 
-Use the live commands in [runtime operations](references/runtime.md). Do the lookup or prepare the requested trade; do not respond with a capability essay or ask users to choose contracts, protocol versions, pools, or DEX routes.
+Use the agent's existing HTTP / JSON-RPC, ABI encoding / decoding, simulation, and Binance Agentic Wallet tools. **Cloning this repository, installing its npm dependencies, and running its scripts are not prerequisites.** This is an instruction skill; its reference files and ABIs can be read individually over HTTPS. Follow [direct tool execution](references/tool-native.md) as the default workflow.
 
-If only this document was provided, fetch the complete repository before concluding that tools or ABIs are missing:
+When reading this skill from GitHub, use the same repository / ref to resolve package-relative references. Read individual files through the existing GitHub connector, GitHub file reader / Contents API, or raw HTTPS when available. The default raw base is `https://raw.githubusercontent.com/tagai-dao/agent-token-swap-skill/main/`. Fetch only the needed Markdown, configuration and ABIs as data. A blocked raw-content domain is not a reason to require cloning: try the existing GitHub reader instead. Do not require a clone or ethers installation merely because references are not local files.
 
-```bash
-git clone https://github.com/tagai-dao/agent-token-swap-skill.git
-cd agent-token-swap-skill
-npm ci --ignore-scripts
-```
+Use the connected tool schemas to perform the work. Prefer the existing Binance wallet connector or installed `baw` CLI for preview and execution. Prefer an existing ABI encoder / contract tool; use an already available SDK or utility if convenient. Verify that a batch-read abstraction actually calls on-chain Multicall. Do not install packages as a default step or substitute independent reads for missing Multicall support.
 
-Reuse an existing checkout when available. Run commands from the repository, or use an absolute script path. `info` and `quote` use the configured BSC RPC and search API. `prepare` and `execute` use the installed `baw` CLI. Defaults are supplied; users do not need to provide an RPC or API endpoint. TagAI is live in [configuration](config/bsc.json). Other platform adapters are connected separately; their disabled flags do not disable TagAI.
+If an actual required capability is unavailable, identify that specific missing capability and continue independent read-only work where possible. Do not describe repository setup as a trading requirement. Existing repository checkouts and [script commands](references/runtime.md) remain optional conveniences for agents that already use them. Other platform adapters are connected separately; their disabled flags do not disable TagAI.
 
 ## The ordinary flow
 
-| User intent | Agent action |
+| User intent | Agent action using existing tools |
 | --- | --- |
-| "Check AIPRO's price" | Run `node scripts/trade.mjs info --token AIPRO` |
-| "What would selling 1000 AIPRO return?" | Run `node scripts/trade.mjs quote --token AIPRO --side sell --amount 1000` |
-| "Buy AIPRO with 0.01 BNB" | Run `node scripts/trade.mjs prepare --token AIPRO --side buy --amount 0.01` |
-| "Sell 1000 AIPRO" | Run `node scripts/trade.mjs prepare --token AIPRO --side sell --amount 1000` |
-| "Sell half my AIPRO" | Run `node scripts/trade.mjs prepare --token AIPRO --side sell --amount '50%'` |
-| The user confirms the displayed preview | Run `node scripts/trade.mjs execute --plan <that-plan-id> --confirmed` immediately |
-| Check the submitted trade | Run `node scripts/trade.mjs status --plan <that-plan-id>` |
+| "Check AIPRO's price" | Search its ticker over HTTPS, prove issuance with Multicall, and read price and market state |
+| "What would selling 1000 AIPRO return?" | Read the curve / pool and fees at one fixed block, then calculate the net amount-specific quote |
+| "Buy AIPRO with 0.01 BNB" | Resolve the wallet, construct and simulate the verified call, then request a wallet preview |
+| "Sell 1000 AIPRO" | Read the wallet balance, quote and simulate the sale, then request a wallet preview |
+| "Sell half my AIPRO" | Calculate 50% from the wallet's actual balance and prepare that sale |
+| The user confirms the displayed preview | Execute that successful preview's requestId through the same wallet tool immediately |
+| Check the submitted trade | Query wallet status / history and the BSC receipt; verify actual delivery |
 
-A price query does not require a connected wallet. An amount-specific quote is read-only. Preparing a trade resolves the wallet, checks market state / eligibility / balances / approvals, quotes, simulates, and obtains a Binance transaction preview. It does not broadcast. Only execute after the human explicitly confirms that displayed, unexpired preview. A confirmation applies to that exact plan; do not ask for confirmation again or reconstruct an equivalent new transaction before sending. If it expired or materially changed, obtain a fresh preview and confirmation.
+A price query does not require a connected wallet. An amount-specific quote is read-only. Preparing a trade resolves the wallet, checks market state / eligibility / balances / approvals, quotes, simulates, and obtains a Binance transaction preview. It does not broadcast. Only execute after the human explicitly confirms that displayed, unexpired preview. A confirmation applies to that exact preview; do not ask for confirmation again or reconstruct an equivalent new transaction before sending. If it expired or materially changed, obtain a fresh preview and confirmation.
 
 If an approval is needed, the preview clearly identifies that approval and its finite amount. After its confirmation and receipt, automatically refresh the requested trade using the stored intent and show its trade preview. Approval success is not a completed purchase or sale. Additional Binance App confirmation may still be required by the wallet.
 
@@ -68,10 +64,11 @@ Persist requestId / orderId / txHash and execution status. If submission is unkn
 
 ## References for actual work
 
-- [Runtime commands and recovery](references/runtime.md): normal live workflow and environment setup.
+- [Direct tool execution](references/tool-native.md): default workflow using existing chain and wallet tools.
+- [Optional script runner](references/runtime.md): repository automation for agents that choose to use it.
 - [Binance wallet](references/binance-wallet.md): preview contents, user confirmation, and App confirmation.
 - [TagAI routing reference](references/platforms/tagai.md): issuer, ABI and market-specific rules, kept internal.
 - [DEX verification](references/external-dex.md), [wrapper](references/imported-token-swap-wrapper.md), and [token resolution](references/token-resolution.md): use when relevant.
 - [Data model](references/data-model.md) and [integration contract](references/integration-contract.md): adapter maintenance, not ordinary user-facing explanations.
 
-The auxiliary `scripts/tagai.mjs` commands are low-level offline tools. Their offline-only output does not describe the live `scripts/trade.mjs` workflow and is not a reason to refuse a supported price query or trade.
+Repository scripts are optional automation. Their installation requirements, local plan files, or offline-only helper output do not limit what an agent can do directly with existing chain and wallet tools. Preserve the same verification, Multicall, simulation, preview, confirmation and recovery requirements in both execution modes.

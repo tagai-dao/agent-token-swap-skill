@@ -1,6 +1,6 @@
 # Binance Agentic Wallet
 
-This reference was adapted from the locally available Binance Agentic Wallet skill v1.13.0, which documents a minimum CLI version of 1.11.0. Verify the actual CLI version and `--help` when implementing integration. Stop on interface mismatches instead of guessing commands. Upstream: [binance/binance-skills-hub](https://github.com/binance/binance-skills-hub). Read-only price queries do not require the user to sign in or install the wallet CLI. Normal trading uses the live runtime; these low-level commands explain its wallet integration.
+This reference was adapted from the locally available Binance Agentic Wallet skill v1.13.0, which documents a minimum CLI version of 1.11.0. Verify the actual CLI version and `--help` when implementing integration. Stop on interface mismatches instead of guessing commands. Upstream: [binance/binance-skills-hub](https://github.com/binance/binance-skills-hub). Read-only price queries do not require the user to sign in or install the wallet CLI. Normal trading uses the existing wallet connector or installed baw CLI directly; a repository runner is optional. These commands do not require cloning this skill or installing its npm dependencies.
 
 ## Before live wallet operations
 
@@ -48,6 +48,6 @@ Execute only the requestId from that successful preview. Do not execute failed, 
 - PENDING_CONFIRMATION: save orderId and wait for the Binance App. Do not treat it as success or execute again.
 - Errors: show the original error code and message. Explain separately established facts without speculating about the cause.
 
-Use `node scripts/trade.mjs status --plan <plan-id>` for receipt checks and wallet-order reconciliation after App confirmation. The runtime uses wallet tx-history and a known order identity when available; if submission remains ambiguous, do not resend. See [execution recovery](execution.md).
+For direct mode, use the existing wallet history / status tool, or `baw wallet tx-history --binanceChainId 56 --type all --json`, then query chain receipts using the saved transaction identity. The repository command `node scripts/trade.mjs status --plan <plan-id>` is an optional alternative for previews created by that runner. If submission remains ambiguous, do not resend. See [execution recovery](execution.md).
 
 This skill builds calls for the selected platform / DEX. Do not use `market-order swap` to bypass route constraints or a failed custom call. Do not evade wallet risk blocks through another entry point.

@@ -2,7 +2,7 @@
 
 ## Release scope
 
-The live [runtime](../runtime.md) resolves tickers, reads BSC state, obtains prices and amount-specific quotes, simulates, previews through Binance Agentic Wallet and sends the confirmed transaction. Use it for ordinary user requests. The version-specific [ABIs](../../abis/provenance.json), [deployment reference registry](../../config/tagai-bsc.json) and auxiliary [offline tools](../tagai/tools.md) below are internal implementation references.
+Use [direct tool execution](../tool-native.md) for ordinary requests: resolve tickers, read BSC state, quote, simulate, obtain a Binance wallet preview, and send the confirmed transaction with the agent’s existing tools. No repository clone or npm installation is required. The [repository runner](../runtime.md) automates the same checks when available, but is optional. The version-specific [ABIs](../../abis/provenance.json), [deployment reference registry](../../config/tagai-bsc.json) and auxiliary [offline tools](../tagai/tools.md) below are internal implementation references.
 
 **V5 and V8 are explicitly unsupported in this release, for both internal and external trading.** Recognizing either version must stop quotation and trade construction. Do not work around this exclusion by calling another version's ABI or treating the token as unclassified external issuance. V6 and V10 are imported-token records, not TagAI-native issuance. V12, V17, and unknown versions are outside this integration.
 
@@ -12,7 +12,7 @@ Read in this order:
 
 1. [Versions, identity, and state](../tagai/versions.md).
 2. [Internal-market calls](../tagai/internal.md) or [external-market calls](../tagai/external.md), according to the verified state.
-3. [Offline encoding and Multicall plans](../tagai/tools.md).
+3. Use the existing ABI / RPC tools for encoding and Multicall; [offline helpers](../tagai/tools.md) are optional.
 4. [Binance wallet](../binance-wallet.md) for each approval and transaction.
 
 ## User input and ticker candidates

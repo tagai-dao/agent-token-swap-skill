@@ -1,12 +1,18 @@
 # Agent Token Swap Skill
 
-Look up BSC tokens and trade through Binance Agentic Wallet. The user supplies a ticker or contract address; the agent identifies the issuing platform, current price and market, prepares a transaction preview, and submits it after confirmation.
+Look up BSC tokens and trade through Binance Agentic Wallet. The user supplies a ticker or contract address; the agent identifies the issuing platform, price and market, prepares a wallet preview, and submits it after confirmation.
 
-The TagAI adapter includes live token search, fixed-block Multicall reads, price and amount-specific quotes, transaction simulation, Binance previews, submission and receipt tracking. Other platform adapters are added separately. Routing and contract-version details stay internal to the agent.
+## Default use: existing agent tools
 
-## Use
+Give the agent [SKILL.md](SKILL.md). The default workflow uses its existing HTTP / JSON-RPC, ABI encoding / decoding, simulation and Binance wallet tools. Read the needed reference files and ABIs over HTTPS. **A repository clone, Node.js, npm dependencies and repository scripts are not trading prerequisites.** Users should not be asked to set up this project merely to get a quote or confirm a trade.
 
-Requires Node.js 22+. Querying prices does not require a connected wallet; trading uses the installed `baw` CLI and the user's Binance wallet.
+See [direct tool execution](references/tool-native.md) for the complete route from ticker lookup through Multicall, quoting, wallet preview and confirmed execution. Actual wallet / chain capabilities are still required; use what the agent already has rather than assuming a particular local SDK.
+
+The TagAI workflow is connected. Other platforms are added separately. Contract versions, ABI selection and routing details stay internal to the agent. Answer users in their preferred language while keeping repository-authored instructions in English.
+
+## Optional repository automation
+
+Agents with a checkout may use the script runner as a convenience. Only this optional runner requires Node.js 22+ and its locked dependencies:
 
 ```bash
 npm ci --ignore-scripts
@@ -18,7 +24,7 @@ node scripts/trade.mjs execute --plan <plan-id> --confirmed
 node scripts/trade.mjs status --plan <plan-id>
 ```
 
-Give an agent [SKILL.md](SKILL.md) as the entry point and make the complete repository available. See [runtime operations](references/runtime.md) for command behavior and recovery. Endpoint overrides are optional through BSC_RPC_URL / TAGAI_API_URL; defaults are supplied.
+See [script operations](references/runtime.md). Low-level `scripts/tagai.mjs` helpers are also optional; their offline-only behavior does not limit the direct tool workflow.
 
 ## Development
 
@@ -27,6 +33,4 @@ npm run validate
 npm test
 ```
 
-[Platform references](references/platforms/tagai.md) and [ABI provenance](abis/provenance.json) contain implementation details. `scripts/tagai.mjs` remains an auxiliary offline encoding tool; normal operations use `scripts/trade.mjs`. Runtime tests cover Multicall transport, quotes and mocked wallet submission. Real token search and quotes have read-only smoke coverage; development does not broadcast real trades.
-
-All repository-authored instructions, documentation, metadata, and code comments are maintained in English. Agents should answer users in their preferred language.
+[Platform references](references/platforms/tagai.md) and [ABI provenance](abis/provenance.json) contain implementation details. Tests cover Multicall transport, quotes and mocked wallet submission. Real token search and quotes have read-only smoke coverage; development does not broadcast real trades.

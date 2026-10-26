@@ -1,6 +1,6 @@
 # Token Inputs, Candidates, and Issuance
 
-TagAI has a live [runtime workflow](runtime.md) for search, chain verification, prices and trading. Other platforms remain unintegrated. Apply these shared resolution rules without turning internal adapter details into user-facing explanations.
+TagAI has a live [direct tool workflow](tool-native.md) for search, chain verification, prices and trading, with an optional repository runner. Other platforms remain unintegrated. Apply these shared resolution rules without turning internal adapter details into user-facing explanations.
 
 ## Address input
 
