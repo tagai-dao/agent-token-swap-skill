@@ -25,6 +25,220 @@
       "sourceInterfaceSha256": "a41eab14070cff892f674b60575252fd4ffc31404eb359e5d13e549bf7969222",
       "artifactSha256": "24c13033be49079bb8467079ee87d5e49636c6b219c6f8caf8ed5ae024f81c96",
       "note": "Selected trading/getter/event/error ABI from a local artifact, checked against source signatures. Not verified against any production deployment."
+    },
+    "tagai/token-v1.json": {
+      "sha256": "6f1cf0dbc86f2a848f40b869f4559f985f75814f208ccdff548cbc4e3a74d57b",
+      "kind": "frontend-abi-reference",
+      "sourceProject": "tiptag-ui",
+      "sourceCommit": "adbecff22cb029b88dde549049eafa56a2ab7ef4",
+      "sourcePath": "src/utils/abis.ts",
+      "sourceSha256": "8471bde4dfb9f7bbe7d1e0873ede683e7404b180bbf33b2324f529ae0fe6cb96",
+      "note": "Source-derived interface; production identity and version must be checked at runtime."
+    },
+    "tagai/token-v2.json": {
+      "sha256": "22d9e6fcd38c91c71d02ab02a01a373a5ca6eb9a20074b6227aa759e1d11f581",
+      "kind": "frontend-abi-reference",
+      "sourceProject": "tiptag-ui",
+      "sourceCommit": "adbecff22cb029b88dde549049eafa56a2ab7ef4",
+      "sourcePath": "src/utils/abis.ts",
+      "sourceSha256": "8471bde4dfb9f7bbe7d1e0873ede683e7404b180bbf33b2324f529ae0fe6cb96",
+      "note": "Source-derived interface; production identity and version must be checked at runtime."
+    },
+    "tagai/token-v3.json": {
+      "sha256": "6e32456e2aa0fab619b3251ac6f659ef50c9000222ff76ce17f49737546baba0",
+      "kind": "frontend-abi-reference",
+      "sourceProject": "tiptag-ui",
+      "sourceCommit": "adbecff22cb029b88dde549049eafa56a2ab7ef4",
+      "sourcePath": "src/utils/abis.ts",
+      "sourceSha256": "8471bde4dfb9f7bbe7d1e0873ede683e7404b180bbf33b2324f529ae0fe6cb96",
+      "note": "Source-derived interface; production identity and version must be checked at runtime."
+    },
+    "tagai/token-v4.json": {
+      "sha256": "64e48352f97b8f019616bbba4905a3d61749bf82096d6c1e6eeddab6fa2982e6",
+      "kind": "frontend-abi-reference",
+      "sourceProject": "tiptag-ui",
+      "sourceCommit": "adbecff22cb029b88dde549049eafa56a2ab7ef4",
+      "sourcePath": "src/utils/abis.ts",
+      "sourceSha256": "8471bde4dfb9f7bbe7d1e0873ede683e7404b180bbf33b2324f529ae0fe6cb96",
+      "note": "Source-derived interface; production identity and version must be checked at runtime."
+    },
+    "tagai/token-v7.json": {
+      "sha256": "a8ffac9ec9df2a886b13d4cdaff729c22e480006da5cec53574cc57f59f8b19c",
+      "kind": "frontend-abi-reference",
+      "sourceProject": "tiptag-ui",
+      "sourceCommit": "adbecff22cb029b88dde549049eafa56a2ab7ef4",
+      "sourcePath": "src/utils/abis.ts",
+      "sourceSha256": "8471bde4dfb9f7bbe7d1e0873ede683e7404b180bbf33b2324f529ae0fe6cb96",
+      "note": "Source-derived interface; production identity and version must be checked at runtime."
+    },
+    "tagai/token-v9.json": {
+      "sha256": "1081b9e575eac7ecbc1009e77d0bb230f35278b80992195baeab68a191a7e06e",
+      "kind": "frontend-abi-reference",
+      "sourceProject": "tiptag-ui",
+      "sourceCommit": "adbecff22cb029b88dde549049eafa56a2ab7ef4",
+      "sourcePath": "src/utils/abis.ts",
+      "sourceSha256": "8471bde4dfb9f7bbe7d1e0873ede683e7404b180bbf33b2324f529ae0fe6cb96",
+      "note": "Source-derived interface; production identity and version must be checked at runtime."
+    },
+    "tagai/pump-v1.json": {
+      "sha256": "f0c25331bf75d89883139817d8a813a50b7db0fe9cb4872f56e0584fa0bd8e20",
+      "kind": "frontend-abi-reference",
+      "sourceProject": "tiptag-ui",
+      "sourceCommit": "adbecff22cb029b88dde549049eafa56a2ab7ef4",
+      "sourcePath": "src/utils/abis.ts",
+      "sourceSha256": "8471bde4dfb9f7bbe7d1e0873ede683e7404b180bbf33b2324f529ae0fe6cb96",
+      "note": "Source-derived interface; production identity and version must be checked at runtime."
+    },
+    "tagai/pump-v2.json": {
+      "sha256": "0aa4ec401deb7aec3c36d3a36be0afb8c9f527365eb6b6a6b87927a711ac8c6d",
+      "kind": "frontend-abi-reference",
+      "sourceProject": "tiptag-ui",
+      "sourceCommit": "adbecff22cb029b88dde549049eafa56a2ab7ef4",
+      "sourcePath": "src/utils/abis.ts",
+      "sourceSha256": "8471bde4dfb9f7bbe7d1e0873ede683e7404b180bbf33b2324f529ae0fe6cb96",
+      "note": "Source-derived interface; production identity and version must be checked at runtime."
+    },
+    "tagai/pump-v3.json": {
+      "sha256": "0aa4ec401deb7aec3c36d3a36be0afb8c9f527365eb6b6a6b87927a711ac8c6d",
+      "kind": "frontend-abi-reference",
+      "sourceProject": "tiptag-ui",
+      "sourceCommit": "adbecff22cb029b88dde549049eafa56a2ab7ef4",
+      "sourcePath": "src/utils/abis.ts",
+      "sourceSha256": "8471bde4dfb9f7bbe7d1e0873ede683e7404b180bbf33b2324f529ae0fe6cb96",
+      "note": "Source-derived interface; production identity and version must be checked at runtime."
+    },
+    "tagai/pump-v4.json": {
+      "sha256": "8cd140c9b47bbae03497849da52213247b032cf7dd2aa0e7e3450bb41c7a0ff2",
+      "kind": "frontend-abi-reference",
+      "sourceProject": "tiptag-ui",
+      "sourceCommit": "adbecff22cb029b88dde549049eafa56a2ab7ef4",
+      "sourcePath": "src/utils/abis.ts",
+      "sourceSha256": "8471bde4dfb9f7bbe7d1e0873ede683e7404b180bbf33b2324f529ae0fe6cb96",
+      "note": "Source-derived interface; production identity and version must be checked at runtime."
+    },
+    "tagai/pump-v5.json": {
+      "sha256": "b9e08a9bdfb1cc3df3fc984cb64edcba080d221bb9e39409bc7bbe305cbdee43",
+      "kind": "frontend-abi-reference",
+      "sourceProject": "tiptag-ui",
+      "sourceCommit": "adbecff22cb029b88dde549049eafa56a2ab7ef4",
+      "sourcePath": "src/utils/abis.ts",
+      "sourceSha256": "8471bde4dfb9f7bbe7d1e0873ede683e7404b180bbf33b2324f529ae0fe6cb96",
+      "note": "Source-derived interface; production identity and version must be checked at runtime."
+    },
+    "tagai/pump-v6.json": {
+      "sha256": "464118e9417e7cf44f7c7cdfa278582a7ce5870c243205403d1f638bf5f523ff",
+      "kind": "frontend-abi-reference",
+      "sourceProject": "tiptag-ui",
+      "sourceCommit": "adbecff22cb029b88dde549049eafa56a2ab7ef4",
+      "sourcePath": "src/utils/abis.ts",
+      "sourceSha256": "8471bde4dfb9f7bbe7d1e0873ede683e7404b180bbf33b2324f529ae0fe6cb96",
+      "note": "Source-derived interface; production identity and version must be checked at runtime."
+    },
+    "tagai/pump-v7.json": {
+      "sha256": "eb2ba941873170c78e9306dd53a2e47c6851c813b9d96e9fe33399328ae176cd",
+      "kind": "frontend-abi-reference",
+      "sourceProject": "tiptag-ui",
+      "sourceCommit": "adbecff22cb029b88dde549049eafa56a2ab7ef4",
+      "sourcePath": "src/utils/abis.ts",
+      "sourceSha256": "8471bde4dfb9f7bbe7d1e0873ede683e7404b180bbf33b2324f529ae0fe6cb96",
+      "note": "Source-derived interface; production identity and version must be checked at runtime."
+    },
+    "tagai/pump-v8.json": {
+      "sha256": "56faf6475dba5e163fe35b658360c837a80876b16fac2f6cfe8b220165deb514",
+      "kind": "frontend-abi-reference",
+      "sourceProject": "tiptag-ui",
+      "sourceCommit": "adbecff22cb029b88dde549049eafa56a2ab7ef4",
+      "sourcePath": "src/utils/abis.ts",
+      "sourceSha256": "8471bde4dfb9f7bbe7d1e0873ede683e7404b180bbf33b2324f529ae0fe6cb96",
+      "note": "Source-derived interface; production identity and version must be checked at runtime."
+    },
+    "tagai/pump-v9.json": {
+      "sha256": "0afdba2141dc3f6177452c36907c3f8af98c408a10497ffe9a416550fb73be2a",
+      "kind": "frontend-abi-reference",
+      "sourceProject": "tiptag-ui",
+      "sourceCommit": "adbecff22cb029b88dde549049eafa56a2ab7ef4",
+      "sourcePath": "src/utils/abis.ts",
+      "sourceSha256": "8471bde4dfb9f7bbe7d1e0873ede683e7404b180bbf33b2324f529ae0fe6cb96",
+      "note": "Source-derived interface; production identity and version must be checked at runtime."
+    },
+    "tagai/pump-v13.json": {
+      "sha256": "fddbd8815b9726d7c6b56f37187d935446ccda288cece9fb359f176bd71a091c",
+      "kind": "frontend-abi-reference",
+      "sourceProject": "tiptag-ui",
+      "sourceCommit": "adbecff22cb029b88dde549049eafa56a2ab7ef4",
+      "sourcePath": "src/utils/v13/Pump13.json",
+      "sourceSha256": "fddbd8815b9726d7c6b56f37187d935446ccda288cece9fb359f176bd71a091c",
+      "note": "Source-derived interface; production identity and version must be checked at runtime."
+    },
+    "tagai/token-v13.json": {
+      "sha256": "ea93be91949a7dd6b146927f08c61d4def27e68c7d009267c8f95e9b4fbc4f82",
+      "kind": "frontend-abi-reference",
+      "sourceProject": "tiptag-ui",
+      "sourceCommit": "adbecff22cb029b88dde549049eafa56a2ab7ef4",
+      "sourcePath": "src/utils/v13/Token13.json",
+      "sourceSha256": "ea93be91949a7dd6b146927f08c61d4def27e68c7d009267c8f95e9b4fbc4f82",
+      "note": "Source-derived interface; production identity and version must be checked at runtime."
+    },
+    "tagai/pump-v14.json": {
+      "sha256": "81afe0a369855381e02e9b24b5445f22b6b39cb74ea14e0baf8cf5f22f0c24c6",
+      "kind": "frontend-abi-reference",
+      "sourceProject": "tiptag-ui",
+      "sourceCommit": "adbecff22cb029b88dde549049eafa56a2ab7ef4",
+      "sourcePath": "src/utils/v14/Pump14.json",
+      "sourceSha256": "81afe0a369855381e02e9b24b5445f22b6b39cb74ea14e0baf8cf5f22f0c24c6",
+      "note": "Source-derived interface; production identity and version must be checked at runtime."
+    },
+    "tagai/pump-v15.json": {
+      "sha256": "81afe0a369855381e02e9b24b5445f22b6b39cb74ea14e0baf8cf5f22f0c24c6",
+      "kind": "frontend-abi-reference",
+      "sourceProject": "tiptag-ui",
+      "sourceCommit": "adbecff22cb029b88dde549049eafa56a2ab7ef4",
+      "sourcePath": "src/utils/v15/Pump15.json",
+      "sourceSha256": "81afe0a369855381e02e9b24b5445f22b6b39cb74ea14e0baf8cf5f22f0c24c6",
+      "note": "Source-derived interface; production identity and version must be checked at runtime."
+    },
+    "tagai/token-v15.json": {
+      "sha256": "7b75c892ee672e7b5d583c2448fb199b4fa945789a8071c1ad2f50485a81157e",
+      "kind": "frontend-abi-reference",
+      "sourceProject": "tiptag-ui",
+      "sourceCommit": "adbecff22cb029b88dde549049eafa56a2ab7ef4",
+      "sourcePath": "src/utils/v15/Token15.json",
+      "sourceSha256": "7b75c892ee672e7b5d583c2448fb199b4fa945789a8071c1ad2f50485a81157e",
+      "note": "Source-derived interface; production identity and version must be checked at runtime."
+    },
+    "tagai/pump-v16.json": {
+      "sha256": "81afe0a369855381e02e9b24b5445f22b6b39cb74ea14e0baf8cf5f22f0c24c6",
+      "kind": "frontend-abi-reference",
+      "sourceProject": "tiptag-ui",
+      "sourceCommit": "adbecff22cb029b88dde549049eafa56a2ab7ef4",
+      "sourcePath": "src/utils/v16/Pump16.json",
+      "sourceSha256": "81afe0a369855381e02e9b24b5445f22b6b39cb74ea14e0baf8cf5f22f0c24c6",
+      "note": "Source-derived interface; production identity and version must be checked at runtime."
+    },
+    "tagai/token-v16.json": {
+      "sha256": "923eac397013e667e61980fa54f28c253ca830077bd6f5ad9d8c877e5678b09b",
+      "kind": "frontend-abi-reference",
+      "sourceProject": "tiptag-ui",
+      "sourceCommit": "adbecff22cb029b88dde549049eafa56a2ab7ef4",
+      "sourcePath": "src/utils/v16/Token16.json",
+      "sourceSha256": "923eac397013e667e61980fa54f28c253ca830077bd6f5ad9d8c877e5678b09b",
+      "note": "Source-derived interface; production identity and version must be checked at runtime."
+    },
+    "tagai/read-interfaces.json": {
+      "sha256": "a84c391f2f6889fcd6ead35e0c59ee136e5bd147d2fbee9da3a77fbb5541c925",
+      "kind": "source-interface-subset",
+      "sourceProject": "TagAI-contract-V2 and pump-contract",
+      "sourceCommit": "cb694b648482c33d4ea0f983fb6b37a7af6bbe71",
+      "note": "Methods are version-specific. A missing getter is UNKNOWN, not a negative issuance proof. Do not assume all methods exist on every historical deployment."
+    },
+    "tagai/pancake.json": {
+      "sha256": "fc6c86db29535daa9f7803ab770f42e0920d32e4965ed1e3f21db1d3d0b0d9bb",
+      "kind": "source-interface-subset",
+      "sourceProject": "tiptag-ui",
+      "sourceCommit": "adbecff22cb029b88dde549049eafa56a2ab7ef4",
+      "sourcePath": "src/utils/pcsV4Swap.ts",
+      "sourceSha256": "c0a8b8c2db25726490a4f506916b868a317b0c2332b39245e2a09cfa97aa3869",
+      "note": "Infinity CL / Universal Router / Permit2 interfaces from the source; V2 interfaces are the standard Pancake V2 Router02 interface. Verify each target role before use."
     }
   }
 }

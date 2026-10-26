@@ -9,7 +9,8 @@ const isObject = value => value !== null && typeof value === 'object' && !Array.
 const sameSet = (actual, expected) => actual.length === expected.length
   && actual.every(value => expected.includes(value));
 
-// This release has no adapters. Config edits alone must never enable live capabilities.
+// TagAI has offline preparation tools, but no bundled live adapters. Config edits
+// alone must never enable live execution capabilities.
 export function validateConfig(config) {
   const errors = [];
   if (!isObject(config)) return ['config must be an object'];
@@ -50,7 +51,8 @@ export function validateConfig(config) {
       errors.push(`${id}: platform entry missing`);
       continue;
     }
-    if (platform.status !== 'not_integrated') errors.push(`${id}: adapter not implemented`);
+    const expectedStatus = id === 'tagai' ? 'documented' : 'not_integrated';
+    if (platform.status !== expectedStatus) errors.push(`${id}: live adapter not implemented`);
     if (platform.reference !== `references/platforms/${id}.md`) errors.push(`${id}: invalid platform reference`);
     if (!Array.isArray(platform.versions) || platform.versions.length !== 0) errors.push(`${id}: no versions are integrated`);
     if (!isObject(platform.capabilities)
@@ -83,6 +85,7 @@ export function summarizeCapabilities(config) {
     networkAccess: false,
     walletAccess: false,
     commands: ['capabilities', 'validate'],
+    tagaiOfflineCommands: ['deployments', 'read-plan', 'decode-read', 'encode'],
     allowedDexBrands: config.dex.allowedBrands,
     verifiedDexDeployments: 0,
     platforms: Object.fromEntries(PLATFORM_IDS.map(id => [id, {

@@ -3,7 +3,10 @@
   "phase": "framework",
   "chainId": 56,
   "tradingEnabled": false,
-  "nativeAsset": { "symbol": "BNB", "decimals": 18 },
+  "nativeAsset": {
+    "symbol": "BNB",
+    "decimals": 18
+  },
   "wrappedNative": null,
   "multicall": {
     "status": "pending_verification",
@@ -16,35 +19,70 @@
     "address": null,
     "abi": "abis/imported-token-swap-wrapper.json",
     "verification": null,
-    "sourceReferenceTypes": [0, 1, 3]
+    "sourceReferenceTypes": [
+      0,
+      1,
+      3
+    ]
   },
   "dex": {
-    "allowedBrands": ["uniswap", "pancake"],
+    "allowedBrands": [
+      "uniswap",
+      "pancake"
+    ],
     "deployments": []
   },
   "platforms": {
     "flap": {
       "status": "not_integrated",
       "reference": "references/platforms/flap.md",
-      "capabilities": { "search": false, "provenance": false, "state": false, "quote": false, "internalTrade": false, "externalTrade": false },
+      "capabilities": {
+        "search": false,
+        "provenance": false,
+        "state": false,
+        "quote": false,
+        "internalTrade": false,
+        "externalTrade": false
+      },
       "versions": []
     },
     "fourme": {
       "status": "not_integrated",
       "reference": "references/platforms/fourme.md",
-      "capabilities": { "search": false, "provenance": false, "state": false, "quote": false, "internalTrade": false, "externalTrade": false },
+      "capabilities": {
+        "search": false,
+        "provenance": false,
+        "state": false,
+        "quote": false,
+        "internalTrade": false,
+        "externalTrade": false
+      },
       "versions": []
     },
     "tagai": {
-      "status": "not_integrated",
+      "status": "documented",
       "reference": "references/platforms/tagai.md",
-      "capabilities": { "search": false, "provenance": false, "state": false, "quote": false, "internalTrade": false, "externalTrade": false },
+      "capabilities": {
+        "search": false,
+        "provenance": false,
+        "state": false,
+        "quote": false,
+        "internalTrade": false,
+        "externalTrade": false
+      },
       "versions": []
     },
     "gang": {
       "status": "not_integrated",
       "reference": "references/platforms/gang.md",
-      "capabilities": { "search": false, "provenance": false, "state": false, "quote": false, "internalTrade": false, "externalTrade": false },
+      "capabilities": {
+        "search": false,
+        "provenance": false,
+        "state": false,
+        "quote": false,
+        "internalTrade": false,
+        "externalTrade": false
+      },
       "versions": []
     }
   }

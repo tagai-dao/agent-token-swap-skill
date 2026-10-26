@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "uiCommit": "adbecff22cb029b88dde549049eafa56a2ab7ef4",
+  "deployedV16SourceCommit": "cb694b648482c33d4ea0f983fb6b37a7af6bbe71",
+  "deployedV16TokenSha256": "3b4f44dae8ebc99cd80bafc36094844263627d33018f1fd17a341776bfe638b1",
+  "uncommittedV17Excluded": true,
+  "sourceNotes": [
+    "The V15-2 deployment still reports VERSION=15 and must be distinguished by Pump address.",
+    "Historical UI ABIs are partial and are not proof that a method exists on a deployment.",
+    "V6 and V10 imported tokens are not TagAI-native issuance.",
+    "No live RPC verification or mainnet trade has been performed by this release."
+  ]
+}

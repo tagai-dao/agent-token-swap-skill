@@ -21,7 +21,7 @@
 ## Integration discipline
 
 - Read SKILL.md and references/integration-contract.md before adding an adapter. Do not invent platform contracts, endpoints, ABI signatures, fee formulas or test results.
-- This revision is a framework. Preserve disabled capabilities until the corresponding adapter, verified deployments and behavioral evidence exist. Adding documentation or an ABI alone does not enable production trading.
+- This revision includes TagAI interaction documentation and offline preparation, with V5 and V8 explicitly excluded. Preserve disabled capabilities until the corresponding adapter, verified deployments and behavioral evidence exist. Adding documentation or an ABI alone does not enable production trading.
 - Keep source provenance for ABI files. Never copy production credentials, local paths, RPC tokens or private keys into this repository.
-- Shared scripts currently run offline and do not sign or broadcast. Introduce RPC / transaction execution only as part of an explicit platform integration.
+- Shared scripts currently run offline and do not sign or broadcast. TagAI helpers may encode read plans and unsigned calls, but may not claim fresh quotes or verified deployments. Introduce RPC / transaction execution only as part of an explicit platform integration.
 - Run `npm run validate`, `npm test` and the skill-creator validator for skill changes. For contract batch readers, add transport-level Multicall tests when implemented; documentation checks cannot replace them.

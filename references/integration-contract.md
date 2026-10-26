@@ -23,7 +23,7 @@ Provide at least one fixed-input calldata encoding / decoding example. Do not gu
 
 Platform adapters own search, buildProvenanceCalls, decodeProvenance, buildStateCalls, decodeState, quotes, and internal-market calldata construction. Shared layers own fixed-block Multicall, DEX / wrapper routing, wallets, and execution records. Do not implement separate individual-RPC readers per platform.
 
-The executor is not implemented. scripts/trade.mjs currently supports capabilities / validate only. Real commands require capability gating and behavioral tests; changing config.status to ready must not enable nonexistent methods.
+The live executor is not implemented. scripts/trade.mjs supports capabilities / validate; scripts/tagai.mjs adds source-derived offline read plans, decoding, and unsigned calldata. These helpers do not establish live quotes, deployment verification, or execution. Real commands require capability gating and behavioral tests; changing config.status to ready must not enable nonexistent methods.
 
 ## Address and ABI verification
 

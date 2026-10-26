@@ -2,7 +2,7 @@
 name: agent-token-swap-skill
 description: Query and trade user-specified tokens on BSC with Binance Agentic Wallet. Identify Flap, Fourme, TagAI, and GANG issuance, contract versions, and internal or external markets; plan BNB-funded buys and sales back to BNB. External DEX support is limited to Uniswap and PancakeSwap. Resolve ticker inputs through user-selected candidates rather than proactive token discovery. Follow the capability registry and report missing integrations without executing unsupported trades.
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
   stage: "framework"
 ---
 
@@ -10,9 +10,9 @@ metadata:
 
 ## Current capabilities and reading order
 
-This release is a trading skill framework. Search, issuance detection, state reads, quotes, and trading adapters for all four platforms are not integrated, and no production deployments are configured. **Do not perform live queries, quotes, approvals, or trades, or treat documented ABI examples as enabled capabilities.** You may explain routes, collect trading intent, and report the specific missing integration.
+This release includes source-derived TagAI interaction instructions, versioned ABIs, and offline transaction / Multicall preparation tools. Read the [TagAI workflow](references/platforms/tagai.md) for supported versions and runtime verification requirements. V5 and V8 are explicitly excluded. Other platform integrations remain unavailable. Bundled live-adapter flags remain false: the tools do not connect to RPCs or wallets, and source references are not production verification. An agent following the TagAI workflow must obtain live proofs, quotes, simulations, and wallet confirmation before signing; never treat an encoding example as a ready transaction.
 
-Read the [BSC capability registry](config/bsc.json) first, or run `node scripts/trade.mjs capabilities` to inspect its status. This command only reads local configuration; it does not access a wallet or RPC. Use a capability only after its implementation and verification are complete. A trade request does not permit guessing addresses, interfaces, or calldata to bypass disabled capabilities.
+Read the [BSC capability registry](config/bsc.json) first, or run `node scripts/trade.mjs capabilities` to inspect its status. This command only reads local configuration; it does not access a wallet or RPC. Live-adapter flags describe bundled automation; TagAI documentation and offline helpers are separately available. Do not claim automatic search, quoting, or wallet execution. A trade request does not permit guessing addresses, interfaces, or calldata to bypass missing capabilities or TagAI version exclusions.
 
 Read the relevant files as needed instead of loading every platform document:
 

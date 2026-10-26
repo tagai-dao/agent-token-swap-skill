@@ -1,40 +1,56 @@
-# TagAI Platform and Version Routing
+# TagAI Token Interaction
 
-## Capability status
+## Release scope
 
-NOT_INTEGRATED. This repository does not yet include the complete TagAI version ABIs, issuance mappings, DEX deployments, and verified routes. Do not perform live queries or trades. Existing main-project code can inform later integration, but its local configuration does not automatically become a verified deployment in this skill. The [registry](../../config/bsc.json) determines capabilities.
+This reference now documents TagAI's BSC issuance, internal markets, and external DEX calls, with version-specific [ABIs](../../abis/provenance.json), a [deployment reference registry](../../config/tagai-bsc.json), and deterministic [offline tools](../tagai/tools.md).
 
-## Identity and version
+**V5 and V8 are explicitly unsupported in this release, for both internal and external trading.** Recognizing either version must stop quotation and trade construction. Do not work around this exclusion by calling another version's ABI or treating the token as unclassified external issuance. V6 and V10 are imported-token records, not TagAI-native issuance. V12, V17, and unknown versions are outside this integration.
 
-TagAI-native issuance requires on-chain evidence from the relevant Pump / Factory / Registry. Selecting "TagAI" or binding an external token to a TagAI Community does not establish native issuance.
+The tools do not contact RPCs, search APIs, or wallets, and never sign or broadcast. All imported deployment information is source-derived, not a fresh on-chain attestation. Runtime deployment checks, fixed-block reads, real-wallet simulation, and Binance preview remain mandatory. `config/bsc.json` retains false live-adapter flags; they describe bundled automation, not completion of the interaction documentation. Other platforms remain unintegrated.
 
-Use fixed-block Multicall to identify issuance before reading version-specific state. Map Pump, Token implementation, listing snapshot, Hook, Manager, and settlement assets explicitly. Do not apply the latest ABI to an unknown version. A legacy compatibility getter does not establish the full scope of multi-Pump support.
+Read in this order:
 
-## Platform routing
+1. [Versions, identity, and state](../tagai/versions.md).
+2. [Internal-market calls](../tagai/internal.md) or [external-market calls](../tagai/external.md), according to the verified state.
+3. [Offline encoding and Multicall plans](../tagai/tools.md).
+4. [Binance wallet](../binance-wallet.md) for each approval and transaction.
 
-- Internal market: call the version-specific Token / platform trading methods directly, without the wrapper.
-- External market: use the version's required DEX entry point and associated methods, without ImportedTokenSwapWrapper. Third-party wrapper fallback rules do not apply to TagAI-native tokens.
-- "Direct DEX" means the verified Router / Manager / callback-capable execution entry point, not sending wallet transactions to a bare pool, vault callback, or arbitrary helper.
-- If a version needs a dedicated TagAI executor for Hook / component routes, its exact identity, DEX execution semantics, and compatibility with the user's requested method belong in that version's method call cards. Do not silently reuse a historical executor.
-- BNB is the entry and final asset. Version rules determine components, bridges, and pool splits; users should not have to guess routes.
+## User input and ticker candidates
 
-## Required version matrix
+The user supplies a token address or ticker and an amount / holding percentage. Select the market and DEX from verified data unless the user constrained the route.
 
-Record the following for every supported version. No version is currently enabled:
+The existing BSC backend implements:
 
-| Item | Required detail |
-| --- | --- |
-| Version identification | Issuing Pump / implementation and proof method |
-| Internal methods | Exact signatures, quotes, fees, slippage fields, msg.value, and approval requirements |
-| Migration state | Actual listed / pending field semantics and directional trading availability |
-| Listing pool | DEX protocol, PoolKey / poolId, native / wrapped assets, Manager, and Hook snapshot |
-| External trades | Exact ABI, spender, recipient, Hook data, refunds, and minimum delivery |
-| Multiple pools / components | Support, candidate sources, taxes, execution order, and bridge routes |
-| Price and progress | Exact formulas, net-output accounting, and data sources |
-| Behavioral evidence | Version-specific buys / sales, migration boundaries, and fee / Hook verification |
+```text
+GET https://bsc-api.tagai.fun/community/search?tick=<URL-encoded-input>
+X-Chain-Id: 56
+```
 
-Use the token's actual bound listing PoolKey and Hook snapshot. Do not replace an older token's configuration with the latest Hook. Document Uniswap / Pancake pool structures and hookData encoding separately. Fee-subject arguments such as subject / sellsman are not the router or recipient.
+The source route returns an array directly, not the usual `{c,d}` envelope. Fields include `chainId`, `token`, `tick`, `name`, `version`, `isImport`, `pair`, `dexVersion`, `createAt`, and `listedDayNumber`. Error objects are not successful search responses. Verify the live response shape before use.
 
-## Future integration
+Its source query matches ticker substrings case-insensitively, returns up to 30 records, and orders by `community.create_at` ascending. Show the first 3 usable BSC candidates in returned order, labeled as platform response order / oldest-first, not popularity. Show full addresses and import / unsupported-version labels. Ask the user to select the address, then verify issuance on-chain; API version and listing fields are hints only. An imported result does not acquire TagAI-native routing. Search code is documented but not bundled as a live CLI adapter.
 
-Define an explicit version scope under the [integration contract](../integration-contract.md). Add source / ABI / deployment provenance, issuance proof, and internal methods, followed by external-market variants. Do not infer progress, price, or executable quotes solely from legacy UI display logic. Explain unknown versions or incompatible user constraints and stop; do not fall back to the wrapper.
+## Route matrix
+
+| Verified version | Internal buy | Internal sell | External market |
+| --- | --- | --- | --- |
+| 1 | Four arguments, including receiver | Standard four-argument sale | Direct Pancake V2 native/token route |
+| 2, 3, 4 | Standard three-argument buy | Standard four-argument sale | Direct Pancake V2 native/token route |
+| 5 | Unsupported by user instruction | Unsupported | Unsupported |
+| 6 | Imported token; not native | Imported token; not native | Shared non-TagAI external workflow |
+| 7 | Standard buy, version-specific return ABI | Standard sale | Direct Pancake Infinity CL |
+| 8 | Unsupported by user instruction | Unsupported | Unsupported |
+| 9, 11 | Standard buy | Standard sale | Direct Pancake Infinity CL |
+| 10 | Imported token; not native | Imported token; not native | Shared non-TagAI external workflow |
+| 13, 14 | Standard buy; dynamic fee / pending state | Standard sale | Direct native-BNB Infinity CL main pool |
+| 15, 15-2, 16 | Standard buy plus nonempty buyer handle | Standard sale; no buyer-handle gate | Direct native-BNB Infinity CL main pool |
+
+Never use ImportedTokenSwapWrapper or either legacy TagAI swap wrapper for native TagAI tokens in this skill. The older frontend still uses legacy wrappers for some V2 flows; copy the Router02 interface and on-chain pool facts, not that routing decision or its wrapper fee assumptions.
+
+V13+ component pools and optimized split routes require separate full route validation and are documented as an extension boundary. This release's deterministic DEX builder selects the verified direct native main pool; it does not claim the best route across all component pools. Missing liquidity or an incompatible main pool means stop, not a fabricated multi-hop route.
+
+## Required decision sequence
+
+Resolve ticker -> prove issuer and exact Pump deployment -> enforce version exclusions -> read state at one block -> choose internal or external entry -> quote the actual amount with all applicable fees -> prepare approvals if needed -> refresh quote after approvals -> encode and independently decode -> simulate using the owned wallet -> wallet preview -> confirmation -> execute -> receipt / actual-output verification.
+
+Deployment, ownership activation, listing finalization, and trading success are different states. Historical activation status is recorded in the registry for context, not as a current fact. The main contract workspace has uncommitted V17 changes; this integration uses the pinned deployed V16 source and exported version ABIs instead.

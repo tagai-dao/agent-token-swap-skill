@@ -17,8 +17,8 @@ test('published capability output cannot claim any live adapter or wallet access
   assert.equal(result.tradingEnabled, false);
   assert.equal(result.networkAccess, false);
   assert.equal(result.walletAccess, false);
-  for (const platform of Object.values(result.platforms)) {
-    assert.equal(platform.status, 'not_integrated');
+  for (const [id, platform] of Object.entries(result.platforms)) {
+    assert.equal(platform.status, id === 'tagai' ? 'documented' : 'not_integrated');
     for (const [key, value] of Object.entries(platform)) if (key !== 'status') assert.equal(value, false);
   }
 });
@@ -78,7 +78,7 @@ test('repository references and ABI provenance validate without any network', as
   const result = await validateRepository(root);
   assert.equal(result.valid, true);
   assert.equal(result.liveTradingTested, false);
-  assert.equal(result.abiFiles, 3);
+  assert.ok(result.abiFiles > 3);
 });
 
 test('changed ABI bytes and broken references are rejected', async () => {

@@ -1,6 +1,6 @@
 # Token Inputs, Candidates, and Issuance
 
-All four platforms are currently unintegrated. This reference defines future behavior and does not provide callable platform interfaces.
+Bundled live platform adapters are not implemented. TagAI now has a [source-documented search and interaction workflow](platforms/tagai.md) and offline helpers; other platforms remain unintegrated. This shared reference defines resolution rules, not an automatic search or chain reader.
 
 ## Address input
 
