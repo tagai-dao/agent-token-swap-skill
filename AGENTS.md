@@ -2,17 +2,17 @@
 
 ## Mandatory Multicall rule
 
-- 批量合约读取必须使用链上 Multicall（如 Multicall3 aggregate3），适用于所有合约、前端、API、服务、脚本、链和 agent。
-- Promise.all 包装独立 eth_call、循环 readContract、JSON-RPC batch、关闭 RPC batch 后逐个发送都不算 Multicall，禁止作为实现或降级。
-- 有依赖查询分阶段 Multicall；同一快照所有阶段、分片和重试固定同一 blockTag。单个独立合约读取和区块、回执、日志查询不属于批量合约读取。
-- 节点 gas、响应大小、数量限制只能通过拆分 Multicall 解决。未部署、调用失败、调用者语义不兼容必须明确报告并解决，不得静默绕过。
-- 使用所在链已验证地址和 ABI，保持结果顺序、处理子调用失败，必要数据缺失拒绝整体结果。
-- 修改批量读取时，测试必须验证 eth_call 目标为 Multicall、子调用集合和固定区块。
-- 此规则由用户明确要求，后续 agent 和子项目不得放宽。
+- All batch contract reads must use on-chain Multicall, such as Multicall3 aggregate3. This applies to every contract, frontend, API, service, script, chain, and agent.
+- Promise.all over independent eth_call requests, readContract loops, JSON-RPC batches, and individual sends with RPC batching disabled are not Multicall and are prohibited as implementations or fallbacks.
+- Organize dependent queries into Multicall stages. Pin all stages, chunks, and retries within one snapshot to the same blockTag. Single independent contract reads and block, receipt, or log queries are outside the batch-read rule.
+- Handle node gas, response-size, or call-count limits only by splitting Multicall calls. Report and resolve missing deployments, failed calls, or incompatible caller semantics; never silently bypass the rule.
+- Use the chain's verified Multicall address and ABI, preserve result order, handle subcall failures, and reject the full result when required data is missing.
+- Changes to batch reads must include tests of the eth_call target, subcall set, and pinned block.
+- This is an explicit user requirement. Future agents and subprojects must inherit it without weakening it.
 
 ## Product boundaries
 
-- One installable skill; platform-specific instructions live in references/platforms. Keep the user workflow in Chinese and shared machine field names in English.
+- One installable skill; platform-specific instructions live in references/platforms. Keep all repository-authored instructions, documentation, metadata, and code comments in English.
 - BSC only. User provides ticker or address; no proactive token discovery. The agent selects the route unless the user constrained it.
 - External launchpad internal markets call platform contracts directly. TagAI uses its version-specific internal / external methods, never ImportedTokenSwapWrapper.
 - Other external markets prefer ImportedTokenSwapWrapper; documented incompatibility permits direct DEX execution. Only verified Uniswap / PancakeSwap deployments and supported protocol variants are eligible.

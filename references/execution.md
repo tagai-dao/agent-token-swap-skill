@@ -1,49 +1,49 @@
-# 执行、授权与多步恢复
+# Execution, Approvals, and Multi-Step Recovery
 
-## 金额与预算
+## Amounts and budget
 
-买入输入 BNB，卖出最终收 BNB。用户的 swap 金额和 gas 分开展示；“全部 BNB”必须扣除全部步骤 gas 预留后才计算可用输入。普通确切金额不要擅自减少：余额不足先报告。持仓比例在报价快照按整数向下取整。
+Buys start with BNB; sales end in BNB. Display swap input and gas separately. For "all BNB," reserve gas for every step before calculating spendable input. Do not silently reduce an ordinary exact amount; report insufficient balance first. Resolve holding percentages from the quote snapshot with integer rounding down.
 
-不使用 JS Number 处理金额；人类小数解析到 raw units，输出用字符串。slippageBps 用整数，minimumOut 从扣除已知费用的最终净输出向下取整，不重复扣费；不能假设动态税为零。
+Do not use JS Number for amounts. Parse human-readable decimals into raw units and output strings. Use integer slippageBps. Round minimumOut down from final net output after known fees, avoid double-counting fees, and do not assume an unknown dynamic tax is zero.
 
-授权 spender 是实际 transferFrom 钱包的合约。平台内盘不一定需要 approve；wrapper 卖出通常授权 wrapper；直接 DEX、Permit2 等依具体实现确定。需要先归零的 token 使用独立已验证步骤。默认有限授权，不能自动生成无限 Permit / Permit2 权限。
+The approval spender is the contract that actually calls transferFrom on the wallet. An internal platform may not need approval; wrapper sales normally approve the wrapper. Direct DEX and Permit2 spenders depend on the specific implementation. Tokens requiring allowance reset use separately verified steps. Default to finite approval; do not automatically grant unlimited Permit / Permit2 authority.
 
-## 中间结算币
+## Intermediate settlement assets
 
-以 GANG 为例，实际接口待接入：
-
-```text
-买入：BNB → GANG → 内盘代币
-卖出：内盘代币 → GANG → BNB
-```
-
-先给出整条路线报价、每步最低到账、费用和预算。第一笔成功并确认实际到账后，重新检查内盘状态、版本、余额与第二笔报价，再构造下一笔。两笔 swap 之外可能有 approve 交易，每一笔都单独模拟与 preview。
-
-默认第二步只花本路线第一步获得的净中间币，不消耗钱包原有中间持仓。通过第一笔交易事件及到账证据确定路线所得，不能将无关转入计为本次收益。用户明确要求使用已有中间币时才纳入计划。
-
-每步滑点不能随意重复使用整体滑点，必须评估组合后的最终最低到账。第二步预览前重新验证其最低到账仍满足用户完整授权范围；不足时不扩大投入、不放宽保护，说明剩余选择。无法保证跨交易原子性，报价也不能保证第二步一定成功。
-
-## 持久化状态
-
-由将来的执行器在本机 `.state/` 原子保存，不提交 Git，不保存会话凭据。最少字段见 [数据约定](data-model.md)。执行钱包命令前记录准备状态，命令返回后立即保存 requestId / orderId / txHash。
-
-步骤状态：
+GANG is an example; the actual interfaces remain unintegrated:
 
 ```text
-PLANNED → PREVIEWED → AWAITING_USER / AWAITING_APP
-        → SUBMITTED → CONFIRMED
-任意尚未成功步骤 → FAILED / EXPIRED / UNKNOWN
-路线整体：PLANNED / IN_PROGRESS / PARTIAL / COMPLETED / FAILED
+Buy:  BNB -> GANG -> internal-market token
+Sell: internal-market token -> GANG -> BNB
 ```
 
-UNKNOWN 表示广播状态不明，不代表失败。使用钱包订单、交易锁、历史和链上回执消歧，未消歧不再次 execute 或重做该步。钱包侧没有可靠幂等保证时，不声称本地 planId 足以防止重复上链。
+Quote the entire route first, with per-step minimum outputs, fees, and budget. After the first transaction confirms and its actual output is established, refresh internal-market state, version, balances, and the next quote before constructing the next transaction. Additional approval transactions may be required; simulate and preview each transaction separately.
 
-- PENDING_CONFIRMATION：等待 App 操作，不创建第二份订单。
-- BROADCASTED：记录哈希并查回执，不称成交成功。
-- receipt status=0：该笔失败，资产变动与 gas 分开核对。
-- 确认实际到账和必要确认数后才依赖前一步。确认策略由核验配置和重组检测确定，框架不编造固定数字。
-- 第二步失败：标记 PARTIAL，展示已有中间资产、失败步骤和恢复所需报价；不重复第一步，不默认回兑。
+By default, a later step spends only the net intermediate output produced by this route, without consuming pre-existing intermediate holdings. Establish route proceeds from transaction events and delivery evidence rather than counting unrelated incoming transfers. Include existing intermediate holdings only when explicitly authorized by the user.
 
-## 用户约束与钱包确认
+Do not independently apply the full route's slippage allowance to every step without checking the compounded final result. Before the next preview, verify that its minimum output still fits the user's complete authorization. If it does not, explain the remaining choices without increasing input or weakening protection. Cross-transaction atomicity is unavailable, and a quote cannot guarantee that the second step will succeed.
 
-批准原始多步意图不意味着批准任意新地址、资金追加或更宽滑点。每笔遵守 [钱包流程](binance-wallet.md) 的 preview 与确认规则。用户已明确给出的路线约束持久化到计划，恢复时也不能丢弃。
+## Persistent execution state
+
+The future executor must save records atomically under local `.state/`, outside Git, without session credentials. See the minimum fields in the [data model](data-model.md). Record preparation state before a wallet command and save requestId / orderId / txHash immediately after its response.
+
+Step states:
+
+```text
+PLANNED -> PREVIEWED -> AWAITING_USER / AWAITING_APP
+        -> SUBMITTED -> CONFIRMED
+Any unconfirmed step -> FAILED / EXPIRED / UNKNOWN
+Route: PLANNED / IN_PROGRESS / PARTIAL / COMPLETED / FAILED
+```
+
+UNKNOWN means broadcast status is unresolved, not failed. Reconcile wallet orders, transaction locks, history, and on-chain receipts before executing or repeating the step. A local planId alone does not provide on-chain idempotency when the wallet has no reliable idempotency guarantee.
+
+- PENDING_CONFIRMATION: wait for the App action; do not create a duplicate order.
+- BROADCASTED: record the hash and query its receipt; do not report a completed trade.
+- receipt status=0: the transaction failed; account for asset changes and gas separately.
+- Verify actual delivery and required confirmations before depending on a preceding step. Confirmation policy comes from verified configuration and reorganization detection; this framework does not invent a fixed count.
+- Failure after a completed step: mark PARTIAL and report intermediate holdings, the failed step, and the quote needed to resume. Do not repeat the first step or automatically swap back.
+
+## User constraints and wallet confirmation
+
+Authorization of a multi-step intent does not authorize arbitrary new addresses, additional funds, or wider slippage. Each transaction follows the preview and confirmation requirements in the [wallet reference](binance-wallet.md). Persist explicit user constraints and preserve them during recovery.

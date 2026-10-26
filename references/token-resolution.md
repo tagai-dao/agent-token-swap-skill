@@ -1,25 +1,25 @@
-# 代币输入、候选和平台归属
+# Token Inputs, Candidates, and Issuance
 
-当前四个平台都尚未接入；本文件定义将来的实际行为，不提供可调用的平台接口。
+All four platforms are currently unintegrated. This reference defines future behavior and does not provide callable platform interfaces.
 
-## 地址输入
+## Address input
 
-检查 20 字节 EVM 地址、混合大小写校验和、chainId=56 和合约代码。用户指定平台时优先调用该平台的发行证明接口；不指定时对各平台已接入证明接口组成 Multicall。不要根据名字、symbol、后缀或存在某方法判归属。
+Validate the 20-byte EVM address, mixed-case checksum, chainId=56, and contract code. If the user specifies a platform, check that platform's issuance-proof interface first. Otherwise assemble a Multicall across all integrated platform proof interfaces. Names, symbols, suffixes, and the presence of a method do not prove issuance.
 
-每个平台证明必须返回 MATCH / NO_MATCH / UNKNOWN，并附平台版本、证明合约、方法和快照。RPC 失败、解码失败、未接入和未知版本是 UNKNOWN，不能当 NO_MATCH。接口约定的正常否定结果才是 NO_MATCH。
+Each platform proof returns MATCH / NO_MATCH / UNKNOWN, with platform version, proof contract, method, and snapshot. RPC failures, decode failures, missing integrations, and unknown versions are UNKNOWN, not NO_MATCH. Only a normal negative result defined by the interface is NO_MATCH.
 
-多平台同时 MATCH 时使用创建 Factory / Registry 记录解释冲突；未解决时不交易。TagAI 导入绑定不等于 TagAI 原生发行。用户指定平台但证明不一致时展示差异，不悄悄更换平台。
+If multiple platforms return MATCH, use creation Factory / Registry evidence to resolve the conflict. Do not trade while the conflict remains unresolved. A TagAI import binding is not TagAI-native issuance. If the named platform disagrees with the evidence, show the discrepancy instead of silently changing platforms.
 
-所有平台均明确 NO_MATCH 时，才可按普通外部代币继续检查受支持 DEX。存在 UNKNOWN 时不能声称完成了全平台排除；需要补足相关证据，不能利用“普通币”分支绕过未接入状态。
+Only after all relevant platforms explicitly return NO_MATCH may the token proceed as an ordinary external token to supported DEX checks. An UNKNOWN result means platform exclusion is incomplete. Obtain the missing evidence rather than using the ordinary-token branch to bypass missing integrations.
 
-## ticker 输入
+## Ticker input
 
-按用户明确的平台过滤，未指定则查询四家已接入搜索接口。各家默认展示前 3 项，保留来源原生排序，注明排序依据；接口未说明则标注“平台返回顺序”。这只是用户输入解析，不是热门发现或推荐。
+Filter by the user's platform when explicitly specified; otherwise query the four integrated search interfaces. Show the first 3 results from each by default, preserving the source's native order and naming its ranking basis. If the API does not document ranking, label it "platform response order." This resolves the user's input; it is not trending-token discovery or a recommendation.
 
-候选列出：name、symbol、完整地址、平台、版本（若已知）、用于区分同名项的状态 / 流动性 / 创建时间及来源。所有可选数据必须真实取得，不编造缺失值。按 chainId + 地址去重，同时保留多来源标签。
+Show name, symbol, full address, platform, version if known, sources, and available distinguishing fields such as market phase, liquidity, or creation time. Optional fields must come from real data; do not fabricate missing values. Deduplicate by chainId + address while preserving multiple-source labels.
 
-让用户选定地址后再进入交易。精确 ticker 命中、排名第一或只有一个结果都不自动替代地址确认。接口失败时列出覆盖缺口，不能称“该 ticker 不存在”。没有接入时返回 NOT_INTEGRATED，可接受用户改给地址，但不能承诺地址交易已可用。
+Have the user select an address before trading. An exact ticker match, first-place ranking, or single result does not substitute for address confirmation. Report search coverage gaps on API failure rather than claiming the ticker does not exist. When search is unavailable, return NOT_INTEGRATED. The user may supply an address instead, but that does not imply address-based trading is already available.
 
-## 依赖读取
+## Dependent reads
 
-参照 [Multicall](multicall.md)：先固定区块，阶段 A 查归属与版本，阶段 B 读版本专属市场状态；阶段 B 仍用阶段 A 的区块。跨快照刷新需重算完整路线。
+Follow [Multicall](multicall.md): pin the block first, query issuance and version in stage A, then read version-specific market state in stage B at the same block. A snapshot refresh requires recalculating the full route.

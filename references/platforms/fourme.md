@@ -1,26 +1,26 @@
-# Fourme 平台
+# Fourme Platform
 
-## 能力状态
+## Capability status
 
-NOT_INTEGRATED。“Fourme”沿用用户的平台称呼，官方产品标识、资料及 BSC 部署尚未核验，不自动替换成名称相似的平台。当前不支持实际搜索、发行归属判定、状态读取、报价或交易。能力以 [配置](../../config/bsc.json) 为准。
+NOT_INTEGRATED. "Fourme" preserves the user's platform name. The official product identity, materials, and BSC deployments are unverified; do not substitute a similarly named platform automatically. Live search, issuance detection, state reads, quotes, and trading are unavailable. The [registry](../../config/bsc.json) determines capabilities.
 
-## 本平台路线
+## Platform routing
 
-- 内盘：按 Fourme 已确认版本的原生 ABI 直调平台合约，不走 wrapper。
-- 外盘：核验 [DEX](../external-dex.md)，优先 [Wrapper](../imported-token-swap-wrapper.md)，确认不兼容可走已接入的直接 DEX。
-- 买入资金 BNB、卖出最终 BNB；真实内盘结算币需核验，若不同则拆分中间兑换。
-- 用户指定平台不能替代链上归属和版本验证。发行接口正常否定与调用失败分别处理。
+- Internal market: call the confirmed version's native Fourme ABI directly, without the wrapper.
+- External market: verify [DEX](../external-dex.md) data, prefer [Wrapper](../imported-token-swap-wrapper.md), and allow an integrated direct DEX adapter on confirmed incompatibility.
+- Buys start with BNB and sales end in BNB. Verify the internal settlement asset and add an intermediate swap if it differs.
+- A user-named platform does not replace on-chain issuance and version checks. Distinguish normal negative proof results from failed calls.
 
-## 后续接入资料
+## Required integration materials
 
-| 项目 | 当前情况与要求 |
+| Item | Status and requirement |
 | --- | --- |
-| 平台身份与 ticker 搜索 | 官方资料、接口、原生排序、分页及同名币区分字段待提供 |
-| 发行归属与版本 | Factory / Registry、manager 或 helper 的角色、精确 ABI 和否定语义待提供 |
-| 内外盘状态 | 迁移和交易开关、毕业条件、外盘数据映射待提供 |
-| 价格与进度 | 原始数据、精度、计价币、进度公式待提供 |
-| 买卖与报价 | 各版本方法、结算币、费用、最小量、滑点与退款口径待提供 |
-| 授权与执行 | 真实 spender、msg.value、收款人、事件及 custom errors 待提供 |
-| 行为证据 | 成功交易样例、失败语义、固定区块验证待提供 |
+| Platform identity and ticker search | Official sources, endpoint, native ranking, pagination, and duplicate-ticker fields are pending |
+| Issuance and versions | Factory / Registry, manager or helper roles, exact ABIs, and negative-result semantics are pending |
+| Market phase | Migration and trading flags, graduation conditions, and external-market mapping are pending |
+| Price and progress | Raw data, precision, quote assets, and progress formulas are pending |
+| Trades and quotes | Version-specific methods, settlement assets, fees, minimum sizes, slippage, and refund accounting are pending |
+| Approvals and execution | Actual spender, msg.value, recipient, events, and custom errors are pending |
+| Behavioral evidence | Successful transaction examples, failure semantics, and fixed-block verification are pending |
 
-按 [接入契约](../integration-contract.md) 逐版本补齐。不能因另一版本的方法可调用就推断当前币使用相同交易接口。
+Complete each version using the [integration contract](../integration-contract.md). A callable method from another version does not prove that it is the correct trading interface for the current token.
