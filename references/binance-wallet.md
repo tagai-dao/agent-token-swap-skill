@@ -1,6 +1,6 @@
 # Binance Agentic Wallet
 
-This reference was adapted from the locally available Binance Agentic Wallet skill v1.13.0, which documents a minimum CLI version of 1.11.0. Verify the actual CLI version and `--help` when implementing integration. Stop on interface mismatches instead of guessing commands. Upstream: [binance/binance-skills-hub](https://github.com/binance/binance-skills-hub). Reading framework documentation does not require the user to sign in or install the CLI.
+This reference was adapted from the locally available Binance Agentic Wallet skill v1.13.0, which documents a minimum CLI version of 1.11.0. Verify the actual CLI version and `--help` when implementing integration. Stop on interface mismatches instead of guessing commands. Upstream: [binance/binance-skills-hub](https://github.com/binance/binance-skills-hub). Read-only price queries do not require the user to sign in or install the wallet CLI. Normal trading uses the live runtime; these low-level commands explain its wallet integration.
 
 ## Before live wallet operations
 
@@ -11,7 +11,7 @@ baw cli-check --required-version 1.11.0 --json
 baw wallet status --json
 baw wallet address --json
 baw wallet settings --json
-baw wallet tx-lock --json
+baw wallet tx-lock --binanceChainId 56 --json
 ```
 
 Verify CONNECTED status, the BSC wallet address, balances and gas, trading restrictions, and pending transactions. For a disconnected wallet, use the installed Binance wallet skill's authentication guidance or current CLI help; do not invent authentication parameters. Custom contract calls require `devMode.enabled=true`. Otherwise instruct the user to enable it in the Binance App; do not enable it on their behalf.
@@ -34,7 +34,7 @@ baw contract-call preview \
 
 Require a successful preview, a valid requestId, and checks of expiresAt, parsedTx, simulationResult, risks, and authorityChanges. Verify the token, direction, amount, recipient, spender, and approval amount. For complex calldata the wallet does not fully parse, also decode locally with the matching ABI and verify simulated asset changes.
 
-Show the preview, risks, authority changes, and human-readable amounts, then obtain explicit confirmation before execution. Backend requireConfirmation=false does not mean the user has confirmed. Upstream requires confirmation after an external-signing preview; this framework does not preauthorize live transactions.
+Show the preview, risks, authority changes, and human-readable amounts, then obtain explicit confirmation before execution. Backend requireConfirmation=false does not mean the user has confirmed. Upstream requires confirmation after an external-signing preview; the skill does not preauthorize live transactions. When the user has already confirmed the displayed, unexpired preview, execute it without asking the same question again.
 
 ## Execution and results
 
@@ -48,6 +48,6 @@ Execute only the requestId from that successful preview. Do not execute failed, 
 - PENDING_CONFIRMATION: save orderId and wait for the Binance App. Do not treat it as success or execute again.
 - Errors: show the original error code and message. Explain separately established facts without speculating about the cause.
 
-Implement order queries and hash recovery after App confirmation from current CLI documentation when adding the executor. No runnable polling script is included yet. See [execution recovery](execution.md).
+Use `node scripts/trade.mjs status --plan <plan-id>` for receipt checks and wallet-order reconciliation after App confirmation. The runtime uses wallet tx-history and a known order identity when available; if submission remains ambiguous, do not resend. See [execution recovery](execution.md).
 
 This skill builds calls for the selected platform / DEX. Do not use `market-order swap` to bypass route constraints or a failed custom call. Do not evade wallet risk blocks through another entry point.

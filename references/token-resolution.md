@@ -1,6 +1,6 @@
 # Token Inputs, Candidates, and Issuance
 
-Bundled live platform adapters are not implemented. TagAI now has a [source-documented search and interaction workflow](platforms/tagai.md) and offline helpers; other platforms remain unintegrated. This shared reference defines resolution rules, not an automatic search or chain reader.
+TagAI has a live [runtime workflow](runtime.md) for search, chain verification, prices and trading. Other platforms remain unintegrated. Apply these shared resolution rules without turning internal adapter details into user-facing explanations.
 
 ## Address input
 
@@ -18,7 +18,7 @@ Filter by the user's platform when explicitly specified; otherwise query the fou
 
 Show name, symbol, full address, platform, version if known, sources, and available distinguishing fields such as market phase, liquidity, or creation time. Optional fields must come from real data; do not fabricate missing values. Deduplicate by chainId + address while preserving multiple-source labels.
 
-Have the user select an address before trading. An exact ticker match, first-place ranking, or single result does not substitute for address confirmation. Report search coverage gaps on API failure rather than claiming the ticker does not exist. When search is unavailable, return NOT_INTEGRATED. The user may supply an address instead, but that does not imply address-based trading is already available.
+A unique exact ticker match may proceed automatically to information or transaction preview, with its full address shown. The user confirms the transaction preview before sending. If multiple candidates remain, ask the user to select an address; ranking alone never selects a token. Report search coverage gaps on API failure rather than claiming the ticker does not exist. When search is unavailable, return NOT_INTEGRATED. The user may supply an address instead; the runtime must still verify its issuer and market before preparing a trade.
 
 ## Dependent reads
 

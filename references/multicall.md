@@ -5,7 +5,7 @@
 All batch contract reads use a verified Multicall deployment on the selected chain, such as Multicall3 `aggregate3`. Promise.all over independent eth_call requests, readContract loops, JSON-RPC batches, and individual sends with RPC batching disabled are not alternatives.
 
 1. Verify RPC chainId=56. Read a block header, pin `blockNumber`, and record `blockHash`.
-2. Use the verified Multicall address in config/bsc.json and its [ABI](../abis/multicall3.json). The address is currently unset, so chain reads cannot start.
+2. Use the verified Multicall address in config/bsc.json and its [ABI](../abis/multicall3.json). The live reader verifies its configured runtime hash before starting snapshot reads.
 3. Encode target, callData, and allowFailure in a stable order within aggregate3. The outer `eth_call.to` must be the Multicall address and blockTag must be the pinned block.
 4. Use Multicall again for dependent stages at the same block. Handle node capacity limits only by chunking Multicall calls; all chunks and retries stay on that block.
 5. Restore results by index and validate length, success flags, and decoding. Optional fields may fail. If data required for the current decision fails, reject the whole result, including required issuance, trading state, configuration, balances, allowances, or executable quotes. Do not combine snapshots.
@@ -27,4 +27,4 @@ A single independent contract read, or a block, receipt, or log query, is outsid
 - Reject required subcall failures, missing data, and decode errors; explicitly label optional-field failures.
 - Ensure capacity errors cannot trigger individual contract-call fallback.
 
-No RPC reader is implemented yet. Offline repository validation does not establish that these transport-level tests have passed.
+The live implementation is scripts/lib/live-rpc.mjs. test/live.test.mjs checks actual serialized RPC transport, child targets and order, fixed blocks across phases / capacity splitting, required failures and reorganization rejection. The low-level offline request builder remains available for maintenance.

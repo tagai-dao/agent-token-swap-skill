@@ -21,7 +21,7 @@
 ## Integration discipline
 
 - Read SKILL.md and references/integration-contract.md before adding an adapter. Do not invent platform contracts, endpoints, ABI signatures, fee formulas or test results.
-- This revision includes TagAI interaction documentation and offline preparation, with V5 and V8 explicitly excluded. Preserve disabled capabilities until the corresponding adapter, verified deployments and behavioral evidence exist. Adding documentation or an ABI alone does not enable production trading.
+- TagAI now has a live search / quote / simulation / Binance wallet adapter. Keep V5 and V8 excluded internally. Other platforms remain disabled until their adapters and tests exist. Do not expose version lists or implementation groupings in ordinary user responses.
 - Keep source provenance for ABI files. Never copy production credentials, local paths, RPC tokens or private keys into this repository.
-- Shared scripts currently run offline and do not sign or broadcast. TagAI helpers may encode read plans and unsigned calls, but may not claim fresh quotes or verified deployments. Introduce RPC / transaction execution only as part of an explicit platform integration.
+- scripts/trade.mjs is the live workflow. It may query public data, simulate and obtain wallet previews. Only execute after explicit human confirmation of the exact displayed preview; no live trades during development without separate authorization. scripts/tagai.mjs remains an auxiliary offline tool, not the capability boundary.
 - Run `npm run validate`, `npm test` and the skill-creator validator for skill changes. For contract batch readers, add transport-level Multicall tests when implemented; documentation checks cannot replace them.

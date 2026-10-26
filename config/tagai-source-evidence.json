@@ -8,6 +8,6 @@
     "The V15-2 deployment still reports VERSION=15 and must be distinguished by Pump address.",
     "Historical UI ABIs are partial and are not proof that a method exists on a deployment.",
     "V6 and V10 imported tokens are not TagAI-native issuance.",
-    "No live RPC verification or mainnet trade has been performed by this release."
+    "Read-only live AIPRO lookup and buy/sell quotes were exercised on 2026-10-26. No real-wallet transaction was signed or broadcast during development."
   ]
 }

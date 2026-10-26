@@ -23,7 +23,7 @@ Provide at least one fixed-input calldata encoding / decoding example. Do not gu
 
 Platform adapters own search, buildProvenanceCalls, decodeProvenance, buildStateCalls, decodeState, quotes, and internal-market calldata construction. Shared layers own fixed-block Multicall, DEX / wrapper routing, wallets, and execution records. Do not implement separate individual-RPC readers per platform.
 
-The live executor is not implemented. scripts/trade.mjs supports capabilities / validate; scripts/tagai.mjs adds source-derived offline read plans, decoding, and unsigned calldata. These helpers do not establish live quotes, deployment verification, or execution. Real commands require capability gating and behavioral tests; changing config.status to ready must not enable nonexistent methods.
+scripts/trade.mjs implements live TagAI info, quote, prepare, execute and status commands. scripts/tagai.mjs remains an auxiliary offline encoder. New platform integrations must add real adapters and behavioral tests; toggling flags cannot substitute for implementation. Preserve the user-facing boundary: platform versions and routing mechanics stay internal unless needed for an actual blocker.
 
 ## Address and ABI verification
 
@@ -42,4 +42,4 @@ Register each DEX deployment explicitly. The brand must be uniswap or pancake; d
 - Actual intermediate output, retention after later-step failure, no repeated trades after unknown broadcasts, and recovery from pending App confirmation.
 - Use unit tests and fixed-block forks by default; do not send real funds. Live mainnet transactions require separate user authorization.
 
-Update capabilities together with implemented adapters, tests, documentation, and sufficient evidence. Explicitly enable only verified versions and directions. All trading capabilities remain disabled in this framework release.
+Update capabilities together with implemented adapters, tests, documentation, and sufficient evidence. Explicitly enable only verified versions and directions. TagAI live capabilities are enabled with per-request verification. Other platform capabilities remain disabled until integrated.

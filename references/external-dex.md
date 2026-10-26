@@ -1,6 +1,6 @@
 # External-Market DEX Data and Routing
 
-The DEX registry is currently empty. Live pool queries, quotes, and trading are unavailable. Only explicitly integrated Uniswap / PancakeSwap protocol variants and BSC deployments are eligible. Other brands are unsupported; V2 interface compatibility does not approve a third-party DEX.
+The live TagAI adapter includes Pancake V2 native/token and Pancake Infinity CL native main-pool routes. It queries and verifies pools at runtime. Only explicitly integrated Uniswap / PancakeSwap protocol variants and BSC deployments are eligible. Other brands are unsupported; V2 interface compatibility does not approve a third-party DEX.
 
 ## Pool discovery and verification
 

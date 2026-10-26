@@ -2,11 +2,11 @@
 
 ## Release scope
 
-This reference now documents TagAI's BSC issuance, internal markets, and external DEX calls, with version-specific [ABIs](../../abis/provenance.json), a [deployment reference registry](../../config/tagai-bsc.json), and deterministic [offline tools](../tagai/tools.md).
+The live [runtime](../runtime.md) resolves tickers, reads BSC state, obtains prices and amount-specific quotes, simulates, previews through Binance Agentic Wallet and sends the confirmed transaction. Use it for ordinary user requests. The version-specific [ABIs](../../abis/provenance.json), [deployment reference registry](../../config/tagai-bsc.json) and auxiliary [offline tools](../tagai/tools.md) below are internal implementation references.
 
 **V5 and V8 are explicitly unsupported in this release, for both internal and external trading.** Recognizing either version must stop quotation and trade construction. Do not work around this exclusion by calling another version's ABI or treating the token as unclassified external issuance. V6 and V10 are imported-token records, not TagAI-native issuance. V12, V17, and unknown versions are outside this integration.
 
-The tools do not contact RPCs, search APIs, or wallets, and never sign or broadcast. All imported deployment information is source-derived, not a fresh on-chain attestation. Runtime deployment checks, fixed-block reads, real-wallet simulation, and Binance preview remain mandatory. `config/bsc.json` retains false live-adapter flags; they describe bundled automation, not completion of the interaction documentation. Other platforms remain unintegrated.
+TagAI live flags are enabled in config/bsc.json. The runtime verifies issuance, token identity, market state and pool bindings per request; it uses fixed-block Multicall and real-wallet simulation, then requires confirmation of the Binance preview before sending. Do not explain version families or excluded-version lists in ordinary user replies. Report the token information, price, market and trade preview; surface only a relevant actionable blocker. Other platform adapters remain unintegrated.
 
 Read in this order:
 
@@ -28,7 +28,7 @@ X-Chain-Id: 56
 
 The source route returns an array directly, not the usual `{c,d}` envelope. Fields include `chainId`, `token`, `tick`, `name`, `version`, `isImport`, `pair`, `dexVersion`, `createAt`, and `listedDayNumber`. Error objects are not successful search responses. Verify the live response shape before use.
 
-Its source query matches ticker substrings case-insensitively, returns up to 30 records, and orders by `community.create_at` ascending. Show the first 3 usable BSC candidates in returned order, labeled as platform response order / oldest-first, not popularity. Show full addresses and import / unsupported-version labels. Ask the user to select the address, then verify issuance on-chain; API version and listing fields are hints only. An imported result does not acquire TagAI-native routing. Search code is documented but not bundled as a live CLI adapter.
+Its source query matches ticker substrings case-insensitively, returns up to 30 records, and orders by `community.create_at` ascending. Show the first 3 usable BSC candidates in returned order, labeled as platform response order / oldest-first, not popularity. Show full addresses and relevant issuer information. A unique exact ticker can proceed automatically; ambiguous candidates require user selection. Verify issuance on-chain; API version and listing fields are hints only. Keep unsupported-version and implementation labels out of routine user output. An imported result does not acquire TagAI-native routing. The search endpoint is used by the live CLI adapter.
 
 ## Route matrix
 

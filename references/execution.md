@@ -25,7 +25,7 @@ Do not independently apply the full route's slippage allowance to every step wit
 
 ## Persistent execution state
 
-The future executor must save records atomically under local `.state/`, outside Git, without session credentials. See the minimum fields in the [data model](data-model.md). Record preparation state before a wallet command and save requestId / orderId / txHash immediately after its response.
+The live executor saves records atomically under local `.state/`, outside Git, without session credentials. See the minimum fields in the [data model](data-model.md). Record preparation state before a wallet command and save requestId / orderId / txHash immediately after its response.
 
 Step states:
 
@@ -41,7 +41,7 @@ UNKNOWN means broadcast status is unresolved, not failed. Reconcile wallet order
 - PENDING_CONFIRMATION: wait for the App action; do not create a duplicate order.
 - BROADCASTED: record the hash and query its receipt; do not report a completed trade.
 - receipt status=0: the transaction failed; account for asset changes and gas separately.
-- Verify actual delivery and required confirmations before depending on a preceding step. Confirmation policy comes from verified configuration and reorganization detection; this framework does not invent a fixed count.
+- Verify actual delivery and required confirmations before depending on a preceding step. The current runtime checks canonical receipt inclusion and waits for two block confirmations before reporting CONFIRMED.
 - Failure after a completed step: mark PARTIAL and report intermediate holdings, the failed step, and the quote needed to resume. Do not repeat the first step or automatically swap back.
 
 ## User constraints and wallet confirmation

@@ -1,6 +1,6 @@
 # Shared Data Model
 
-This reference defines future adapter contracts. No on-chain executor currently returns these objects. Use null plus a reason for unknown fields; do not substitute zero, a zero address, or an empty array to imply success.
+This reference defines shared internal adapter data. The live runtime keeps technical fields internal and returns user-oriented summaries rather than exposing every field below. Use null plus a reason for unknown fields; do not substitute zero, a zero address, or an empty array to imply success.
 
 ## TokenSnapshot
 

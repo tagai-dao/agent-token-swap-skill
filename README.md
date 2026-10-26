@@ -1,28 +1,32 @@
 # Agent Token Swap Skill
 
-A BSC token trading skill for Binance Agentic Wallet. The user supplies a ticker or contract address; the agent identifies the issuer, market phase, and version, then plans a BNB-funded buy or a sale back to BNB.
+Look up BSC tokens and trade through Binance Agentic Wallet. The user supplies a ticker or contract address; the agent identifies the issuing platform, current price and market, prepares a transaction preview, and submits it after confirmation.
 
-**Current release: TagAI interaction documentation and offline preparation.** TagAI now has versioned ABIs, issuance / internal / external call guides, and deterministic calldata / Multicall helpers. V5 and V8 are excluded. Bundled live search, quoting, and wallet execution are not implemented; Flap, Fourme, and GANG remain unintegrated. The repository root is one installable skill package, with [SKILL.md](SKILL.md) as its entry point. Platform references are part of this skill and do not require separate installation.
+The TagAI adapter includes live token search, fixed-block Multicall reads, price and amount-specific quotes, transaction simulation, Binance previews, submission and receipt tracking. Other platform adapters are added separately. Routing and contract-version details stay internal to the agent.
 
-## Contents
+## Use
 
-- `references/platforms/`: platform-specific trading instructions and integration requirements.
-- `references/`: token resolution, DEX / wrapper routing, Multicall, wallet execution, and multi-step recovery.
-- `abis/`: shared ABIs and provenance. Including an ABI does not enable its deployment.
-- `config/bsc.json`: chain configuration, platform capabilities, and deployment verification status.
-- `scripts/trade.mjs`: offline capability inspection and repository validation.
-- `scripts/tagai.mjs`: source deployment references, fixed-block Multicall requests / decoding, and version-specific unsigned calldata; no wallet or RPC access. See [TagAI tools](references/tagai/tools.md).
-
-## Local checks
-
-Requires Node.js 22 or newer. Install the locked ethers dependency before running the tools:
+Requires Node.js 22+. Querying prices does not require a connected wallet; trading uses the installed `baw` CLI and the user's Binance wallet.
 
 ```bash
-npm ci
-node scripts/trade.mjs capabilities
-node scripts/tagai.mjs deployments
+npm ci --ignore-scripts
+node scripts/trade.mjs info --token AIPRO
+node scripts/trade.mjs quote --token AIPRO --side sell --amount 1000
+node scripts/trade.mjs prepare --token AIPRO --side sell --amount 1000
+# Only after the human confirms that specific preview:
+node scripts/trade.mjs execute --plan <plan-id> --confirmed
+node scripts/trade.mjs status --plan <plan-id>
+```
+
+Give an agent [SKILL.md](SKILL.md) as the entry point and make the complete repository available. See [runtime operations](references/runtime.md) for command behavior and recovery. Endpoint overrides are optional through BSC_RPC_URL / TAGAI_API_URL; defaults are supplied.
+
+## Development
+
+```bash
 npm run validate
 npm test
 ```
 
-Follow the [integration contract](references/integration-contract.md) when adding a platform. This stage does not install the skill into a local agent or require a wallet connection. Maintain repository-authored instructions, documentation, metadata, and code comments in English.
+[Platform references](references/platforms/tagai.md) and [ABI provenance](abis/provenance.json) contain implementation details. `scripts/tagai.mjs` remains an auxiliary offline encoding tool; normal operations use `scripts/trade.mjs`. Runtime tests cover Multicall transport, quotes and mocked wallet submission. Real token search and quotes have read-only smoke coverage; development does not broadcast real trades.
+
+All repository-authored instructions, documentation, metadata, and code comments are maintained in English. Agents should answer users in their preferred language.

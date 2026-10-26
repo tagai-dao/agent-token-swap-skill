@@ -12,21 +12,21 @@ const root = new URL('../', import.meta.url);
 const initial = JSON.parse(await readFile(new URL('config/bsc.json', root), 'utf8'));
 const config = () => structuredClone(initial);
 
-test('published capability output cannot claim any live adapter or wallet access', () => {
+test('published capabilities enable TagAI and keep other platforms disabled', () => {
   const result = summarizeCapabilities(config());
-  assert.equal(result.tradingEnabled, false);
-  assert.equal(result.networkAccess, false);
-  assert.equal(result.walletAccess, false);
+  assert.equal(result.tradingEnabled, true);
+  assert.equal(result.networkAccess, true);
+  assert.equal(result.walletAccess, true);
   for (const [id, platform] of Object.entries(result.platforms)) {
-    assert.equal(platform.status, id === 'tagai' ? 'documented' : 'not_integrated');
-    for (const [key, value] of Object.entries(platform)) if (key !== 'status') assert.equal(value, false);
+    assert.equal(platform.status, id === 'tagai' ? 'live' : 'not_integrated');
+    for (const [key, value] of Object.entries(platform)) if (key !== 'status') assert.equal(value, id === 'tagai');
   }
 });
 
 test('config edits cannot enable missing adapters or an alternate chain', () => {
   for (const mutate of [
     value => { value.chainId = 1; },
-    value => { value.tradingEnabled = true; },
+    value => { value.tradingEnabled = false; },
     value => { value.phase = 'production'; },
     value => { value.platforms.gang.capabilities.internalTrade = true; },
     value => { value.platforms.tagai.status = 'ready'; },
@@ -65,11 +65,11 @@ test('CLI works outside the repository and refuses unimplemented trading command
   const cli = fileURLToPath(new URL('scripts/trade.mjs', root));
   const status = spawnSync(process.execPath, [cli, 'capabilities'], { cwd: tmpdir(), encoding: 'utf8' });
   assert.equal(status.status, 0, status.stderr);
-  assert.equal(JSON.parse(status.stdout).data.tradingEnabled, false);
+  assert.equal(JSON.parse(status.stdout).data.tradingEnabled, true);
   for (const args of [['buy'], ['swap'], ['capabilities', '--execute'], []]) {
     const result = spawnSync(process.execPath, [cli, ...args], { cwd: tmpdir(), encoding: 'utf8' });
     assert.equal(result.status, 1);
-    assert.equal(JSON.parse(result.stderr).error.code, 'FRAMEWORK_ONLY');
+    assert.ok(['INVALID_COMMAND', 'INVALID_ARGUMENT'].includes(JSON.parse(result.stderr).error.code));
     assert.equal(result.stdout, '');
   }
 });

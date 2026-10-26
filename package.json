@@ -1,9 +1,9 @@
 {
   "name": "agent-token-swap-skill",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
-  "description": "BSC token trading skill framework for Binance Agentic Wallet",
+  "description": "Live BSC token quotes and confirmed Binance Agentic Wallet trading",
   "engines": {
     "node": ">=22"
   },
