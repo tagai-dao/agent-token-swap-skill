@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "deploymentVerified": false,
+  "files": {
+    "erc20.json": {
+      "sha256": "a85f405627c1bdccd634a2613af136e892e08bc0b91a1fa80aeead841de5ef12",
+      "kind": "standard-interface-subset",
+      "specification": "https://eips.ethereum.org/EIPS/eip-20",
+      "note": "Includes optional name/symbol/decimals; arbitrary tokens may not implement them."
+    },
+    "multicall3.json": {
+      "sha256": "070cb56a265f5dcd302389bfed928bf726109f674003ec79e953f52515865053",
+      "kind": "interface-subset",
+      "specification": "https://github.com/mds1/multicall3/blob/main/src/Multicall3.sol",
+      "note": "ABI only. No BSC deployment address has been enabled."
+    },
+    "imported-token-swap-wrapper.json": {
+      "sha256": "9a5dae081b685251a33dac203ca060bc54ce24ccde6e953ceaf2623703bc0abe",
+      "kind": "local-compiled-artifact-subset",
+      "sourceProject": "TagAI-contract-V2",
+      "sourceCommit": "955f10a16cb9854abac0b9c73932c014975250a6",
+      "sourcePath": "src/helper/ImportedTokenSwapWrapper.sol",
+      "sourceSha256": "e6b7800ba962fc0115f35fe86f11557dd603cc9a1b88650ccd7f33ab326b3c61",
+      "sourceInterfacePath": "src/router/INutboxRouter.sol",
+      "sourceInterfaceSha256": "a41eab14070cff892f674b60575252fd4ffc31404eb359e5d13e549bf7969222",
+      "artifactSha256": "24c13033be49079bb8467079ee87d5e49636c6b219c6f8caf8ed5ae024f81c96",
+      "note": "Selected trading/getter/event/error ABI from a local artifact, checked against source signatures. Not verified against any production deployment."
+    }
+  }
+}
