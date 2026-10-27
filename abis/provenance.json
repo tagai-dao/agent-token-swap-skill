@@ -262,6 +262,63 @@
       "componentSha256": "08545080fdc1e4c8d86e827cb56a3d1f748d8369d905e29b1b1b98b374ddc83f",
       "retrievedAt": "2026-10-27",
       "note": "Typed Portal/Factory/Reader/Market interfaces extracted as data from the published Flap app. buyWithQuote is supplied by the app English interaction guide. Wallet-sensitive reverting probes are deliberately not used as Multicall subcalls."
+    },
+    "gang/soft.json": {
+      "sha256": "0cb21ce68626af095face80d2d53b6f8dbec1a7e71f7304c4cc7afef46149487",
+      "kind": "official-source-interface-subset",
+      "sourceRepository": "gangfun/gang-launchpad",
+      "sourceCommit": "bad314210a1fa9a10ee3f760ddb3bc11b1c68870",
+      "sourcePath": "src/Launchpad.sol",
+      "cliRepository": "gangfun/cli",
+      "cliCommit": "8479a24f2628397999560958ee20aa6940a5c545",
+      "cliPath": "src/abi.js",
+      "note": "Trading interface subset; source-defined views and WBNB events supplement the CLI ABI. Excludes creation methods. Verify the actual matched deployment at the request snapshot."
+    },
+    "gang/v2.json": {
+      "sha256": "dda49bae2722665a09bf65c3cdb54c5bf997e7b465a17935ef52dd088301fe61",
+      "kind": "official-source-interface-subset",
+      "sourceRepository": "gangfun/gang-launchpad",
+      "sourceCommit": "bad314210a1fa9a10ee3f760ddb3bc11b1c68870",
+      "sourcePath": "src/launchpad-v2/LaunchpadV2.sol",
+      "cliRepository": "gangfun/cli",
+      "cliCommit": "8479a24f2628397999560958ee20aa6940a5c545",
+      "cliPath": "src/abi.js",
+      "note": "Trading interface subset; source-defined views and WBNB events supplement the CLI ABI. Excludes creation methods. Verify the actual matched deployment at the request snapshot."
+    },
+    "gang/s.json": {
+      "sha256": "73b316bb9acd258e90c4c522f45123afb4d63a2eae531613a08d353ad8a860fe",
+      "kind": "official-source-interface-subset",
+      "sourceRepository": "gangfun/gang-launchpad",
+      "sourceCommit": "bad314210a1fa9a10ee3f760ddb3bc11b1c68870",
+      "sourcePath": "src/stocks/LaunchpadS.sol",
+      "cliRepository": "gangfun/cli",
+      "cliCommit": "8479a24f2628397999560958ee20aa6940a5c545",
+      "cliPath": "src/abi.js",
+      "note": "Trading interface subset; source-defined views and WBNB events supplement the CLI ABI. Excludes creation methods. Verify the actual matched deployment at the request snapshot."
+    },
+    "gang/wbnb.json": {
+      "sha256": "8cf889b5ddc6aba32d73296b51b61b9b21948a5955fa1056745bdc65a3621206",
+      "kind": "official-source-interface-subset",
+      "sourceRepository": "gangfun/gang-launchpad",
+      "sourceCommit": "bad314210a1fa9a10ee3f760ddb3bc11b1c68870",
+      "sourcePath": "test/mocks/MockWBNB.sol",
+      "cliRepository": "gangfun/cli",
+      "cliCommit": "8479a24f2628397999560958ee20aa6940a5c545",
+      "cliPath": "src/abi.js",
+      "note": "Canonical WBNB deposit/withdraw and indexed Deposit/Withdrawal events. No keys or write execution is included in the ABI."
+    },
+    "gang/dex.json": {
+      "sha256": "74bd4d588a23864a06cb279a353586e46b76ddb0f34ecf0c74c40eddd2cf4b24",
+      "kind": "official-source-interface-subset",
+      "sourceRepository": "gangfun/gang-launchpad and tagai-dao contracts",
+      "sourceCommit": "bad314210a1fa9a10ee3f760ddb3bc11b1c68870",
+      "note": "TaxLaunchToken views plus NutboxRouter route and pool inspection views from the registered wrapper router interface.",
+      "routerSource": {
+        "project": "TagAI-contract-V2",
+        "sourceCommit": "955f10a16cb9854abac0b9c73932c014975250a6",
+        "path": "src/router/INutboxRouter.sol",
+        "note": "Read-only route inspection; deployed router identity is the existing verified wrapper binding."
+      }
     }
   }
 }

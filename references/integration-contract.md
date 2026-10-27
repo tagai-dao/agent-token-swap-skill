@@ -23,7 +23,7 @@ Provide at least one fixed-input calldata encoding / decoding example. Do not gu
 
 Platform adapters own search, buildProvenanceCalls, decodeProvenance, buildStateCalls, decodeState, quotes, and internal-market calldata construction. Shared layers own fixed-block Multicall, DEX / wrapper routing, wallets, and execution records. Do not implement separate individual-RPC readers per platform.
 
-scripts/trade.mjs implements shared TagAI / Flap info, quote, prepare, execute and status commands. Flap covers ordinary internal Portal, ID Agent native-BNB shares and wrapper V2/WBNB external routes; read its reference for explicit coverage limits. scripts/tagai.mjs remains an auxiliary offline encoder. New platform integrations must add real adapters and behavioral tests; toggling flags cannot substitute for implementation. Preserve the user-facing boundary: platform versions and routing mechanics stay internal unless needed for an actual blocker.
+scripts/trade.mjs implements shared TagAI / Flap / GANG info, quote, prepare, execute and status commands, plus GANG sequential route resume. Flap covers ordinary internal Portal, ID Agent native-BNB shares and wrapper V2/WBNB external routes; read its reference for explicit coverage limits. scripts/tagai.mjs remains an auxiliary offline encoder. New platform integrations must add real adapters and behavioral tests; toggling flags cannot substitute for implementation. Preserve the user-facing boundary: platform versions and routing mechanics stay internal unless needed for an actual blocker.
 
 ## Address and ABI verification
 
@@ -42,4 +42,4 @@ Register each DEX deployment explicitly. The brand must be uniswap or pancake; d
 - Actual intermediate output, retention after later-step failure, no repeated trades after unknown broadcasts, and recovery from pending App confirmation.
 - Use unit tests and fixed-block forks by default; do not send real funds. Live mainnet transactions require separate user authorization.
 
-Update capabilities together with implemented adapters, tests, documentation, and sufficient evidence. Explicitly enable only verified versions and directions. TagAI live capabilities are enabled with per-request verification. Fourme / GANG capabilities remain disabled until integrated.
+Update capabilities together with implemented adapters, tests, documentation, and sufficient evidence. Explicitly enable only verified versions and directions. TagAI live capabilities are enabled with per-request verification. GANG capabilities are enabled for its documented verified subset, including Main/Soft/V2 trading and WBNB/GANG settlement; U/S internal execution remains disabled. Fourme capabilities remain disabled.

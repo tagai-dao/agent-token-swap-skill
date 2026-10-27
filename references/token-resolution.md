@@ -1,12 +1,14 @@
 # Token Inputs, Candidates, and Issuance
 
-TagAI and [Flap](platforms/flap.md) have a live [direct tool workflow](tool-native.md) and optional runner. Fourme / GANG remain unintegrated. Flap proofs include ordinary Portal state and ID Agent Factory market / predicted-token bindings. Apply these shared resolution rules without turning internal adapter details into user-facing explanations.
+TagAI, [Flap](platforms/flap.md) and [GANG](platforms/gang.md) have a live [direct tool workflow](tool-native.md) and optional runner. Fourme remains unintegrated. GANG proofs read curves(address) on all five registered launchpads with the correct tuple layouts. Flap proofs include ordinary Portal state and ID Agent Factory market / predicted-token bindings. Apply these shared resolution rules without turning internal adapter details into user-facing explanations.
 
 ## Address input
 
 Keep a supplied address as the selected asset. Classify it with all integrated proof interfaces, including ordinary Flap Portal independently of the ID Agent Factory. The [AIPRO address example](flap/worked-examples.md#query-a-contract-address-aipro) has a positive ordinary Portal record, negative ID Agent / TagAI proofs, and an SPCXB internal price. A different same-symbol TagAI token remains a separate asset.
 
 For `https://flap.sh/bnb/<address>` links, including language/query parameters, extract and validate the path address, then follow the address workflow. Example: `https://flap.sh/bnb/0xeac597ba087f6219c03a65479b2568d3f9a07777?lang=zh` selects `0xeac597Ba087f6219C03a65479B2568d3f9A07777`. This uses on-chain reads directly; the page and ticker-search HTTP endpoints are unnecessary. Follow the [concrete lookup example](flap/worked-examples.md#query-a-flap-token-link-aipro).
+
+For `https://gang.fun/token/<address>`, extract the path address and follow the same workflow with every [registered GANG pad](../config/gang-bsc.json). A nonzero curves.creator proves issuance; zero pair on an internal market is expected.
 
 Validate the 20-byte EVM address, mixed-case checksum, chainId=56, and contract code. If the user specifies a platform, check that platform's issuance-proof interface first. Otherwise assemble a Multicall across all integrated platform proof interfaces. Names, symbols, suffixes, and the presence of a method do not prove issuance.
 

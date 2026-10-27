@@ -8,13 +8,15 @@ Give the agent [SKILL.md](SKILL.md). The default workflow uses its existing HTTP
 
 See [direct tool execution](references/tool-native.md) for the complete route from ticker lookup through Multicall, quoting, wallet preview and confirmed execution. Actual wallet / chain capabilities are still required; use what the agent already has rather than assuming a particular local SDK.
 
-TagAI and Flap workflows are connected. Flap covers ordinary Portal internal trading, ID Agent native-BNB share buys / percentage sales, and verified Pancake V2/WBNB external pools through ImportedTokenSwapWrapper. Read [Flap coverage](references/platforms/flap.md) for remaining token-specific routes. Fourme / GANG are added separately. Contract versions, ABI selection and routing details stay internal to the agent. Answer users in their preferred language while keeping repository-authored instructions in English.
+TagAI, Flap and GANG workflows are connected. Flap covers ordinary Portal internal trading, ID Agent native-BNB share buys / percentage sales, and verified Pancake V2/WBNB external pools through ImportedTokenSwapWrapper. Read [Flap coverage](references/platforms/flap.md) for remaining token-specific routes. GANG covers live Main/Soft/V2 internal trades, BNB settlement through WBNB or verified GANG, and verified Pancake V2 external routes. Fourme remains unintegrated. Contract versions, ABI selection and routing details stay internal to the agent. Answer users in their preferred language while keeping repository-authored instructions in English.
 
 For concrete TagAI operations, read [worked examples](references/tagai/worked-examples.md): TTAI candidate lookup / price, 0.001 BNB external buy, 1000-token sale and AIPRO internal buy/sell. Every example specifies contracts, ABI calls, argument units and wallet preview steps; historical observations must be refreshed.
 
 For Flap, follow [call examples](references/flap/worked-examples.md): lookup / price, 0.001 BNB ordinary internal buy, 1000-token sale, ID Agent share buy / 50% sale and external wrapper buy/sell. Targets, arguments and observed outputs are included.
 
 Supplied contract addresses proceed directly to platform proof and state reads. See the [AIPRO address query](references/flap/worked-examples.md#query-a-contract-address-aipro), including its ordinary Flap proof, SPCXB price, 0.0001 BNB quote and exact Multicall requests. Flap BNB token links use the same address workflow.
+
+For GANG, follow [call examples](references/gang/worked-examples.md): ticker / price, 0.001 BNB internal buy, sale back to BNB, WBNB deposit/withdraw, native archive trades and external wrapper / direct routing. The agent handles sequential settlement and resumes with only actual newly received funds.
 
 ## Optional repository automation
 

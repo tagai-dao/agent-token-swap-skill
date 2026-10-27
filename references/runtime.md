@@ -35,7 +35,7 @@ The runtime resolves the ticker, opens a fixed BSC snapshot, verifies Multicall 
 
 Internal quotes use the real curve and separately rounded fee amounts. Buying eligibility is checked for a connected buyer where required, not for price queries or sales. External routes verify the listing pool, official router / factory / manager, and Hook bindings; concentrated-liquidity quotes use the compatible Quoter with execution-matching Hook data.
 
-The historical source registry remains a reference, not an assertion that every deployment was preverified forever. The live adapter verifies each requested token and selected route. Disabled Fourme / GANG adapters do not disable connected TagAI / Flap routes. Do not quote unsupported internals as a generic explanation to the user; report the actual token-specific blocker in plain language.
+The historical source registry remains a reference, not an assertion that every deployment was preverified forever. The live adapter verifies each requested token and selected route. Disabled Fourme routes do not disable connected TagAI / Flap / GANG adapters. Do not quote unsupported internals as a generic explanation to the user; report the actual token-specific blocker in plain language.
 
 ## Preview and confirmation
 
@@ -44,6 +44,12 @@ The runtime automatically finds the owned BSC wallet through `baw`, requires a c
 Each preview has a planId and expiration. Show that preview and risks, then await explicit human confirmation. Once confirmed, execute the same plan immediately without asking a second confirmation for an unchanged preview. Backend `requireConfirmation=false` is not human consent. Backend `PENDING_CONFIRMATION` means the user must also approve in Binance App.
 
 TagAI internal sales and Flap ID Agent share sales need no approval. Ordinary Flap internal sales approve Portal; Flap external sales approve Wrapper. External sales may require an ERC20 approval and a Permit2 allowance approval before the swap. Each approval is a separate preview with finite authority. After its confirmed receipt, use the returned continueIntent to prepare the original trade again, refresh its quote, and show that trade preview. Do not mark approval as a completed sale, or silently execute a newly quoted transaction under an old confirmation.
+
+## GANG commands and coverage
+
+Use `--platform gang` when explicitly requested, or let the dispatcher classify an address. Follow [GANG calls](gang/worked-examples.md). Main/Soft native internal methods and current V2 WBNB/GANG-settled methods are connected. V2 BNB routes have two swaps or wrap/unwrap plus pad trading; finite approvals add transactions. U/S internal trading and other ERC20 settlement conversions are not automated. External verified Pancake V2 markets prefer the wrapper; a missing verified GANG bridge permits the documented direct two-hop route.
+
+The first `prepare` returns the complete route summary and the current transaction preview. After its confirmed receipt use `node scripts/trade.mjs resume --plan <root-id>` to prepare the next approval or swap from actual receipt output. This does not broadcast. Show and confirm each new preview, then execute that root plan once. Repeat status/resume after confirmations until COMPLETED. Unknown submissions must reconcile first. A failed second leg leaves a resumable PARTIAL route; it never repeats a confirmed first leg.
 
 ## Persistence and recovery
 
@@ -57,7 +63,7 @@ Status checks verify receipt inclusion, canonical block identity and confirmatio
 
 - Connect Binance Agentic Wallet or enable Developer Mode in Binance App.
 - Add BNB for network fees, reduce an amount to the actual balance, or select between ambiguous contract addresses.
-- Meet the token's actual buying requirements; do not claim that a selling restriction follows from a buying gate.
+- Meet actual directional eligibility. TagAI/Flap buying gates do not imply selling gates; GANG internal contracts explicitly gate both buying and selling on Agent ID.
 - Wait for migration, refresh an expired preview, or address a concrete wallet risk warning.
 
 Do not prepend unsupported-version lists, protocol-family descriptions, or capability-flag explanations to normal queries and previews. Keep detailed ABI / version information in internal references unless explicitly requested.

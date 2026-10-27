@@ -7,10 +7,10 @@ import { TradeError } from './lib/live-rpc.mjs';
 
 const root = new URL('../', import.meta.url);
 const print = data => process.stdout.write(`${JSON.stringify({ success: true, data }, (_, v) => typeof v === 'bigint' ? v.toString() : v, 2)}\n`);
-const allowed = new Set(['capabilities', 'validate', 'info', 'quote', 'prepare', 'execute', 'status']);
+const allowed = new Set(['capabilities', 'validate', 'info', 'quote', 'prepare', 'execute', 'status', 'resume']);
 try {
   const [command, ...args] = process.argv.slice(2);
-  if (!allowed.has(command)) throw new TradeError('INVALID_COMMAND', 'Use capabilities, validate, info, quote, prepare, execute, or status.');
+  if (!allowed.has(command)) throw new TradeError('INVALID_COMMAND', 'Use capabilities, validate, info, quote, prepare, execute, status, or resume.');
   const options = {};
   const flags = new Set(['token', 'platform', 'side', 'amount', 'wallet', 'slippage-bps', 'recipient', 'subject', 'plan', 'confirmed']);
   for (let i = 0; i < args.length; i++) {
@@ -24,7 +24,7 @@ try {
   }
   const permitted = {
     capabilities: [], validate: [], info: ['token', 'platform'], quote: ['token', 'platform', 'side', 'amount', 'wallet', 'slippage-bps', 'subject', 'recipient'],
-    prepare: ['token', 'platform', 'side', 'amount', 'wallet', 'slippage-bps', 'subject', 'recipient'], execute: ['plan', 'confirmed'], status: ['plan'],
+    prepare: ['token', 'platform', 'side', 'amount', 'wallet', 'slippage-bps', 'subject', 'recipient'], execute: ['plan', 'confirmed'], status: ['plan'], resume: ['plan'],
   };
   if (Object.keys(options).some(key => !permitted[command].includes(key))) throw new TradeError('INVALID_ARGUMENT', 'An option is not valid for this command.');
   if (command === 'capabilities') print(summarizeCapabilities(await loadConfig(root)));
@@ -48,7 +48,7 @@ try {
       }
     } else {
       if (!options.plan) throw new TradeError('PLAN_REQUIRED', 'Provide the transaction preview identifier with --plan.');
-      print(command === 'execute' ? await execution.execute(options.plan, { confirmed: options.confirmed === true }) : await execution.status(options.plan));
+      print(command === 'execute' ? await execution.execute(options.plan, { confirmed: options.confirmed === true }) : command === 'resume' ? await execution.resume(options.plan) : await execution.status(options.plan));
     }
   }
 } catch (error) {

@@ -1,11 +1,13 @@
 import { readFile } from 'node:fs/promises';
 import { tagaiRegistry } from './tagai.mjs';
 import { flapRegistry } from './flap-live.mjs';
+import { gangRegistry } from './gang-live.mjs';
 
 export const PLATFORM_IDS = Object.freeze(['flap', 'fourme', 'tagai', 'gang']);
 export const CAPABILITY_IDS = Object.freeze(['search', 'provenance', 'state', 'quote', 'internalTrade', 'externalTrade']);
 const registry = tagaiRegistry();
 const flap = flapRegistry();
+const gang = gangRegistry();
 const isObject = value => value !== null && typeof value === 'object' && !Array.isArray(value);
 const sameSet = (actual, expected) => actual.length === expected.length && actual.every(value => expected.includes(value));
 const same = (a, b) => typeof a === 'string' && typeof b === 'string' && a.toLowerCase() === b.toLowerCase();
@@ -38,10 +40,10 @@ export function validateConfig(config) {
   for (const id of PLATFORM_IDS) {
     const platform = config.platforms?.[id];
     if (!isObject(platform)) { errors.push(`${id}: platform entry missing`); continue; }
-    const live = ['tagai', 'flap'].includes(id);
+    const live = ['tagai', 'flap', 'gang'].includes(id);
     if (platform.status !== (live ? 'live' : 'not_integrated')) errors.push(`${id}: status does not match implemented adapters`);
     if (platform.reference !== `references/platforms/${id}.md`) errors.push(`${id}: invalid platform reference`);
-    const versions = id === 'tagai' ? liveVersions : id === 'flap' ? flap.supportedTokenVersions.map(String) : [];
+    const versions = id === 'tagai' ? liveVersions : id === 'flap' ? flap.supportedTokenVersions.map(String) : id === 'gang' ? gang.pads.map(pad => pad.id) : [];
     if (!Array.isArray(platform.versions) || !sameSet(platform.versions, versions)) errors.push(`${id}: invalid live version coverage`);
     if (!isObject(platform.capabilities) || !sameSet(Object.keys(platform.capabilities), CAPABILITY_IDS)) errors.push(`${id}: exact capability set is required`);
     for (const capability of CAPABILITY_IDS) if (platform.capabilities?.[capability] !== live) errors.push(`${id}.${capability}: capability does not match its adapter`);
@@ -58,7 +60,7 @@ export async function loadConfig(root) { return assertFrameworkConfig(JSON.parse
 export function summarizeCapabilities(config) {
   assertFrameworkConfig(config);
   return { phase: config.phase, chainId: config.chainId, tradingEnabled: true, networkAccess: true, walletAccess: true,
-    commands: ['capabilities', 'validate', 'info', 'quote', 'prepare', 'execute', 'status'],
+    commands: ['capabilities', 'validate', 'info', 'quote', 'prepare', 'execute', 'status', 'resume'],
     confirmationRequiredBeforeExecute: true, allowedDexBrands: config.dex.allowedBrands, configuredDexDeployments: config.dex.deployments.length,
     platforms: Object.fromEntries(PLATFORM_IDS.map(id => [id, { status: config.platforms[id].status, ...config.platforms[id].capabilities }])) };
 }

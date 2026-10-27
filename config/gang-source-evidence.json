@@ -1,0 +1,71 @@
+{
+  "chainId": 56,
+  "checkedAt": "2026-10-27",
+  "source": "https://gang.fun/docs",
+  "sourceRepository": "https://github.com/gangfun/gang-launchpad",
+  "sourceCommit": "bad314210a1fa9a10ee3f760ddb3bc11b1c68870",
+  "cliRepository": "https://github.com/gangfun/cli",
+  "cliCommit": "8479a24f2628397999560958ee20aa6940a5c545",
+  "sourceSha256": {
+    "src_launchpad-v2_LaunchpadV2.sol": "e340e14cc7121550302dc6cc0ec6605e4edabb474ff922ec198807c6381b1bf6",
+    "src_Launchpad.sol": "d77239a6c2e568cea6a7919c17d65cf353708427cea38b6999873c044c85d5c1",
+    "src_stocks_LaunchpadU.sol": "d27d0f489ad36e12b1f0b4b6688656cd82e54c0599d47292e804adbe13490be9",
+    "src_stocks_LaunchpadS.sol": "3a734a1c935251b17f6e8268d0cdacc1217155ce793af7de9503751c530b5613",
+    "src_launchpad-v2_TaxLaunchToken.sol": "ac3846e8bc4bcce443d2de595b6be6ac84fb154da063e65dc414ee31adf56db1",
+    "cli-src_abi.js": "14437e713a20b1ae46ddeb887d9bf6a395bfa30f9c42386feff7b2c9b864bfb7"
+  },
+  "deploymentSnapshot": {
+    "blockTag": "0x7c02547",
+    "blockHash": "0xa72e4db8c9a9b6b80016134fef0871d0a4f42deefffdec37879a60b374cb3d75",
+    "timestamp": 1793078674
+  },
+  "pads": [
+    {
+      "id": "v2",
+      "address": "0x1B8F3f69DFa0a7F63d308C7EB0Fd38D8b099966E",
+      "kind": "quote",
+      "abi": "abis/gang/v2.json",
+      "runtimeHash": "0x62293eb8930fd95758c2bbd335f4b90499002edb46f382623e09402c8ad25df6",
+      "codeBytes": 24182
+    },
+    {
+      "id": "main",
+      "address": "0x315Ba2e8952D06094CC636b2B84229FA32fb23A7",
+      "kind": "native",
+      "abi": "abis/gang/soft.json",
+      "runtimeHash": "0x5abf90fecc70e78818e73a1cc8142dc9366bf8fa3ecfca5227f5f3688be8e052",
+      "codeBytes": 16036
+    },
+    {
+      "id": "soft",
+      "address": "0x4E6f13c8A453c1b8b4E20b590082bb233a5b80d7",
+      "kind": "native",
+      "abi": "abis/gang/soft.json",
+      "runtimeHash": "0xdda9ff5f94f8c6e8ffffcc4debe385556502bfa2ab695b86842eeda93e9fbc4b",
+      "codeBytes": 15037
+    },
+    {
+      "id": "u",
+      "address": "0xF81C4E51c48466c6025B0165b1Ea0F6978c712cb",
+      "kind": "quote",
+      "abi": "abis/gang/v2.json",
+      "runtimeHash": "0xb12437780fec6b00eb5dbd8254f9ec4e05c12af1d27e91a34a32cd8e1f6359ac",
+      "codeBytes": 24295
+    },
+    {
+      "id": "s",
+      "address": "0x60aee38576035E757deD30fF8db8A8DA476430C1",
+      "kind": "quote",
+      "abi": "abis/gang/s.json",
+      "runtimeHash": "0xa2e10ec796fbdd4640d473b5f6b674a635f5398c3069c9ef70b891d1e60022b3",
+      "codeBytes": 19340
+    }
+  ],
+  "realTransactionsSent": false,
+  "walletConnected": false,
+  "walletSigningTested": false,
+  "observations": "config/gang-worked-examples.json",
+  "readOnlyQuoteCases": 8,
+  "readOnlyFullCallSimulations": 4,
+  "coverage": "Queries on Main/Soft/U/S/V2. Automated internal trading on Main/Soft and current V2 with WBNB or verified GANG settlement. External Pancake V2 WBNB/GANG pools; wrapper preferred, direct Router fallback only for a proven missing wrapper bridge. Other settlement assets remain readable and need additional conversion adapters for automated trades."
+}

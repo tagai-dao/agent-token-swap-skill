@@ -1,6 +1,6 @@
 # Direct Execution with Existing Agent Tools
 
-This is the default mode for TagAI and Flap. For Flap first read [its platform reference](platforms/flap.md), then follow the matching [call example](flap/worked-examples.md) for ordinary Portal / ID Agent / external trading. The TagAI-specific deployment and quote steps below apply only to TagAI. Never reuse TagAI Pump getters or version exclusions for Flap.
+This is the default mode for TagAI, Flap and GANG. For GANG follow [its platform reference](platforms/gang.md) and [exact calls](gang/worked-examples.md); its quote-pad, native-pad and external routes are distinct. For Flap first read [its platform reference](platforms/flap.md), then follow the matching [call example](flap/worked-examples.md) for ordinary Portal / ID Agent / external trading. The TagAI-specific deployment and quote steps below apply only to TagAI. Never reuse TagAI Pump getters or version exclusions for Flap.
 
 ## Execution contract
 
@@ -74,6 +74,7 @@ For an unknown address, assemble the integrated proof set before selecting a pla
 | --- | --- | --- |
 | Flap ordinary Portal / [Portal ABI](../abis/flap/portal.json) | getTokenV8Safe(address) | Registered ordinary Flap token state |
 | Flap ID Agent Factory / [Agent ABI](../abis/flap/agent-curve.json) | isMarket(address), marketOfToken(address) | ID Agent submarket only |
+| GANG registered pads / [registry](../config/gang-bsc.json) | curves(address) using each pad ABI | Nonzero creator identifies issuance; preserve quote and phase |
 | Trusted TagAI Pumps / [read ABI](../abis/tagai/read-interfaces.json) | createdTokens(address) | Native TagAI issuance only |
 
 Use [Flap routing](platforms/flap.md) for MATCH / NO_MATCH / UNKNOWN decoding. A positive ordinary Flap Portal record selects the ordinary Flap methods, including when both ID Agent results are negative and all TagAI Pump results are false. For an internal Flap token, read its Portal state and ERC20 metadata, then quote-asset metadata at the same B; its reference price may be in SPCXB or another ERC20. Check external DEX pools after its state selects an external market.
@@ -91,6 +92,8 @@ Return only the token name / symbol, full address, issuing platform, internal or
 ## 4. Obtain an amount-specific quote and encode
 
 For Flap, use the [matching call example](flap/worked-examples.md): ordinary internal markets quote at Portal.quoteExactInput and trade at Portal.swapExactInput; ID Agent markets quote/trade at their separate AgentPortal; verified external markets use the wrapper. The selected address determines the method family.
+
+For GANG use [the matching call example](gang/worked-examples.md). Current quote pads use exact pinned-state integer quotes and nonpayable three-argument buy/sell methods; native pads have on-chain quotes and a payable two-argument buy. Route BNB through the observed settlement asset and use only actual newly delivered intermediate funds.
 
 For TagAI internal buys, call the verified curve's getBuyAmountByValue(supply,funds) through Multicall at the same block. Parameters: supply=Token.bondingCurveSupply() in raw token units; funds=parseUnits(userBnbAmount,18) in wei. Example for 0.001 BNB of AIPRO: target=0x97f35B4631F4FFBF8050B17fAd6579D6F60A289D, args=[284811666433559752360740107,1000000000000000]. The return is raw token output. Use funds as transaction value and apply user slippage once to the quote. Follow [internal methods](tagai/internal.md) for the cap/refund branch and wallet buying eligibility.
 

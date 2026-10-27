@@ -10,7 +10,7 @@ Use [direct tool execution](../tool-native.md) for ordinary requests: resolve ti
 
 **V5 and V8 are explicitly unsupported in this release, for both internal and external trading.** Recognizing either version must stop quotation and trade construction. Do not work around this exclusion by calling another version's ABI or treating the token as unclassified external issuance. V6 and V10 are imported-token records, not TagAI-native issuance. V12, V17, and unknown versions are outside this integration.
 
-TagAI live flags are enabled in config/bsc.json. The runtime verifies issuance, token identity, market state and pool bindings per request; it uses fixed-block Multicall and real-wallet simulation, then requires confirmation of the Binance preview before sending. Do not explain version families or excluded-version lists in ordinary user replies. Report the token information, price, market and trade preview; surface only a relevant actionable blocker. Flap is also integrated for its documented subset; Fourme and GANG remain unintegrated.
+TagAI live flags are enabled in config/bsc.json. The runtime verifies issuance, token identity, market state and pool bindings per request; it uses fixed-block Multicall and real-wallet simulation, then requires confirmation of the Binance preview before sending. Do not explain version families or excluded-version lists in ordinary user replies. Report the token information, price, market and trade preview; surface only a relevant actionable blocker. Flap is also integrated for its documented subset; GANG is connected for its documented subset; Fourme remains unintegrated.
 
 Read in this order:
 

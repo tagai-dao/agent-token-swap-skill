@@ -6,11 +6,25 @@ import { PlatformLive } from '../scripts/lib/platform-live.mjs';
 import { ChainReader } from '../scripts/lib/live-rpc.mjs';
 import { flapRegistry } from '../scripts/lib/flap-live.mjs';
 import { abiInterface, tagaiRegistry } from '../scripts/lib/tagai.mjs';
+import { gangProofs } from '../scripts/lib/gang-live.mjs';
 
 const observation = JSON.parse(await readFile(new URL('../config/flap-aipro-query.json', import.meta.url), 'utf8'));
 
 for (const input of [observation.inputAddress.toLowerCase(), observation.sourceUrl]) test(`${input.startsWith('https:') ? 'Flap URL' : 'Bare address'} queries the selected AIPRO through exact pinned Multicalls and preserves SPCXB price units`, async () => {
-  const snapshot = observation.snapshot, pending = [...observation.requests], trace = [];
+  const multi = await abiInterface('abis/multicall3.json');
+  // These additional negatives are mocked for the newly integrated platform;
+  // the original Flap snapshot responses remain recorded historical evidence.
+  const requests = structuredClone(observation.requests), first = requests[0];
+  const extraCalls = [], extraResults = [];
+  for (const proof of gangProofs(observation.inputAddress)) {
+    const abi = await abiInterface(proof.abi);
+    extraCalls.push({ target: proof.target, allowFailure: true, callData: abi.encodeFunctionData(proof.method, proof.args) });
+    extraResults.push({ success: true, returnData: abi.encodeFunctionResult(proof.method, abi.getFunction('curves').outputs.map(field => field.type === 'address' ? '0x0000000000000000000000000000000000000000' : field.type === 'bool' ? false : 0)) });
+    first.calls.push({ target: proof.target, abi: proof.abi, method: proof.method, args: proof.args });
+  }
+  first.params[0].data = multi.encodeFunctionData('aggregate3', [[...multi.decodeFunctionData('aggregate3', first.params[0].data)[0], ...extraCalls]]);
+  first.result = multi.encodeFunctionResult('aggregate3', [[...multi.decodeFunctionResult('aggregate3', first.result)[0], ...extraResults]]);
+  const snapshot = observation.snapshot, pending = [...requests], trace = [];
   const registry = flapRegistry(), multicall = tagaiRegistry().multicall;
   const rpc = async (method, params) => {
     if (method === 'eth_chainId') return '0x38';
@@ -44,7 +58,6 @@ for (const input of [observation.inputAddress.toLowerCase(), observation.sourceU
   assert.equal(info.summary.platform, 'Flap');
   assert.equal(info.summary.referencePrice.currency, 'SPCXB');
   assert.deepEqual(info.quoteAsset, observation.quoteAsset);
-  const multi = await abiInterface('abis/multicall3.json');
   const proofCalls = observation.requests[0].calls;
   const proofResults = multi.decodeFunctionResult('aggregate3', observation.requests[0].result)[0];
   for (let index = 0; index < proofCalls.length; index++) {
@@ -59,7 +72,7 @@ for (const input of [observation.inputAddress.toLowerCase(), observation.sourceU
   assert.equal(observation.requests.flatMap(request => request.calls).some(call => ['listed', 'bondingCurve', 'getBuyFeeRatios', 'getPair'].includes(call.method)), false);
   for (let index = 0; index < trace.length; index++) {
     const actual = multi.decodeFunctionData('aggregate3', trace[index][0].data)[0];
-    const expected = observation.requests[index].calls;
+    const expected = requests[index].calls;
     assert.equal(actual.length, expected.length);
     for (let child = 0; child < actual.length; child++) {
       const abi = await abiInterface(expected[child].abi);

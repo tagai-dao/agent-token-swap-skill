@@ -9,13 +9,14 @@ import { FlapLive, flapRegistry, decodeFlapProof } from '../scripts/lib/flap-liv
 import { PlatformLive } from '../scripts/lib/platform-live.mjs';
 import { ChainReader, createRpc } from '../scripts/lib/live-rpc.mjs';
 import { PlanStore, WalletExecution } from '../scripts/lib/wallet-execution.mjs';
+import { gangRegistry } from '../scripts/lib/gang-live.mjs';
 
 const token = '0x1111111111111111111111111111111111111111', wallet = '0x2222222222222222222222222222222222222222';
 const market = '0x3333333333333333333333333333333333333333', pair = '0x4444444444444444444444444444444444444444';
 const quoteToken = '0x5555555555555555555555555555555555555555';
 const now = 1800000000, blockHash = `0x${'ab'.repeat(32)}`, txHash = `0x${'cd'.repeat(32)}`, unit = 10n ** 18n;
 const config = flapRegistry(), tagai = tagaiRegistry();
-const files = ['abis/flap/portal.json', 'abis/flap/agent-curve.json', 'abis/flap/tax-token.json', 'abis/erc20.json', 'abis/tagai/read-interfaces.json', 'abis/tagai/pancake.json', 'abis/imported-token-swap-wrapper.json'];
+const files = ['abis/flap/portal.json', 'abis/flap/agent-curve.json', 'abis/flap/tax-token.json', 'abis/erc20.json', 'abis/tagai/read-interfaces.json', 'abis/tagai/pancake.json', 'abis/imported-token-swap-wrapper.json', 'abis/gang/v2.json', 'abis/gang/soft.json', 'abis/gang/s.json'];
 const ifaces = await Promise.all(files.map(abiInterface));
 const portal = ifaces[0], agent = ifaces[1], erc20 = ifaces[3], wrapper = ifaces[6];
 const multi = new Interface(['function aggregate3((address target,bool allowFailure,bytes callData)[] calls) payable returns((bool success,bytes returnData)[])']);
@@ -79,11 +80,13 @@ function fixture(options = {}) {
         const rows = calls.map(child => {
           let abi, parsed;
           for (const candidate of ifaces) { try { const p = candidate.parseTransaction({ data: child.callData }); if (p) { parsed = p; abi = candidate; break; } } catch {} }
+          if (parsed?.name === 'curves') { const pad = gangRegistry().pads.find(pad => same(pad.address, child.target)); abi = ifaces[files.indexOf(pad.abi)]; parsed = abi.parseTransaction({ data: child.callData }); }
           assert.ok(parsed, child.callData.slice(0, 10));
           const args = parsed.args, name = parsed.name;
           if (state.fail === name) return [false, '0x'];
           let output;
           switch (name) {
+            case 'curves': output = abi.getFunction('curves').outputs.map(empty); break;
             case 'isMarket': output = [state.agent && same(args[0], market)]; break;
             case 'marketOfToken': output = [state.agent && same(args[0], token) ? market : ZeroAddress]; break;
             case 'createdTokens': output = [state.conflictingIssuer === true]; break;

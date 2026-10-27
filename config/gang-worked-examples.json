@@ -1,0 +1,1284 @@
+{
+  "schemaVersion": 1,
+  "chainId": 56,
+  "liveOrder": false,
+  "walletConnected": false,
+  "transactionBroadcast": false,
+  "note": "Historical read-only cases. Refresh snapshots, wallet capacity, quotes and exact steps before a real preview. Second-leg input is illustrative here; live continuation uses only confirmed receipt output.",
+  "examples": [
+    {
+      "id": "platform-buy",
+      "token": "0x0c6302401aa5325C2E36F170f52C00B1d220B405",
+      "snapshot": {
+        "blockTag": "0x7c02ce6",
+        "blockHash": "0x8fc720002c02c55ee000d509f1a7a84511fe446103f2eeff036905c9e357615d",
+        "timestamp": 1793079552
+      },
+      "curve": {
+        "creator": "0x4EEdcDF5fab775e10C0D09951b6F59Ab81ba19d3",
+        "realQuote": "0",
+        "sold": "799999999999999999990000000",
+        "graduated": true,
+        "pair": "0x0bd5dEd695d61C2db15C703c345D57e039FD0b6D",
+        "quote": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
+      },
+      "quoteAsset": {
+        "address": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+        "symbol": "BNB",
+        "decimals": 18
+      },
+      "summary": {
+        "name": "Gang",
+        "symbol": "GANG",
+        "contractAddress": "0x0c6302401aa5325C2E36F170f52C00B1d220B405",
+        "platform": "GANG",
+        "network": "BNB Smart Chain",
+        "market": "external",
+        "referencePrice": {
+          "amount": "0.000008612780213255",
+          "currency": "BNB",
+          "perToken": "1",
+          "includesTradingFees": false
+        },
+        "internalProgressPercent": null,
+        "observedAt": "2026-10-27T05:39:12.000Z",
+        "side": "buy",
+        "input": {
+          "amount": "0.001",
+          "symbol": "BNB"
+        },
+        "expectedOutput": {
+          "amount": "115.121768254644782213",
+          "symbol": "GANG"
+        },
+        "minimumOutput": {
+          "amount": "113.97055057209833439",
+          "symbol": "GANG"
+        },
+        "slippagePercent": "1.0",
+        "gasIncluded": false,
+        "expiresAt": "2026-10-27T05:40:12.000Z"
+      },
+      "quoteOutRaw": "115121768254644782213",
+      "minimumOutRaw": "113970550572098334390",
+      "steps": [
+        {
+          "step": {
+            "kind": "wrapper",
+            "path": [
+              "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+              "0x0c6302401aa5325C2E36F170f52C00B1d220B405"
+            ],
+            "sourceData": "0x00000000000000000000000010ed43c718714eb63d5aa57b78b54704e256024e0000000000000000000000000bd5ded695d61c2db15c703c345d57e039fd0b6d",
+            "fallback": null
+          },
+          "amountInRaw": "1000000000000000",
+          "quoteOutRaw": "115121768254644782213",
+          "minimumOutRaw": "113970550572098334390",
+          "summary": {
+            "name": "Gang",
+            "symbol": "GANG",
+            "contractAddress": "0x0c6302401aa5325C2E36F170f52C00B1d220B405",
+            "platform": "GANG",
+            "network": "BNB Smart Chain",
+            "market": "external",
+            "referencePrice": {
+              "amount": "0.000008612780213255",
+              "currency": "BNB",
+              "perToken": "1",
+              "includesTradingFees": false
+            },
+            "internalProgressPercent": null,
+            "observedAt": "2026-10-27T05:39:12.000Z",
+            "side": "buy",
+            "input": {
+              "amount": "0.001",
+              "symbol": "BNB"
+            },
+            "expectedOutput": {
+              "amount": "115.121768254644782213",
+              "symbol": "GANG"
+            },
+            "minimumOutput": {
+              "amount": "113.97055057209833439",
+              "symbol": "GANG"
+            },
+            "slippagePercent": "1.0",
+            "gasIncluded": false,
+            "expiresAt": "2026-10-27T05:40:12.000Z"
+          },
+          "transaction": {
+            "binanceChainId": "56",
+            "from": "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
+            "to": "0xDfFc699FB095a693708E3c15e6F0a224cbbCc98F",
+            "valueWei": "1000000000000000",
+            "inputData": "0xc3ad65c40000000000000000000000000c6302401aa5325c2e36f170f52c00b1d220b405000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000e00000000000000000000000000000000000000000000000062da8bbe7499d2eb60000000000000000000000008eec229385a366f0ff2f88db27f428b8a7343c08000000000000000000000000000000000000000000000000000000006ae039b60000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004000000000000000000000000010ed43c718714eb63d5aa57b78b54704e256024e0000000000000000000000000bd5ded695d61c2db15c703c345d57e039fd0b6d"
+          },
+          "abi": "abis/imported-token-swap-wrapper.json",
+          "decoded": {
+            "signature": "buyToken(address,uint8,bytes,uint256,address,uint256,address)",
+            "args": [
+              "0x0c6302401aa5325C2E36F170f52C00B1d220B405",
+              "0",
+              "0x00000000000000000000000010ed43c718714eb63d5aa57b78b54704e256024e0000000000000000000000000bd5ded695d61c2db15c703c345d57e039fd0b6d",
+              "113970550572098334390",
+              "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
+              "1793079734",
+              "0x0000000000000000000000000000000000000000"
+            ]
+          },
+          "simulation": {
+            "mode": "eth_call only",
+            "publicSampleNotUserWallet": true,
+            "returnData": "0x0000000000000000000000000000000000000000000000063da2ae494cf18485"
+          }
+        }
+      ]
+    },
+    {
+      "id": "platform-sell",
+      "token": "0x0c6302401aa5325C2E36F170f52C00B1d220B405",
+      "snapshot": {
+        "blockTag": "0x7c02cea",
+        "blockHash": "0x32a8d95e73e4fa2f6e7aa79427f292b00c2acb760ebf79431568ea23b28c4681",
+        "timestamp": 1793079554
+      },
+      "curve": {
+        "creator": "0x4EEdcDF5fab775e10C0D09951b6F59Ab81ba19d3",
+        "realQuote": "0",
+        "sold": "799999999999999999990000000",
+        "graduated": true,
+        "pair": "0x0bd5dEd695d61C2db15C703c345D57e039FD0b6D",
+        "quote": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
+      },
+      "quoteAsset": {
+        "address": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+        "symbol": "BNB",
+        "decimals": 18
+      },
+      "summary": {
+        "name": "Gang",
+        "symbol": "GANG",
+        "contractAddress": "0x0c6302401aa5325C2E36F170f52C00B1d220B405",
+        "platform": "GANG",
+        "network": "BNB Smart Chain",
+        "market": "external",
+        "referencePrice": {
+          "amount": "0.000008612767217979",
+          "currency": "BNB",
+          "perToken": "1",
+          "includesTradingFees": false
+        },
+        "internalProgressPercent": null,
+        "observedAt": "2026-10-27T05:39:14.000Z",
+        "side": "sell",
+        "input": {
+          "amount": "1000.0",
+          "symbol": "GANG"
+        },
+        "expectedOutput": {
+          "amount": "0.008539422725296178",
+          "symbol": "BNB"
+        },
+        "minimumOutput": {
+          "amount": "0.008454028498043216",
+          "symbol": "BNB"
+        },
+        "slippagePercent": "1.0",
+        "gasIncluded": false,
+        "expiresAt": "2026-10-27T05:40:14.000Z"
+      },
+      "quoteOutRaw": "8539422725296178",
+      "minimumOutRaw": "8454028498043216",
+      "steps": [
+        {
+          "step": {
+            "kind": "wrapper",
+            "path": [
+              "0x0c6302401aa5325C2E36F170f52C00B1d220B405",
+              "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
+            ],
+            "sourceData": "0x00000000000000000000000010ed43c718714eb63d5aa57b78b54704e256024e0000000000000000000000000bd5ded695d61c2db15c703c345d57e039fd0b6d",
+            "fallback": null
+          },
+          "amountInRaw": "1000000000000000000000",
+          "quoteOutRaw": "8539422725296178",
+          "minimumOutRaw": "8454028498043216",
+          "summary": {
+            "name": "Gang",
+            "symbol": "GANG",
+            "contractAddress": "0x0c6302401aa5325C2E36F170f52C00B1d220B405",
+            "platform": "GANG",
+            "network": "BNB Smart Chain",
+            "market": "external",
+            "referencePrice": {
+              "amount": "0.000008612767217979",
+              "currency": "BNB",
+              "perToken": "1",
+              "includesTradingFees": false
+            },
+            "internalProgressPercent": null,
+            "observedAt": "2026-10-27T05:39:14.000Z",
+            "side": "sell",
+            "input": {
+              "amount": "1000.0",
+              "symbol": "GANG"
+            },
+            "expectedOutput": {
+              "amount": "0.008539422725296178",
+              "symbol": "BNB"
+            },
+            "minimumOutput": {
+              "amount": "0.008454028498043216",
+              "symbol": "BNB"
+            },
+            "slippagePercent": "1.0",
+            "gasIncluded": false,
+            "expiresAt": "2026-10-27T05:40:14.000Z"
+          },
+          "transaction": {
+            "binanceChainId": "56",
+            "from": "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
+            "to": "0xDfFc699FB095a693708E3c15e6F0a224cbbCc98F",
+            "valueWei": "0",
+            "inputData": "0xf9e342830000000000000000000000000c6302401aa5325c2e36f170f52c00b1d220b4050000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000003635c9adc5dea00000000000000000000000000000000000000000000000000000001e08e4e58c01500000000000000000000000008eec229385a366f0ff2f88db27f428b8a7343c08000000000000000000000000000000000000000000000000000000006ae039b80000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004000000000000000000000000010ed43c718714eb63d5aa57b78b54704e256024e0000000000000000000000000bd5ded695d61c2db15c703c345d57e039fd0b6d"
+          },
+          "abi": "abis/imported-token-swap-wrapper.json",
+          "decoded": {
+            "signature": "sellToken(address,uint8,bytes,uint256,uint256,address,uint256,address)",
+            "args": [
+              "0x0c6302401aa5325C2E36F170f52C00B1d220B405",
+              "0",
+              "0x00000000000000000000000010ed43c718714eb63d5aa57b78b54704e256024e0000000000000000000000000bd5ded695d61c2db15c703c345d57e039fd0b6d",
+              "1000000000000000000000",
+              "8454028498043216",
+              "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
+              "1793079736",
+              "0x0000000000000000000000000000000000000000"
+            ]
+          },
+          "simulation": null
+        }
+      ]
+    },
+    {
+      "id": "internal-buy",
+      "token": "0x0059a88c12c49ff30dd1637d6d0c695ed52010c9",
+      "snapshot": {
+        "blockTag": "0x7c02cee",
+        "blockHash": "0xb993b63b75a4c52bd8d1445cd66ece2cc51761638e4b1865589f1467ed1606c1",
+        "timestamp": 1793079556
+      },
+      "curve": {
+        "creator": "0xfDa4A63EBF833e8cbb69A0C4BA327E5695B1d44A",
+        "quote": "0x0c6302401aa5325C2E36F170f52C00B1d220B405",
+        "realQuote": "474735423895605095116940",
+        "sold": "285705024029876711463050880",
+        "gradAmt": "3893002838038450105901943",
+        "virtualQuote": "1297667612679483368633981",
+        "graduated": false,
+        "taxed": false,
+        "pair": "0x0000000000000000000000000000000000000000",
+        "refPair": "0x0bd5dEd695d61C2db15C703c345D57e039FD0b6D"
+      },
+      "quoteAsset": {
+        "address": "0x0c6302401aa5325C2E36F170f52C00B1d220B405",
+        "symbol": "GANG",
+        "decimals": 18
+      },
+      "summary": {
+        "name": "gangster",
+        "symbol": "gangster",
+        "contractAddress": "0x0059a88c12c49fF30dD1637d6d0C695eD52010c9",
+        "platform": "GANG",
+        "network": "BNB Smart Chain",
+        "market": "internal",
+        "referencePrice": {
+          "amount": "0.002269513558426324",
+          "currency": "GANG",
+          "perToken": "1",
+          "includesTradingFees": false
+        },
+        "internalProgressPercent": "12.19",
+        "observedAt": "2026-10-27T05:39:16.000Z",
+        "side": "buy",
+        "input": {
+          "amount": "0.001",
+          "symbol": "BNB"
+        },
+        "expectedOutput": {
+          "amount": "50226.084511609411893418",
+          "symbol": "gangster"
+        },
+        "minimumOutput": {
+          "amount": "49725.095308487703727166",
+          "symbol": "gangster"
+        },
+        "slippagePercent": "1.0",
+        "gasIncluded": false,
+        "expiresAt": "2026-10-27T05:40:16.000Z",
+        "steps": [
+          {
+            "name": "Gang",
+            "symbol": "GANG",
+            "contractAddress": "0x0c6302401aa5325C2E36F170f52C00B1d220B405",
+            "platform": "GANG",
+            "network": "BNB Smart Chain",
+            "market": "external",
+            "referencePrice": {
+              "amount": "0.000008610849017173",
+              "currency": "BNB",
+              "perToken": "1",
+              "includesTradingFees": false
+            },
+            "internalProgressPercent": null,
+            "observedAt": "2026-10-27T05:39:16.000Z",
+            "side": "buy",
+            "input": {
+              "amount": "0.001",
+              "symbol": "BNB"
+            },
+            "expectedOutput": {
+              "amount": "115.147587103057896296",
+              "symbol": "GANG"
+            },
+            "minimumOutput": {
+              "amount": "114.571849167542606814",
+              "symbol": "GANG"
+            },
+            "slippagePercent": "0.5",
+            "gasIncluded": false,
+            "expiresAt": "2026-10-27T05:40:16.000Z"
+          },
+          {
+            "name": "gangster",
+            "symbol": "gangster",
+            "contractAddress": "0x0059a88c12c49fF30dD1637d6d0C695eD52010c9",
+            "platform": "GANG",
+            "network": "BNB Smart Chain",
+            "market": "internal",
+            "referencePrice": {
+              "amount": "0.002269513558426324",
+              "currency": "GANG",
+              "perToken": "1",
+              "includesTradingFees": false
+            },
+            "internalProgressPercent": "12.19",
+            "observedAt": "2026-10-27T05:39:16.000Z",
+            "side": "buy",
+            "input": {
+              "amount": "115.147587103057896296",
+              "symbol": "GANG"
+            },
+            "expectedOutput": {
+              "amount": "50226.084511609411893418",
+              "symbol": "gangster"
+            },
+            "minimumOutput": {
+              "amount": "49974.95408905136483395",
+              "symbol": "gangster"
+            },
+            "slippagePercent": "0.5",
+            "gasIncluded": false,
+            "expiresAt": "2026-10-27T05:40:16.000Z"
+          }
+        ],
+        "intermediateAsset": {
+          "address": "0x0c6302401aa5325C2E36F170f52C00B1d220B405",
+          "symbol": "GANG",
+          "decimals": 18
+        }
+      },
+      "quoteOutRaw": "50226084511609411893418",
+      "minimumOutRaw": "49725095308487703727166",
+      "steps": [
+        {
+          "step": {
+            "kind": "wrapper",
+            "path": [
+              "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+              "0x0c6302401aa5325C2E36F170f52C00B1d220B405"
+            ],
+            "sourceData": "0x00000000000000000000000010ed43c718714eb63d5aa57b78b54704e256024e0000000000000000000000000bd5ded695d61c2db15c703c345d57e039fd0b6d",
+            "fallback": null
+          },
+          "amountInRaw": "1000000000000000",
+          "quoteOutRaw": "115147587103057896296",
+          "minimumOutRaw": "114571849167542606814",
+          "summary": {
+            "name": "Gang",
+            "symbol": "GANG",
+            "contractAddress": "0x0c6302401aa5325C2E36F170f52C00B1d220B405",
+            "platform": "GANG",
+            "network": "BNB Smart Chain",
+            "market": "external",
+            "referencePrice": {
+              "amount": "0.000008610849017173",
+              "currency": "BNB",
+              "perToken": "1",
+              "includesTradingFees": false
+            },
+            "internalProgressPercent": null,
+            "observedAt": "2026-10-27T05:39:16.000Z",
+            "side": "buy",
+            "input": {
+              "amount": "0.001",
+              "symbol": "BNB"
+            },
+            "expectedOutput": {
+              "amount": "115.147587103057896296",
+              "symbol": "GANG"
+            },
+            "minimumOutput": {
+              "amount": "114.571849167542606814",
+              "symbol": "GANG"
+            },
+            "slippagePercent": "0.5",
+            "gasIncluded": false,
+            "expiresAt": "2026-10-27T05:40:16.000Z"
+          },
+          "transaction": {
+            "binanceChainId": "56",
+            "from": "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
+            "to": "0xDfFc699FB095a693708E3c15e6F0a224cbbCc98F",
+            "valueWei": "1000000000000000",
+            "inputData": "0xc3ad65c40000000000000000000000000c6302401aa5325c2e36f170f52c00b1d220b405000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000e00000000000000000000000000000000000000000000000063600f9ca4b02dbde0000000000000000000000008eec229385a366f0ff2f88db27f428b8a7343c08000000000000000000000000000000000000000000000000000000006ae039bb0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004000000000000000000000000010ed43c718714eb63d5aa57b78b54704e256024e0000000000000000000000000bd5ded695d61c2db15c703c345d57e039fd0b6d"
+          },
+          "abi": "abis/imported-token-swap-wrapper.json",
+          "decoded": {
+            "signature": "buyToken(address,uint8,bytes,uint256,address,uint256,address)",
+            "args": [
+              "0x0c6302401aa5325C2E36F170f52C00B1d220B405",
+              "0",
+              "0x00000000000000000000000010ed43c718714eb63d5aa57b78b54704e256024e0000000000000000000000000bd5ded695d61c2db15c703c345d57e039fd0b6d",
+              "114571849167542606814",
+              "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
+              "1793079739",
+              "0x0000000000000000000000000000000000000000"
+            ]
+          },
+          "simulation": {
+            "mode": "eth_call only",
+            "publicSampleNotUserWallet": true,
+            "returnData": "0x0000000000000000000000000000000000000000000000063dfe6864651de368"
+          }
+        },
+        {
+          "step": {
+            "kind": "pad"
+          },
+          "amountInRaw": "115147587103057896296",
+          "quoteOutRaw": "50226084511609411893418",
+          "minimumOutRaw": "49974954089051364833950",
+          "summary": {
+            "name": "gangster",
+            "symbol": "gangster",
+            "contractAddress": "0x0059a88c12c49fF30dD1637d6d0C695eD52010c9",
+            "platform": "GANG",
+            "network": "BNB Smart Chain",
+            "market": "internal",
+            "referencePrice": {
+              "amount": "0.002269513558426324",
+              "currency": "GANG",
+              "perToken": "1",
+              "includesTradingFees": false
+            },
+            "internalProgressPercent": "12.19",
+            "observedAt": "2026-10-27T05:39:16.000Z",
+            "side": "buy",
+            "input": {
+              "amount": "115.147587103057896296",
+              "symbol": "GANG"
+            },
+            "expectedOutput": {
+              "amount": "50226.084511609411893418",
+              "symbol": "gangster"
+            },
+            "minimumOutput": {
+              "amount": "49974.95408905136483395",
+              "symbol": "gangster"
+            },
+            "slippagePercent": "0.5",
+            "gasIncluded": false,
+            "expiresAt": "2026-10-27T05:40:16.000Z"
+          },
+          "transaction": {
+            "binanceChainId": "56",
+            "from": "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
+            "to": "0x1B8F3f69DFa0a7F63d308C7EB0Fd38D8b099966E",
+            "valueWei": "0",
+            "inputData": "0xa59ac6dd0000000000000000000000000059a88c12c49ff30dd1637d6d0c695ed52010c90000000000000000000000000000000000000000000000063dfe6864651de368000000000000000000000000000000000000000000000a9525cefd5669c8ba9e"
+          },
+          "abi": "abis/gang/v2.json",
+          "decoded": {
+            "signature": "buy(address,uint256,uint256)",
+            "args": [
+              "0x0059a88c12c49fF30dD1637d6d0C695eD52010c9",
+              "115147587103057896296",
+              "49974954089051364833950"
+            ]
+          },
+          "simulation": null
+        }
+      ]
+    },
+    {
+      "id": "internal-sell",
+      "token": "0x0059a88c12c49ff30dd1637d6d0c695ed52010c9",
+      "snapshot": {
+        "blockTag": "0x7c02cf4",
+        "blockHash": "0xc204aebfd0ff4ac30e29328c23926101b9db08af48754c84799d76a5c4e63b07",
+        "timestamp": 1793079559
+      },
+      "curve": {
+        "creator": "0xfDa4A63EBF833e8cbb69A0C4BA327E5695B1d44A",
+        "quote": "0x0c6302401aa5325C2E36F170f52C00B1d220B405",
+        "realQuote": "474735423895605095116940",
+        "sold": "285705024029876711463050880",
+        "gradAmt": "3893002838038450105901943",
+        "virtualQuote": "1297667612679483368633981",
+        "graduated": false,
+        "taxed": false,
+        "pair": "0x0000000000000000000000000000000000000000",
+        "refPair": "0x0bd5dEd695d61C2db15C703c345D57e039FD0b6D"
+      },
+      "quoteAsset": {
+        "address": "0x0c6302401aa5325C2E36F170f52C00B1d220B405",
+        "symbol": "GANG",
+        "decimals": 18
+      },
+      "summary": {
+        "name": "gangster",
+        "symbol": "gangster",
+        "contractAddress": "0x0059a88c12c49fF30dD1637d6d0C695eD52010c9",
+        "platform": "GANG",
+        "network": "BNB Smart Chain",
+        "market": "internal",
+        "referencePrice": {
+          "amount": "0.002269513558426324",
+          "currency": "GANG",
+          "perToken": "1",
+          "includesTradingFees": false
+        },
+        "internalProgressPercent": "12.19",
+        "observedAt": "2026-10-27T05:39:19.000Z",
+        "side": "sell",
+        "input": {
+          "amount": "1000.0",
+          "symbol": "gangster"
+        },
+        "expectedOutput": {
+          "amount": "0.000019188811249327",
+          "symbol": "BNB"
+        },
+        "minimumOutput": {
+          "amount": "0.00001899740286546",
+          "symbol": "BNB"
+        },
+        "slippagePercent": "1.0",
+        "gasIncluded": false,
+        "expiresAt": "2026-10-27T05:40:19.000Z",
+        "steps": [
+          {
+            "name": "gangster",
+            "symbol": "gangster",
+            "contractAddress": "0x0059a88c12c49fF30dD1637d6d0C695eD52010c9",
+            "platform": "GANG",
+            "network": "BNB Smart Chain",
+            "market": "internal",
+            "referencePrice": {
+              "amount": "0.002269513558426324",
+              "currency": "GANG",
+              "perToken": "1",
+              "includesTradingFees": false
+            },
+            "internalProgressPercent": "12.19",
+            "observedAt": "2026-10-27T05:39:19.000Z",
+            "side": "sell",
+            "input": {
+              "amount": "1000.0",
+              "symbol": "gangster"
+            },
+            "expectedOutput": {
+              "amount": "2.246815545856274145",
+              "symbol": "GANG"
+            },
+            "minimumOutput": {
+              "amount": "2.235581468126992774",
+              "symbol": "GANG"
+            },
+            "slippagePercent": "0.5",
+            "gasIncluded": false,
+            "expiresAt": "2026-10-27T05:40:19.000Z"
+          },
+          {
+            "name": "Gang",
+            "symbol": "GANG",
+            "contractAddress": "0x0c6302401aa5325C2E36F170f52C00B1d220B405",
+            "platform": "GANG",
+            "network": "BNB Smart Chain",
+            "market": "external",
+            "referencePrice": {
+              "amount": "0.000008613465229211",
+              "currency": "BNB",
+              "perToken": "1",
+              "includesTradingFees": false
+            },
+            "internalProgressPercent": null,
+            "observedAt": "2026-10-27T05:39:19.000Z",
+            "side": "sell",
+            "input": {
+              "amount": "2.246815545856274145",
+              "symbol": "GANG"
+            },
+            "expectedOutput": {
+              "amount": "0.000019188811249327",
+              "symbol": "BNB"
+            },
+            "minimumOutput": {
+              "amount": "0.00001909286719308",
+              "symbol": "BNB"
+            },
+            "slippagePercent": "0.5",
+            "gasIncluded": false,
+            "expiresAt": "2026-10-27T05:40:19.000Z"
+          }
+        ],
+        "intermediateAsset": {
+          "address": "0x0c6302401aa5325C2E36F170f52C00B1d220B405",
+          "symbol": "GANG",
+          "decimals": 18
+        }
+      },
+      "quoteOutRaw": "19188811249327",
+      "minimumOutRaw": "18997402865460",
+      "steps": [
+        {
+          "step": {
+            "kind": "pad"
+          },
+          "amountInRaw": "1000000000000000000000",
+          "quoteOutRaw": "2246815545856274145",
+          "minimumOutRaw": "2235581468126992774",
+          "summary": {
+            "name": "gangster",
+            "symbol": "gangster",
+            "contractAddress": "0x0059a88c12c49fF30dD1637d6d0C695eD52010c9",
+            "platform": "GANG",
+            "network": "BNB Smart Chain",
+            "market": "internal",
+            "referencePrice": {
+              "amount": "0.002269513558426324",
+              "currency": "GANG",
+              "perToken": "1",
+              "includesTradingFees": false
+            },
+            "internalProgressPercent": "12.19",
+            "observedAt": "2026-10-27T05:39:19.000Z",
+            "side": "sell",
+            "input": {
+              "amount": "1000.0",
+              "symbol": "gangster"
+            },
+            "expectedOutput": {
+              "amount": "2.246815545856274145",
+              "symbol": "GANG"
+            },
+            "minimumOutput": {
+              "amount": "2.235581468126992774",
+              "symbol": "GANG"
+            },
+            "slippagePercent": "0.5",
+            "gasIncluded": false,
+            "expiresAt": "2026-10-27T05:40:19.000Z"
+          },
+          "transaction": {
+            "binanceChainId": "56",
+            "from": "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
+            "to": "0x1B8F3f69DFa0a7F63d308C7EB0Fd38D8b099966E",
+            "valueWei": "0",
+            "inputData": "0x6a2724620000000000000000000000000059a88c12c49ff30dd1637d6d0c695ed52010c900000000000000000000000000000000000000000000003635c9adc5dea000000000000000000000000000000000000000000000000000001f0661802a27d986"
+          },
+          "abi": "abis/gang/v2.json",
+          "decoded": {
+            "signature": "sell(address,uint256,uint256)",
+            "args": [
+              "0x0059a88c12c49fF30dD1637d6d0C695eD52010c9",
+              "1000000000000000000000",
+              "2235581468126992774"
+            ]
+          },
+          "simulation": null
+        },
+        {
+          "step": {
+            "kind": "wrapper",
+            "path": [
+              "0x0c6302401aa5325C2E36F170f52C00B1d220B405",
+              "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
+            ],
+            "sourceData": "0x00000000000000000000000010ed43c718714eb63d5aa57b78b54704e256024e0000000000000000000000000bd5ded695d61c2db15c703c345d57e039fd0b6d",
+            "fallback": null
+          },
+          "amountInRaw": "2246815545856274145",
+          "quoteOutRaw": "19188811249327",
+          "minimumOutRaw": "19092867193080",
+          "summary": {
+            "name": "Gang",
+            "symbol": "GANG",
+            "contractAddress": "0x0c6302401aa5325C2E36F170f52C00B1d220B405",
+            "platform": "GANG",
+            "network": "BNB Smart Chain",
+            "market": "external",
+            "referencePrice": {
+              "amount": "0.000008613465229211",
+              "currency": "BNB",
+              "perToken": "1",
+              "includesTradingFees": false
+            },
+            "internalProgressPercent": null,
+            "observedAt": "2026-10-27T05:39:19.000Z",
+            "side": "sell",
+            "input": {
+              "amount": "2.246815545856274145",
+              "symbol": "GANG"
+            },
+            "expectedOutput": {
+              "amount": "0.000019188811249327",
+              "symbol": "BNB"
+            },
+            "minimumOutput": {
+              "amount": "0.00001909286719308",
+              "symbol": "BNB"
+            },
+            "slippagePercent": "0.5",
+            "gasIncluded": false,
+            "expiresAt": "2026-10-27T05:40:19.000Z"
+          },
+          "transaction": {
+            "binanceChainId": "56",
+            "from": "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
+            "to": "0xDfFc699FB095a693708E3c15e6F0a224cbbCc98F",
+            "valueWei": "0",
+            "inputData": "0xf9e342830000000000000000000000000c6302401aa5325c2e36f170f52c00b1d220b405000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000001f2e4ad5b696aee10000000000000000000000000000000000000000000000000000115d679118f80000000000000000000000008eec229385a366f0ff2f88db27f428b8a7343c08000000000000000000000000000000000000000000000000000000006ae039bf0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004000000000000000000000000010ed43c718714eb63d5aa57b78b54704e256024e0000000000000000000000000bd5ded695d61c2db15c703c345d57e039fd0b6d"
+          },
+          "abi": "abis/imported-token-swap-wrapper.json",
+          "decoded": {
+            "signature": "sellToken(address,uint8,bytes,uint256,uint256,address,uint256,address)",
+            "args": [
+              "0x0c6302401aa5325C2E36F170f52C00B1d220B405",
+              "0",
+              "0x00000000000000000000000010ed43c718714eb63d5aa57b78b54704e256024e0000000000000000000000000bd5ded695d61c2db15c703c345d57e039fd0b6d",
+              "2246815545856274145",
+              "19092867193080",
+              "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
+              "1793079743",
+              "0x0000000000000000000000000000000000000000"
+            ]
+          },
+          "simulation": null
+        }
+      ]
+    },
+    {
+      "id": "external-buy",
+      "token": "0x6b2ce31a577d92f73516c7a91febc7672247e694",
+      "snapshot": {
+        "blockTag": "0x7c02cfc",
+        "blockHash": "0x28eaf4791d15392a4bda6fba21a4755b4b791d23b5a9879a39b4e92a5242143e",
+        "timestamp": 1793079562
+      },
+      "curve": {
+        "creator": "0x3CB133cA3523e20c6A119c6d5309B5878117dbfd",
+        "quote": "0x0c6302401aa5325C2E36F170f52C00B1d220B405",
+        "realQuote": "0",
+        "sold": "800000000000000000000000000",
+        "gradAmt": "3350344371688102623055650",
+        "virtualQuote": "1116781457229367541018550",
+        "graduated": true,
+        "taxed": false,
+        "pair": "0xB61C41f8b334D183c4C22c026e9D35F363113330",
+        "refPair": "0x0bd5dEd695d61C2db15C703c345D57e039FD0b6D"
+      },
+      "quoteAsset": {
+        "address": "0x0c6302401aa5325C2E36F170f52C00B1d220B405",
+        "symbol": "GANG",
+        "decimals": 18
+      },
+      "summary": {
+        "name": "Gangstar",
+        "symbol": "Gangstar",
+        "contractAddress": "0x6b2CE31a577D92f73516c7A91FEBC7672247e694",
+        "platform": "GANG",
+        "network": "BNB Smart Chain",
+        "market": "external",
+        "referencePrice": {
+          "amount": "0.034845469514508724",
+          "currency": "GANG",
+          "perToken": "1",
+          "includesTradingFees": false
+        },
+        "internalProgressPercent": null,
+        "observedAt": "2026-10-27T05:39:22.000Z",
+        "side": "buy",
+        "input": {
+          "amount": "0.001",
+          "symbol": "BNB"
+        },
+        "expectedOutput": {
+          "amount": "3276.47286764898329655",
+          "symbol": "Gangstar"
+        },
+        "minimumOutput": {
+          "amount": "3243.708138972493463584",
+          "symbol": "Gangstar"
+        },
+        "slippagePercent": "1.0",
+        "gasIncluded": false,
+        "expiresAt": "2026-10-27T05:40:22.000Z"
+      },
+      "quoteOutRaw": "3276472867648983296550",
+      "minimumOutRaw": "3243708138972493463584",
+      "steps": [
+        {
+          "step": {
+            "kind": "direct",
+            "path": [
+              "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+              "0x0c6302401aa5325C2E36F170f52C00B1d220B405",
+              "0x6b2CE31a577D92f73516c7A91FEBC7672247e694"
+            ],
+            "sourceData": "0x00000000000000000000000010ed43c718714eb63d5aa57b78b54704e256024e000000000000000000000000b61c41f8b334d183c4c22c026e9d35f363113330",
+            "fallback": "The wrapper settlement router has no route for this quote asset."
+          },
+          "amountInRaw": "1000000000000000",
+          "quoteOutRaw": "3276472867648983296550",
+          "minimumOutRaw": "3243708138972493463584",
+          "summary": {
+            "name": "Gangstar",
+            "symbol": "Gangstar",
+            "contractAddress": "0x6b2CE31a577D92f73516c7A91FEBC7672247e694",
+            "platform": "GANG",
+            "network": "BNB Smart Chain",
+            "market": "external",
+            "referencePrice": {
+              "amount": "0.034845469514508724",
+              "currency": "GANG",
+              "perToken": "1",
+              "includesTradingFees": false
+            },
+            "internalProgressPercent": null,
+            "observedAt": "2026-10-27T05:39:22.000Z",
+            "side": "buy",
+            "input": {
+              "amount": "0.001",
+              "symbol": "BNB"
+            },
+            "expectedOutput": {
+              "amount": "3276.47286764898329655",
+              "symbol": "Gangstar"
+            },
+            "minimumOutput": {
+              "amount": "3243.708138972493463584",
+              "symbol": "Gangstar"
+            },
+            "slippagePercent": "1.0",
+            "gasIncluded": false,
+            "expiresAt": "2026-10-27T05:40:22.000Z"
+          },
+          "transaction": {
+            "binanceChainId": "56",
+            "from": "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
+            "to": "0x10ED43C718714eb63d5aA57B78B54704E256024E",
+            "valueWei": "1000000000000000",
+            "inputData": "0xb6f9de950000000000000000000000000000000000000000000000afd77e467e42e1402000000000000000000000000000000000000000000000000000000000000000800000000000000000000000008eec229385a366f0ff2f88db27f428b8a7343c08000000000000000000000000000000000000000000000000000000006ae039c10000000000000000000000000000000000000000000000000000000000000003000000000000000000000000bb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c0000000000000000000000000c6302401aa5325c2e36f170f52c00b1d220b4050000000000000000000000006b2ce31a577d92f73516c7a91febc7672247e694"
+          },
+          "abi": "abis/tagai/pancake.json",
+          "decoded": {
+            "signature": "swapExactETHForTokensSupportingFeeOnTransferTokens(uint256,address[],address,uint256)",
+            "args": [
+              "3243708138972493463584",
+              [
+                "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+                "0x0c6302401aa5325C2E36F170f52C00B1d220B405",
+                "0x6b2CE31a577D92f73516c7A91FEBC7672247e694"
+              ],
+              "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
+              "1793079745"
+            ]
+          },
+          "simulation": {
+            "mode": "eth_call only",
+            "publicSampleNotUserWallet": true,
+            "returnData": "0x"
+          }
+        }
+      ]
+    },
+    {
+      "id": "external-sell",
+      "token": "0x6b2ce31a577d92f73516c7a91febc7672247e694",
+      "snapshot": {
+        "blockTag": "0x7c02d02",
+        "blockHash": "0xf3d4055fba6832fd5537019dde0e4089d04f359f2c550e1e978a0e7e361e0a28",
+        "timestamp": 1793079565
+      },
+      "curve": {
+        "creator": "0x3CB133cA3523e20c6A119c6d5309B5878117dbfd",
+        "quote": "0x0c6302401aa5325C2E36F170f52C00B1d220B405",
+        "realQuote": "0",
+        "sold": "800000000000000000000000000",
+        "gradAmt": "3350344371688102623055650",
+        "virtualQuote": "1116781457229367541018550",
+        "graduated": true,
+        "taxed": false,
+        "pair": "0xB61C41f8b334D183c4C22c026e9D35F363113330",
+        "refPair": "0x0bd5dEd695d61C2db15C703c345D57e039FD0b6D"
+      },
+      "quoteAsset": {
+        "address": "0x0c6302401aa5325C2E36F170f52C00B1d220B405",
+        "symbol": "GANG",
+        "decimals": 18
+      },
+      "summary": {
+        "name": "Gangstar",
+        "symbol": "Gangstar",
+        "contractAddress": "0x6b2CE31a577D92f73516c7A91FEBC7672247e694",
+        "platform": "GANG",
+        "network": "BNB Smart Chain",
+        "market": "external",
+        "referencePrice": {
+          "amount": "0.033839661031409643",
+          "currency": "GANG",
+          "perToken": "1",
+          "includesTradingFees": false
+        },
+        "internalProgressPercent": null,
+        "observedAt": "2026-10-27T05:39:25.000Z",
+        "side": "sell",
+        "input": {
+          "amount": "1000.0",
+          "symbol": "Gangstar"
+        },
+        "expectedOutput": {
+          "amount": "0.000292165816913484",
+          "symbol": "BNB"
+        },
+        "minimumOutput": {
+          "amount": "0.000289244158744349",
+          "symbol": "BNB"
+        },
+        "slippagePercent": "1.0",
+        "gasIncluded": false,
+        "expiresAt": "2026-10-27T05:40:25.000Z"
+      },
+      "quoteOutRaw": "292165816913484",
+      "minimumOutRaw": "289244158744349",
+      "steps": [
+        {
+          "step": {
+            "kind": "direct",
+            "path": [
+              "0x6b2CE31a577D92f73516c7A91FEBC7672247e694",
+              "0x0c6302401aa5325C2E36F170f52C00B1d220B405",
+              "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
+            ],
+            "sourceData": "0x00000000000000000000000010ed43c718714eb63d5aa57b78b54704e256024e000000000000000000000000b61c41f8b334d183c4c22c026e9d35f363113330",
+            "fallback": "The wrapper settlement router has no route for this quote asset."
+          },
+          "amountInRaw": "1000000000000000000000",
+          "quoteOutRaw": "292165816913484",
+          "minimumOutRaw": "289244158744349",
+          "summary": {
+            "name": "Gangstar",
+            "symbol": "Gangstar",
+            "contractAddress": "0x6b2CE31a577D92f73516c7A91FEBC7672247e694",
+            "platform": "GANG",
+            "network": "BNB Smart Chain",
+            "market": "external",
+            "referencePrice": {
+              "amount": "0.033839661031409643",
+              "currency": "GANG",
+              "perToken": "1",
+              "includesTradingFees": false
+            },
+            "internalProgressPercent": null,
+            "observedAt": "2026-10-27T05:39:25.000Z",
+            "side": "sell",
+            "input": {
+              "amount": "1000.0",
+              "symbol": "Gangstar"
+            },
+            "expectedOutput": {
+              "amount": "0.000292165816913484",
+              "symbol": "BNB"
+            },
+            "minimumOutput": {
+              "amount": "0.000289244158744349",
+              "symbol": "BNB"
+            },
+            "slippagePercent": "1.0",
+            "gasIncluded": false,
+            "expiresAt": "2026-10-27T05:40:25.000Z"
+          },
+          "transaction": {
+            "binanceChainId": "56",
+            "from": "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
+            "to": "0x10ED43C718714eb63d5aA57B78B54704E256024E",
+            "valueWei": "0",
+            "inputData": "0x791ac94700000000000000000000000000000000000000000000003635c9adc5dea0000000000000000000000000000000000000000000000000000000010710e755d71d00000000000000000000000000000000000000000000000000000000000000a00000000000000000000000008eec229385a366f0ff2f88db27f428b8a7343c08000000000000000000000000000000000000000000000000000000006ae039c300000000000000000000000000000000000000000000000000000000000000030000000000000000000000006b2ce31a577d92f73516c7a91febc7672247e6940000000000000000000000000c6302401aa5325c2e36f170f52c00b1d220b405000000000000000000000000bb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c"
+          },
+          "abi": "abis/tagai/pancake.json",
+          "decoded": {
+            "signature": "swapExactTokensForETHSupportingFeeOnTransferTokens(uint256,uint256,address[],address,uint256)",
+            "args": [
+              "1000000000000000000000",
+              "289244158744349",
+              [
+                "0x6b2CE31a577D92f73516c7A91FEBC7672247e694",
+                "0x0c6302401aa5325C2E36F170f52C00B1d220B405",
+                "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
+              ],
+              "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
+              "1793079747"
+            ]
+          },
+          "simulation": null
+        }
+      ]
+    },
+    {
+      "id": "native-buy",
+      "token": "0x1f5bbf5d8abef0a8cd3ff6ae111fb3bdab85e0f5",
+      "snapshot": {
+        "blockTag": "0x7c02d07",
+        "blockHash": "0x708030ec9a4fc163503f08d709413f6ae3c40d291a229234bbc21845c31f424c",
+        "timestamp": 1793079567
+      },
+      "curve": {
+        "creator": "0x1C01BCcF830219f2c837B6b35DD4D3A3e748114d",
+        "realQuote": "77806092464060025",
+        "sold": "12305359997583277462417321",
+        "graduated": false,
+        "pair": "0x0000000000000000000000000000000000000000",
+        "quote": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
+      },
+      "quoteAsset": {
+        "address": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+        "symbol": "BNB",
+        "decimals": 18
+      },
+      "summary": {
+        "name": "gang",
+        "symbol": "\u5e2e\u6d3e",
+        "contractAddress": "0x1f5BBf5d8AbEF0a8cD3Ff6ae111Fb3bdAb85e0f5",
+        "platform": "GANG",
+        "network": "BNB Smart Chain",
+        "market": "internal",
+        "referencePrice": {
+          "amount": "0.000000006396737737",
+          "currency": "BNB",
+          "perToken": "1",
+          "includesTradingFees": false
+        },
+        "internalProgressPercent": "0.38",
+        "observedAt": "2026-10-27T05:39:27.000Z",
+        "side": "buy",
+        "input": {
+          "amount": "0.001",
+          "symbol": "BNB"
+        },
+        "expectedOutput": {
+          "amount": "154743.674507648963075453",
+          "symbol": "\u5e2e\u6d3e"
+        },
+        "minimumOutput": {
+          "amount": "153196.237762572473444698",
+          "symbol": "\u5e2e\u6d3e"
+        },
+        "slippagePercent": "1.0",
+        "gasIncluded": false,
+        "expiresAt": "2026-10-27T05:40:27.000Z"
+      },
+      "quoteOutRaw": "154743674507648963075453",
+      "minimumOutRaw": "153196237762572473444698",
+      "steps": [
+        {
+          "step": {
+            "kind": "pad"
+          },
+          "amountInRaw": "1000000000000000",
+          "quoteOutRaw": "154743674507648963075453",
+          "minimumOutRaw": "153196237762572473444698",
+          "summary": {
+            "name": "gang",
+            "symbol": "\u5e2e\u6d3e",
+            "contractAddress": "0x1f5BBf5d8AbEF0a8cD3Ff6ae111Fb3bdAb85e0f5",
+            "platform": "GANG",
+            "network": "BNB Smart Chain",
+            "market": "internal",
+            "referencePrice": {
+              "amount": "0.000000006396737737",
+              "currency": "BNB",
+              "perToken": "1",
+              "includesTradingFees": false
+            },
+            "internalProgressPercent": "0.38",
+            "observedAt": "2026-10-27T05:39:27.000Z",
+            "side": "buy",
+            "input": {
+              "amount": "0.001",
+              "symbol": "BNB"
+            },
+            "expectedOutput": {
+              "amount": "154743.674507648963075453",
+              "symbol": "\u5e2e\u6d3e"
+            },
+            "minimumOutput": {
+              "amount": "153196.237762572473444698",
+              "symbol": "\u5e2e\u6d3e"
+            },
+            "slippagePercent": "1.0",
+            "gasIncluded": false,
+            "expiresAt": "2026-10-27T05:40:27.000Z"
+          },
+          "transaction": {
+            "binanceChainId": "56",
+            "from": "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
+            "to": "0x315Ba2e8952D06094CC636b2B84229FA32fb23A7",
+            "valueWei": "1000000000000000",
+            "inputData": "0xcce7ec130000000000000000000000001f5bbf5d8abef0a8cd3ff6ae111fb3bdab85e0f5000000000000000000000000000000000000000000002070c8e1709aff59a95a"
+          },
+          "abi": "abis/gang/soft.json",
+          "decoded": {
+            "signature": "buy(address,uint256)",
+            "args": [
+              "0x1f5BBf5d8AbEF0a8cD3Ff6ae111Fb3bdAb85e0f5",
+              "153196237762572473444698"
+            ]
+          },
+          "simulation": {
+            "mode": "eth_call only",
+            "publicSampleNotUserWallet": true,
+            "returnData": "0x0000000000000000000000000000000000000000000020c4abe12194ce365d7d"
+          }
+        }
+      ]
+    },
+    {
+      "id": "native-sell",
+      "token": "0x1f5bbf5d8abef0a8cd3ff6ae111fb3bdab85e0f5",
+      "snapshot": {
+        "blockTag": "0x7c02d0a",
+        "blockHash": "0xc6ca11af57d33495e625a18e50de29f771e587a3170fb33d285d38de4d4648b0",
+        "timestamp": 1793079569
+      },
+      "curve": {
+        "creator": "0x1C01BCcF830219f2c837B6b35DD4D3A3e748114d",
+        "realQuote": "77806092464060025",
+        "sold": "12305359997583277462417321",
+        "graduated": false,
+        "pair": "0x0000000000000000000000000000000000000000",
+        "quote": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
+      },
+      "quoteAsset": {
+        "address": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+        "symbol": "BNB",
+        "decimals": 18
+      },
+      "summary": {
+        "name": "gang",
+        "symbol": "\u5e2e\u6d3e",
+        "contractAddress": "0x1f5BBf5d8AbEF0a8cD3Ff6ae111Fb3bdAb85e0f5",
+        "platform": "GANG",
+        "network": "BNB Smart Chain",
+        "market": "internal",
+        "referencePrice": {
+          "amount": "0.000000006396737737",
+          "currency": "BNB",
+          "perToken": "1",
+          "includesTradingFees": false
+        },
+        "internalProgressPercent": "0.38",
+        "observedAt": "2026-10-27T05:39:29.000Z",
+        "side": "sell",
+        "input": {
+          "amount": "1000.0",
+          "symbol": "\u5e2e\u6d3e"
+        },
+        "expectedOutput": {
+          "amount": "0.000006332764353682",
+          "symbol": "BNB"
+        },
+        "minimumOutput": {
+          "amount": "0.000006269436710145",
+          "symbol": "BNB"
+        },
+        "slippagePercent": "1.0",
+        "gasIncluded": false,
+        "expiresAt": "2026-10-27T05:40:29.000Z"
+      },
+      "quoteOutRaw": "6332764353682",
+      "minimumOutRaw": "6269436710145",
+      "steps": [
+        {
+          "step": {
+            "kind": "pad"
+          },
+          "amountInRaw": "1000000000000000000000",
+          "quoteOutRaw": "6332764353682",
+          "minimumOutRaw": "6269436710145",
+          "summary": {
+            "name": "gang",
+            "symbol": "\u5e2e\u6d3e",
+            "contractAddress": "0x1f5BBf5d8AbEF0a8cD3Ff6ae111Fb3bdAb85e0f5",
+            "platform": "GANG",
+            "network": "BNB Smart Chain",
+            "market": "internal",
+            "referencePrice": {
+              "amount": "0.000000006396737737",
+              "currency": "BNB",
+              "perToken": "1",
+              "includesTradingFees": false
+            },
+            "internalProgressPercent": "0.38",
+            "observedAt": "2026-10-27T05:39:29.000Z",
+            "side": "sell",
+            "input": {
+              "amount": "1000.0",
+              "symbol": "\u5e2e\u6d3e"
+            },
+            "expectedOutput": {
+              "amount": "0.000006332764353682",
+              "symbol": "BNB"
+            },
+            "minimumOutput": {
+              "amount": "0.000006269436710145",
+              "symbol": "BNB"
+            },
+            "slippagePercent": "1.0",
+            "gasIncluded": false,
+            "expiresAt": "2026-10-27T05:40:29.000Z"
+          },
+          "transaction": {
+            "binanceChainId": "56",
+            "from": "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
+            "to": "0x315Ba2e8952D06094CC636b2B84229FA32fb23A7",
+            "valueWei": "0",
+            "inputData": "0x6a2724620000000000000000000000001f5bbf5d8abef0a8cd3ff6ae111fb3bdab85e0f500000000000000000000000000000000000000000000003635c9adc5dea00000000000000000000000000000000000000000000000000000000005b3b78c4d01"
+          },
+          "abi": "abis/gang/soft.json",
+          "decoded": {
+            "signature": "sell(address,uint256,uint256)",
+            "args": [
+              "0x1f5BBf5d8AbEF0a8cD3Ff6ae111Fb3bdAb85e0f5",
+              "1000000000000000000000",
+              "6269436710145"
+            ]
+          },
+          "simulation": null
+        }
+      ]
+    }
+  ]
+}

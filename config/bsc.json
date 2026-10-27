@@ -122,17 +122,25 @@
       ]
     },
     "gang": {
-      "status": "not_integrated",
+      "status": "live",
       "reference": "references/platforms/gang.md",
       "capabilities": {
-        "search": false,
-        "provenance": false,
-        "state": false,
-        "quote": false,
-        "internalTrade": false,
-        "externalTrade": false
+        "search": true,
+        "provenance": true,
+        "state": true,
+        "quote": true,
+        "internalTrade": true,
+        "externalTrade": true
       },
-      "versions": []
+      "versions": [
+        "v2",
+        "main",
+        "soft",
+        "u",
+        "s"
+      ],
+      "registry": "config/gang-bsc.json",
+      "coverage": "Queries on all five verified pads. Main/Soft native internal trading; current V2 WBNB/GANG settlement with sequential BNB conversion and actual-output recovery; external verified Pancake V2 WBNB/GANG pools. Legacy U/S are query-only."
     }
   },
   "runtime": {
@@ -141,7 +149,8 @@
       "quote",
       "prepare",
       "execute",
-      "status"
+      "status",
+      "resume"
     ],
     "defaultRpcUrl": "https://bsc-dataseed.binance.org",
     "defaultSlippageBps": 100,

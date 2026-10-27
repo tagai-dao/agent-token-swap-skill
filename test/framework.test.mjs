@@ -12,14 +12,14 @@ const root = new URL('../', import.meta.url);
 const initial = JSON.parse(await readFile(new URL('config/bsc.json', root), 'utf8'));
 const config = () => structuredClone(initial);
 
-test('published capabilities enable TagAI and Flap while keeping missing platforms disabled', () => {
+test('published capabilities enable TagAI, Flap and GANG while keeping missing platforms disabled', () => {
   const result = summarizeCapabilities(config());
   assert.equal(result.tradingEnabled, true);
   assert.equal(result.networkAccess, true);
   assert.equal(result.walletAccess, true);
   for (const [id, platform] of Object.entries(result.platforms)) {
-    assert.equal(platform.status, ['tagai', 'flap'].includes(id) ? 'live' : 'not_integrated');
-    for (const [key, value] of Object.entries(platform)) if (key !== 'status') assert.equal(value, ['tagai', 'flap'].includes(id));
+    assert.equal(platform.status, ['tagai', 'flap', 'gang'].includes(id) ? 'live' : 'not_integrated');
+    for (const [key, value] of Object.entries(platform)) if (key !== 'status') assert.equal(value, ['tagai', 'flap', 'gang'].includes(id));
   }
 });
 
@@ -28,7 +28,7 @@ test('config edits cannot enable missing adapters or an alternate chain', () => 
     value => { value.chainId = 1; },
     value => { value.tradingEnabled = false; },
     value => { value.phase = 'production'; },
-    value => { value.platforms.gang.capabilities.internalTrade = true; },
+    value => { value.platforms.fourme.capabilities.internalTrade = true; },
     value => { value.platforms.tagai.status = 'ready'; },
     value => { value.platforms.flap.capabilities.search = 'false'; },
   ]) {
@@ -84,7 +84,7 @@ test('repository references and ABI provenance validate without any network', as
 test('changed ABI bytes and broken references are rejected', async () => {
   const scratch = await mkdtemp(path.join(tmpdir(), 'swap-skill-test-'));
   try {
-    for (const name of ['SKILL.md', 'README.md', 'AGENTS.md', 'config', 'references', 'abis']) {
+    for (const name of ['SKILL.md', 'README.md', 'AGENTS.md', 'config', 'references', 'abis', 'scripts']) {
       await cp(fileURLToPath(new URL(name, root)), path.join(scratch, name), { recursive: true });
     }
     const scratchRoot = pathToFileURL(`${scratch}${path.sep}`);

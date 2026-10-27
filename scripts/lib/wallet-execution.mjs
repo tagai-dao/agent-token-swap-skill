@@ -4,7 +4,7 @@ import { mkdir, open, readFile, rename, unlink, writeFile } from 'node:fs/promis
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash, randomUUID } from 'node:crypto';
-import { formatUnits, getAddress } from 'ethers';
+import { formatUnits, getAddress, parseUnits } from 'ethers';
 import { PlatformLive } from './platform-live.mjs';
 import { TradeError, requireTrade } from './live-rpc.mjs';
 import { abiInterface } from './tagai.mjs';
@@ -59,7 +59,8 @@ export class PlanStore {
   }
 }
 
-const fingerprint = plan => createHash('sha256').update(stringify({ wallet: plan.wallet, intent: plan.intent, transaction: plan.transaction, requestId: plan.preview.requestId, expiresAt: plan.expiresAt, kind: plan.kind, summary: plan.summary, snapshot: plan.snapshot })).digest('hex');
+const fingerprint = plan => createHash('sha256').update(stringify({ wallet: plan.wallet, intent: plan.intent, transaction: plan.transaction, requestId: plan.preview.requestId, expiresAt: plan.expiresAt, kind: plan.kind, summary: plan.summary, snapshot: plan.snapshot, routeId: plan.routeId, step: plan.step, settlement: plan.settlement, pad: plan.pad })).digest('hex');
+const routeFingerprint = plan => { const { fingerprint: savedFingerprint, ...data } = plan; return createHash('sha256').update(stringify(data)).digest('hex'); };
 
 function previewRisks(data) {
   return { parsedTransaction: data.parsedTx ?? null, risks: data.risks ?? null,
@@ -92,6 +93,11 @@ export class WalletExecution {
     const wallet = await this.ownedWallet();
     if (intent.wallet) requireTrade(same(intent.wallet, wallet), 'WALLET_CHANGED', 'The selected wallet differs from the connected Binance wallet.');
     const quote = await this.live.quote({ ...intent, wallet });
+    if (quote.routeSteps) return this.prepareRoute(intent, wallet, quote);
+    return this.prepareQuote(intent, wallet, quote);
+  }
+
+  async prepareQuote(intent, wallet, quote, routeId = undefined) {
     const approval = await this.live.nextApproval(quote, wallet);
     const transaction = approval?.transaction ?? await this.live.transaction(quote, wallet);
     const kind = approval ? 'APPROVAL' : 'SWAP';
@@ -118,6 +124,7 @@ export class WalletExecution {
       summary: { ...quote.summary, estimatedNetworkFeeBnb: formatUnits(gas * gasPrice, 18), wallet, recipient: quote.recipient ?? wallet, step: approval ? 'Token approval required before the swap' : 'Trade', approval: approval?.scope ?? null },
       transaction, preview: { requestId: preview.requestId, requiresAppConfirmation: preview.requireConfirmation === true, ...previewRisks(preview) },
       snapshot: quote.info.snapshot, tokenAbi: quote.info.release.tokenAbi, decimals: quote.info.decimals,
+      ...(routeId ? { routeId } : {}), ...(quote.step ? { step: quote.step, settlement: quote.info.quoteAsset, pad: quote.info.pad } : {}),
     };
     plan.fingerprint = fingerprint(plan);
     await this.store.save(plan);
@@ -126,6 +133,16 @@ export class WalletExecution {
 
   async execute(id, { confirmed = false } = {}) {
     requireTrade(confirmed === true, 'CONFIRMATION_REQUIRED', 'Explicit confirmation of this transaction preview is required before sending.');
+    if ((await this.store.load(id)).kind === 'ROUTE') {
+      const releaseRoute = await this.store.lock(id);
+      try {
+        const route = await this.store.load(id);
+        requireTrade(route.fingerprint === routeFingerprint(route) && route.currentPlanId, 'PREVIEW_CHANGED', 'The route preview changed or is unavailable.');
+        const result = await this.execute(route.currentPlanId, { confirmed });
+        route.status = 'IN_PROGRESS'; await this.saveRoute(route);
+        return { routeId: id, currentStep: route.index + 1, ...result, planId: id, stepPlanId: result.planId };
+      } finally { await releaseRoute(); }
+    }
     const release = await this.store.lock(id);
     try {
       const plan = await this.store.load(id);
@@ -170,6 +187,7 @@ export class WalletExecution {
 
   async status(id) {
     const plan = await this.store.load(id);
+    if (plan.kind === 'ROUTE') return this.routeStatus(plan);
     if (!plan.txHash && ['UNKNOWN', 'AWAITING_APP', 'EXECUTING'].includes(plan.status)) {
       const history = await this.wallet(['wallet', 'tx-history', '--binanceChainId', '56', '--type', 'all', '--size', '100', '--startTime', String(plan.createdAt)]);
       const matching = plan.walletOrderId ? history?.transactions?.find(item => String(item.orderId ?? item.id ?? '') === String(plan.walletOrderId)) : null;
@@ -207,6 +225,10 @@ export class WalletExecution {
   }
 
   async captureActualOutput(plan, receipt) {
+    if (plan.summary.platform === 'GANG') {
+      if (this.live.captureActualOutput) { const actual = await this.live.captureActualOutput(plan, receipt); if (actual) plan.actualOutput = actual; }
+      return;
+    }
     if (plan.summary.assetKind === 'pre-launch shares') {
       const abi = await abiInterface('abis/flap/agent-curve.json');
       if (plan.intent.side === 'buy') {
@@ -264,5 +286,69 @@ export class WalletExecution {
         } catch { /* Never substitute a quote for an unverified actual output. */ }
       }
     }
+  }
+
+  async saveRoute(route) { route.fingerprint = routeFingerprint(route); await this.store.save(route); }
+
+  async prepareRoute(intent, wallet, quote) {
+    const route = { id: randomUUID(), kind: 'ROUTE', status: 'PLANNED', wallet, index: 0, currentPlanId: null, completedSteps: [],
+      intent: { token: quote.info.token, platform: 'gang', side: intent.side, amount: intent.amount, slippageBps: quote.slippageBps, wallet, routeBps: quote.routeBps },
+      summary: quote.summary, minimumFinalRaw: quote.minimum.toString(), firstMinimumRaw: quote.routeSteps[0].minimum.toString(), settlement: quote.info.quoteAsset,
+      nextAmountRaw: quote.amountIn.toString() };
+    route.fingerprint = routeFingerprint(route); await this.saveRoute(route);
+    return this.previewRouteStep(route, quote.routeSteps[0]);
+  }
+
+  async previewRouteStep(route, quote = null) {
+    requireTrade(route.fingerprint === routeFingerprint(route), 'PREVIEW_CHANGED', 'The route authorization changed.');
+    const wallet = await this.ownedWallet(); requireTrade(same(wallet, route.wallet), 'WALLET_CHANGED', 'Reconnect the route wallet before resuming.');
+    try {
+      quote ??= await this.live.adapters.gang.routeStep(route.intent, route.index, route.nextAmountRaw);
+      requireTrade(quote.amountIn === BigInt(route.nextAmountRaw), 'ROUTE_CHANGED', 'The remaining step input differs from its recorded route amount.');
+      if (route.index === 1) {
+        const inputAsset = quote.step.kind === 'pad' && quote.side === 'buy' ? quote.info.quoteAsset.address : quote.info.token;
+        requireTrade(same(inputAsset, route.settlement.address), 'ROUTE_CHANGED', 'The remaining step no longer spends the recorded settlement asset.');
+        requireTrade(quote.quoteOut >= BigInt(route.minimumFinalRaw), 'ROUTE_PRICE_CHANGED', 'The remaining step cannot meet the route minimum. The intermediate asset remains in your wallet.');
+        if (quote.minimum < BigInt(route.minimumFinalRaw)) { quote.minimum = BigInt(route.minimumFinalRaw); quote.summary.minimumOutput.amount = formatUnits(quote.minimum, route.intent.side === 'buy' ? quote.info.decimals : 18); }
+      } else requireTrade(quote.minimum >= BigInt(route.firstMinimumRaw), 'ROUTE_PRICE_CHANGED', 'Refresh the route before changing its first-step protection.');
+      const child = await this.prepareQuote({ token: quote.info.token, side: quote.side, amount: quote.summary.input.amount }, wallet, quote, route.id);
+      route.currentPlanId = child.planId; route.status = 'PREVIEWED'; await this.saveRoute(route);
+      return { ...child, planId: route.id, routeId: route.id, stepPlanId: child.planId, currentStep: route.index + 1, stepCount: 2, routeSummary: route.summary };
+    } catch (error) { route.status = route.index > 0 ? 'PARTIAL' : 'PLANNED'; await this.saveRoute(route); throw error; }
+  }
+
+  async routeStatus(route) {
+    requireTrade(route.fingerprint === routeFingerprint(route), 'PREVIEW_CHANGED', 'The stored route authorization changed.');
+    if (route.status === 'COMPLETED') return { planId: route.id, status: 'COMPLETED', actualOutput: route.actualOutput, completedSteps: route.completedSteps };
+    if (!route.currentPlanId) return { planId: route.id, status: route.status, currentStep: route.index + 1, intermediateAmountRaw: route.index ? route.nextAmountRaw : null, settlement: route.settlement, resumable: true };
+    const childStatus = await this.status(route.currentPlanId), child = await this.store.load(route.currentPlanId);
+    if (childStatus.status === 'CONFIRMED' && child.kind === 'SWAP' && route.index === 1 && child.actualOutput) {
+      const raw = parseUnits(child.actualOutput.amount, route.intent.side === 'buy' ? child.decimals : 18);
+      requireTrade(raw >= BigInt(route.minimumFinalRaw), 'DELIVERY_UNVERIFIED', 'The final delivery did not satisfy the route minimum.');
+      route.status = 'COMPLETED'; route.actualOutput = child.actualOutput; route.completedSteps.push({ step: 2, transactionHash: child.txHash, output: child.actualOutput }); await this.saveRoute(route);
+    } else if (childStatus.status === 'FAILED') { route.status = route.index ? 'PARTIAL' : 'FAILED'; await this.saveRoute(route); }
+    return { ...childStatus, planId: route.id, stepPlanId: child.id, status: route.status === 'COMPLETED' ? 'COMPLETED' : childStatus.status, routeStatus: route.status, currentStep: route.index + 1, actualOutput: route.actualOutput ?? child.actualOutput ?? null, resumable: child.status === 'CONFIRMED' && route.status !== 'COMPLETED', settlement: route.settlement };
+  }
+
+  async resume(id) {
+    const releaseRoute = await this.store.lock(id);
+    try {
+      const route = await this.store.load(id); requireTrade(route.kind === 'ROUTE' && route.fingerprint === routeFingerprint(route), 'INVALID_PLAN', 'Use a valid sequential route identifier.');
+      if (route.status === 'COMPLETED') return this.routeStatus(route);
+      if (route.currentPlanId) {
+        const status = await this.status(route.currentPlanId), child = await this.store.load(route.currentPlanId);
+        const retryable = (route.index === 1 && status.status === 'FAILED') || (child.status === 'PREVIEWED' && child.expiresAt <= this.now());
+        requireTrade(status.status === 'CONFIRMED' || retryable, 'ROUTE_STEP_PENDING', 'Confirm or resolve the current route step before preparing another one.');
+        if (!retryable && child.kind === 'SWAP') {
+          if (route.index === 1) return this.routeStatus(route);
+          requireTrade(child.actualOutput && same(child.actualOutput.assetAddress, route.settlement.address), 'DELIVERY_UNVERIFIED', 'The actual intermediate delivery could not be established. No next step was prepared.');
+          const received = parseUnits(child.actualOutput.amount, route.settlement.decimals);
+          requireTrade(received >= BigInt(route.firstMinimumRaw), 'DELIVERY_UNVERIFIED', 'The intermediate delivery is below the route minimum.');
+          route.nextAmountRaw = received.toString(); route.completedSteps.push({ step: 1, transactionHash: child.txHash, output: child.actualOutput }); route.index = 1;
+        }
+        route.currentPlanId = null; route.status = route.index ? 'PARTIAL' : 'PLANNED'; await this.saveRoute(route);
+      }
+      return this.previewRouteStep(route);
+    } finally { await releaseRoute(); }
   }
 }

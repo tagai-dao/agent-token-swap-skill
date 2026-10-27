@@ -72,7 +72,7 @@ TagAI returns an array, not a c/d envelope. Keep BSC rows with valid addresses. 
 | TTAI | 0x8e11E90B463bf521382E2B88539F053270a3848c | TagAI / external Pancake V2 |
 | ttai | 0x51B561b3e30E626142A710E5e36da46A7DD124A5 | TagAI / internal curve |
 
-The Flap ordinary HTTP endpoint returned 403 from the test environment. Its separate ID Agent registry search found no matching market; follow [Flap](../platforms/flap.md) for that on-chain search. Fourme and GANG have no integrated search interface. Therefore report **two verified TagAI candidates with incomplete other-platform search coverage**, never "TTAI exists only on TagAI" or "no Flap token exists." An HTTP error is not a negative search result.
+The Flap ordinary HTTP endpoint returned 403 from the test environment. Its separate ID Agent registry search found no matching market; follow [Flap](../platforms/flap.md) for that on-chain search. At this historical observation, Fourme and GANG search coverage was not integrated. GANG now has an [independent search and proof workflow](../gang/worked-examples.md); refresh it for current requests. Therefore report **two verified TagAI candidates with incomplete other-platform search coverage**, never "TTAI exists only on TagAI" or "no Flap token exists." An HTTP error is not a negative search result.
 
 For a price query, inspect and show both exact candidates without needing wallet login. For a trade / amount quote, ask which address the user means if both remain. Do not buy until that ambiguity is resolved. For the rest of the TTAI example, **assume the human explicitly selects 0x8e11E90B463bf521382E2B88539F053270a3848c**; the example does not make that selection for a live user.
 
@@ -93,7 +93,7 @@ For each candidate, build the following one-snapshot Multicall set. Read actual 
 
 createdTokens(address) selector=0xb3126103; use [read-interface ABI](../../abis/tagai/read-interfaces.json). The observed positive proof for selected TTAI was TTAI Pump.createdTokens(TTAI)=true; that Pump returned false for the other ttai address. The other ttai's positive proof was its different Pump. The deployed first Pump exposes this getter even though its older exported ABI omitted it; do not skip that Pump or infer issuance solely from API version hints. The verified getter is now in the runtime proof set.
 
-For selected TTAI, Flap's matching TokenNotFound and ID Factory false/zero were normal on-chain negatives. They concern that exact address, not every similarly named token. Missing Fourme / GANG coverage remains unverified. Multiple positive issuing platforms stop a trade until resolved; API import registration is not native TagAI issuance.
+For selected TTAI, Flap's matching TokenNotFound and ID Factory false/zero were normal on-chain negatives. They concern that exact address, not every similarly named token. These historical observations did not include GANG proofs. Current requests also read every [GANG launchpad](../../config/gang-bsc.json); Fourme remains unverified. Multiple positive issuing platforms stop a trade until resolved; API import registration is not native TagAI issuance.
 
 ### Stage 2B: selected token state
 

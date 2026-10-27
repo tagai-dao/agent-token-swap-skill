@@ -10,7 +10,7 @@ The approval spender is the contract that actually calls transferFrom on the wal
 
 ## Intermediate settlement assets
 
-GANG is an example; the actual interfaces remain unintegrated:
+GANG has a connected [settlement adapter](platforms/gang.md) and [exact examples](gang/worked-examples.md):
 
 ```text
 Buy:  BNB -> GANG -> internal-market token
@@ -43,6 +43,8 @@ UNKNOWN means broadcast status is unresolved, not failed. Reconcile wallet order
 - receipt status=0: the transaction failed; account for asset changes and gas separately.
 - Verify actual delivery and required confirmations before depending on a preceding step. The current runtime checks canonical receipt inclusion and waits for two block confirmations before reporting CONFIRMED.
 - Failure after a completed step: mark PARTIAL and report intermediate holdings, the failed step, and the quote needed to resume. Do not repeat the first step or automatically swap back.
+
+The optional runner returns a root route plan and current step preview. After a confirmed receipt, `resume --plan <root-id>` refreshes the next approval / swap preview using the saved actual intermediate output. Execute only after confirmation of that exact new preview. Failed second transactions and expired unsubmitted previews may be refreshed; an unknown submission must be reconciled. Preserve the original final floor and never repeat a completed first leg.
 
 ## User constraints and wallet confirmation
 
