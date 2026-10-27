@@ -14,7 +14,7 @@ For concrete TagAI operations, read [worked examples](references/tagai/worked-ex
 
 For Flap, follow [call examples](references/flap/worked-examples.md): lookup / price, 0.001 BNB ordinary internal buy, 1000-token sale, ID Agent share buy / 50% sale and external wrapper buy/sell. Targets, arguments and observed outputs are included.
 
-Flap BNB token links are accepted directly. See the [AIPRO link query](references/flap/worked-examples.md#query-a-flap-token-link-aipro), including its SPCXB price and exact Multicall requests.
+Supplied contract addresses proceed directly to platform proof and state reads. See the [AIPRO address query](references/flap/worked-examples.md#query-a-contract-address-aipro), including its ordinary Flap proof, SPCXB price, 0.0001 BNB quote and exact Multicall requests. Flap BNB token links use the same address workflow.
 
 ## Optional repository automation
 

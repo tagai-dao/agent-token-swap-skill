@@ -30,11 +30,21 @@ Numbers below were observed at **2026-10-27 04:14:34 UTC**, block **0x7c000d2**.
 
 Use the user's selected token identity. The sample addresses illustrate methods; ticker matches still require address selection when ambiguous. Apply the deployment checks in [Flap routing](../platforms/flap.md).
 
-## Query a Flap token link: AIPRO
+## Query a contract address: AIPRO
 
-Input: `https://flap.sh/bnb/0xeac597ba087f6219c03a65479b2568d3f9a07777?lang=zh`.
+Input: **0xeac597ba087f6219c03a65479b2568d3f9a07777**.
 
-Selected token **T=0xeac597Ba087f6219C03a65479B2568d3f9A07777**. Extract T from the /bnb/ path; continue directly with T. The [recorded lookup](../../config/flap-aipro-query.json) contains the complete Multicall requests and responses at block **0x7c00471**, **2026-10-27 04:21:31 UTC**.
+Selected token **T=0xeac597Ba087f6219C03a65479B2568d3f9A07777**. Continue directly with T. The [recorded lookup](../../config/flap-aipro-query.json) contains the complete Multicall requests and responses at block **0x7c00471**, **2026-10-27 04:21:31 UTC**.
+
+Issuer proof calls at B:
+
+| Target / ABI | Call | Recorded result / action |
+| --- | --- | --- |
+| Portal / ordinary ABI | getTokenV8Safe(T) | status=1 -> ordinary Flap internal market |
+| Factory / Agent ABI | isMarket(T), marketOfToken(T) | false, Z -> not an ID Agent market |
+| Trusted TagAI Pumps / shared TagAI read ABI | createdTokens(T) | all false -> not native TagAI issuance |
+
+Keep T as the selected asset and select the ordinary Flap branch from its positive Portal record. A clone runtime is a deployment pattern; the trusted Portal state identifies the market. Token.listed(), bondingCurve() and getBuyFeeRatios() belong to the TagAI method family. An internal Flap lookup proceeds through Portal rather than looking for an AIPRO/WBNB pair.
 
 After the usual issuance checks, read this set through Multicall at B:
 
@@ -56,6 +66,28 @@ Use the returned quoteTokenAddress as the next Multicall target at the same B:
 | 0xbe9D156892E55e7154BcD3cB0FEA677F9D3103E1 / ERC20 | symbol(), decimals() | SPCXB, 18 |
 
 Price=formatUnits(30954251972,18)=**0.000000030954251972 SPCXB/AIPRO**. Return **AIPRO**, the full selected address, **Flap / internal market**, that price and its observation time. The observed curve progress was below 0.01%. This information query uses no wallet or BNB conversion. A later BNB trade follows the observed settlement configuration in [Flap routing](../platforms/flap.md).
+
+For an existing HTTP/RPC tool, the recorded lookup includes ready aggregate3 calldata: use the requests with stage=ordinary-token-state and stage=settlement-asset-metadata, after the issuer proof. Submit each request's method/transaction object with a fresh B in params[1], and decode its fresh response with the Multicall and child ABIs. Rebuild the settlement-metadata call if the current Portal returns a different quoteTokenAddress.
+
+For the request "Buy 0.0001 BNB of this address," the ordinary Portal quote is:
+
+```solidity
+// target: 0xe2cE6ab80874Fa9Fa2aAE65D277Dd6B8e65C9De0
+// ordinary Portal ABI; through Multicall at B; value=0
+quoteExactInput((
+    0x0000000000000000000000000000000000000000,
+    0xeac597Ba087f6219C03a65479B2568d3f9A07777,
+    100000000000000 // 0.0001 BNB in wei
+))
+```
+
+At block **0x7c01d7a**, **2026-10-27 05:09:36 UTC**, it returned **15471083049905604729285** raw AIPRO = **15471.083049905604729285 AIPRO**. The 100 bps minimum is **15316372219406548681992**. The same-block [classification check](../../config/flap-aipro-query.json) also records a zero WBNB pair and reverting TagAI-specific getters alongside the positive ordinary Portal state.
+
+For a fresh trade, encode **Portal.swapExactInput((Z,T,100000000000000,freshMinimum,0x))**, from=W, valueWei=**100000000000000**, and follow example 9's full simulation / wallet preview / confirmation flow. The native-to-quote conversion is selected from the verified Portal configuration; the reference-price currency remains SPCXB. Keep T as the purchased asset.
+
+### Query a Flap token link: AIPRO
+
+Input: `https://flap.sh/bnb/0xeac597ba087f6219c03a65479b2568d3f9a07777?lang=zh`. Extract the path address T and follow the same contract-address calls above.
 
 ## 1. Find a ticker and select the market
 

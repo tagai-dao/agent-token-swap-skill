@@ -307,5 +307,322 @@
       ]
     }
   ],
-  "note": "Historical read-only lookup of the address supplied in the Flap BNB link. Use a fresh pinned block for a current query. SPCXB is the observed reference-price currency. No wallet is required for this information query."
+  "note": "Historical read-only lookup of the address supplied in the Flap BNB link. Use a fresh pinned block for a current query. SPCXB is the observed reference-price currency. No wallet is required for this information query.",
+  "classificationCheck": {
+    "snapshot": {
+      "blockTag": "0x7c01d7a",
+      "blockHash": "0x3d507de45c4c5a5d06617cc6965819e702af7ba160448bc753cddfe739b54743",
+      "timestamp": 1793077776
+    },
+    "token": "0xeac597Ba087f6219C03a65479B2568d3f9A07777",
+    "walletConnected": false,
+    "transactionBroadcast": false,
+    "proofs": [
+      {
+        "label": "portal",
+        "target": "0xe2cE6ab80874Fa9Fa2aAE65D277Dd6B8e65C9De0",
+        "abi": "abis/flap/portal.json",
+        "method": "getTokenV9Safe",
+        "args": [
+          "0xeac597Ba087f6219C03a65479B2568d3f9A07777"
+        ],
+        "required": true,
+        "ok": true,
+        "value": {
+          "status": "1",
+          "reserve": "1903924369",
+          "circulatingSupply": "61507684627330658",
+          "price": "30954251972",
+          "tokenVersion": "6",
+          "r": "34267494530000000000",
+          "h": "107036751000000000000000000",
+          "k": "37935375809401472030000000000",
+          "dexSupplyThresh": "800000000000000000000000000",
+          "quoteTokenAddress": "0xbe9D156892E55e7154BcD3cB0FEA677F9D3103E1",
+          "nativeToQuoteSwapEnabled": true,
+          "extensionID": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "buyTaxRate": "300",
+          "sellTaxRate": "300",
+          "pool": "0x0000000000000000000000000000000000000000",
+          "progress": "21323952",
+          "lpFeeProfile": "0",
+          "dexId": "0",
+          "bondingCurveFeeRate": "125"
+        }
+      },
+      {
+        "label": "agentMarket",
+        "target": "0xC55820f24015bE7c4f18949D9e1363A3609B300e",
+        "abi": "abis/flap/agent-curve.json",
+        "method": "isMarket",
+        "args": [
+          "0xeac597Ba087f6219C03a65479B2568d3f9A07777"
+        ],
+        "required": true,
+        "ok": true,
+        "value": false
+      },
+      {
+        "label": "agentBinding",
+        "target": "0xC55820f24015bE7c4f18949D9e1363A3609B300e",
+        "abi": "abis/flap/agent-curve.json",
+        "method": "marketOfToken",
+        "args": [
+          "0xeac597Ba087f6219C03a65479B2568d3f9A07777"
+        ],
+        "required": true,
+        "ok": true,
+        "value": "0x0000000000000000000000000000000000000000"
+      },
+      {
+        "label": "wbnbPair",
+        "target": "0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73",
+        "abi": "abis/tagai/pancake.json",
+        "method": "getPair",
+        "args": [
+          "0xeac597Ba087f6219C03a65479B2568d3f9A07777",
+          "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
+        ],
+        "required": true,
+        "ok": true,
+        "value": "0x0000000000000000000000000000000000000000"
+      },
+      {
+        "label": "listed",
+        "target": "0xeac597Ba087f6219C03a65479B2568d3f9A07777",
+        "abi": "abis/tagai/token-v16.json",
+        "method": "listed",
+        "args": [],
+        "required": false,
+        "ok": false,
+        "value": null,
+        "errorData": "0x"
+      },
+      {
+        "label": "bondingCurve",
+        "target": "0xeac597Ba087f6219C03a65479B2568d3f9A07777",
+        "abi": "abis/tagai/token-v16.json",
+        "method": "bondingCurve",
+        "args": [],
+        "required": false,
+        "ok": false,
+        "value": null,
+        "errorData": "0x"
+      },
+      {
+        "label": "getBuyFeeRatios",
+        "target": "0xeac597Ba087f6219C03a65479B2568d3f9A07777",
+        "abi": "abis/tagai/token-v16.json",
+        "method": "getBuyFeeRatios",
+        "args": [],
+        "required": false,
+        "ok": false,
+        "value": null,
+        "errorData": "0x"
+      },
+      {
+        "label": "tagai:1",
+        "target": "0xa77253Ac630502A35A6FcD210A01f613D33ba7cD",
+        "abi": "abis/tagai/read-interfaces.json",
+        "method": "createdTokens",
+        "args": [
+          "0xeac597Ba087f6219C03a65479B2568d3f9A07777"
+        ],
+        "required": false,
+        "ok": true,
+        "value": false
+      },
+      {
+        "label": "tagai:2",
+        "target": "0x3DC52C69C3C8be568372E16d50E9F3FEc796610c",
+        "abi": "abis/tagai/read-interfaces.json",
+        "method": "createdTokens",
+        "args": [
+          "0xeac597Ba087f6219C03a65479B2568d3f9A07777"
+        ],
+        "required": false,
+        "ok": true,
+        "value": false
+      },
+      {
+        "label": "tagai:3",
+        "target": "0xc9FaA3c05a5178C380d9C28Edffa38d90D606F22",
+        "abi": "abis/tagai/read-interfaces.json",
+        "method": "createdTokens",
+        "args": [
+          "0xeac597Ba087f6219C03a65479B2568d3f9A07777"
+        ],
+        "required": false,
+        "ok": true,
+        "value": false
+      },
+      {
+        "label": "tagai:4",
+        "target": "0x0476571a77Cc8Fc28796935Cf173c265F2021448",
+        "abi": "abis/tagai/read-interfaces.json",
+        "method": "createdTokens",
+        "args": [
+          "0xeac597Ba087f6219C03a65479B2568d3f9A07777"
+        ],
+        "required": false,
+        "ok": true,
+        "value": false
+      },
+      {
+        "label": "tagai:5",
+        "target": "0x2cAbfDE43f93422fFb070f0Fa03d2951dbBC7749",
+        "abi": "abis/tagai/read-interfaces.json",
+        "method": "createdTokens",
+        "args": [
+          "0xeac597Ba087f6219C03a65479B2568d3f9A07777"
+        ],
+        "required": false,
+        "ok": true,
+        "value": false
+      },
+      {
+        "label": "tagai:9",
+        "target": "0x327a473c763bcf0d60CCd6811F832332939110D5",
+        "abi": "abis/tagai/read-interfaces.json",
+        "method": "createdTokens",
+        "args": [
+          "0xeac597Ba087f6219C03a65479B2568d3f9A07777"
+        ],
+        "required": false,
+        "ok": true,
+        "value": false
+      },
+      {
+        "label": "tagai:11",
+        "target": "0x8fEF5b4c0f761a0cc447800e3019B089ac306F28",
+        "abi": "abis/tagai/read-interfaces.json",
+        "method": "createdTokens",
+        "args": [
+          "0xeac597Ba087f6219C03a65479B2568d3f9A07777"
+        ],
+        "required": false,
+        "ok": true,
+        "value": false
+      },
+      {
+        "label": "tagai:13",
+        "target": "0x2c2f4e8D85c02a065f109c74d9b27186AE65Adfa",
+        "abi": "abis/tagai/read-interfaces.json",
+        "method": "createdTokens",
+        "args": [
+          "0xeac597Ba087f6219C03a65479B2568d3f9A07777"
+        ],
+        "required": false,
+        "ok": true,
+        "value": false
+      },
+      {
+        "label": "tagai:14",
+        "target": "0xcd4e721Fc418f4D723C04c71e8d8EcCb75C3CD34",
+        "abi": "abis/tagai/read-interfaces.json",
+        "method": "createdTokens",
+        "args": [
+          "0xeac597Ba087f6219C03a65479B2568d3f9A07777"
+        ],
+        "required": false,
+        "ok": true,
+        "value": false
+      },
+      {
+        "label": "tagai:15",
+        "target": "0x97f35B4631F4FFBF8050B17fAd6579D6F60A289D",
+        "abi": "abis/tagai/read-interfaces.json",
+        "method": "createdTokens",
+        "args": [
+          "0xeac597Ba087f6219C03a65479B2568d3f9A07777"
+        ],
+        "required": false,
+        "ok": true,
+        "value": false
+      },
+      {
+        "label": "tagai:15-2",
+        "target": "0xD1cC369f726293ce47F8F9aB5aD5AD2d9A38121c",
+        "abi": "abis/tagai/read-interfaces.json",
+        "method": "createdTokens",
+        "args": [
+          "0xeac597Ba087f6219C03a65479B2568d3f9A07777"
+        ],
+        "required": false,
+        "ok": true,
+        "value": false
+      },
+      {
+        "label": "tagai:16",
+        "target": "0xee8D16f44c89B5F858e223Ab77c6091E184AaDf8",
+        "abi": "abis/tagai/read-interfaces.json",
+        "method": "createdTokens",
+        "args": [
+          "0xeac597Ba087f6219C03a65479B2568d3f9A07777"
+        ],
+        "required": false,
+        "ok": true,
+        "value": false
+      }
+    ],
+    "quote": {
+      "success": true,
+      "summary": {
+        "name": "AIPRO",
+        "symbol": "AIPRO",
+        "contractAddress": "0xeac597Ba087f6219C03a65479B2568d3f9A07777",
+        "platform": "Flap",
+        "network": "BNB Smart Chain",
+        "market": "internal",
+        "referencePrice": {
+          "amount": "0.000000030954251972",
+          "currency": "SPCXB",
+          "perToken": "1",
+          "includesTradingFees": false
+        },
+        "internalProgressPercent": "0.0",
+        "observedAt": "2026-10-27T05:09:36.000Z",
+        "side": "buy",
+        "input": {
+          "amount": "0.0001",
+          "symbol": "BNB"
+        },
+        "expectedOutput": {
+          "amount": "15471.083049905604729285",
+          "symbol": "AIPRO"
+        },
+        "minimumOutput": {
+          "amount": "15316.372219406548681992",
+          "symbol": "AIPRO"
+        },
+        "slippagePercent": "1.0",
+        "fees": {
+          "includedInQuote": true,
+          "protocolFeeBps": 125,
+          "tokenTaxBps": 300,
+          "amount": null
+        },
+        "gasIncluded": false,
+        "buyingLimit": null,
+        "expiresAt": "2026-10-27T05:10:36.000Z"
+      },
+      "amountInRaw": "100000000000000",
+      "quoteOutRaw": "15471083049905604729285",
+      "minimumOutRaw": "15316372219406548681992",
+      "call": {
+        "target": "0xe2cE6ab80874Fa9Fa2aAE65D277Dd6B8e65C9De0",
+        "abi": "abis/flap/portal.json",
+        "method": "quoteExactInput",
+        "args": [
+          [
+            "0x0000000000000000000000000000000000000000",
+            "0xeac597Ba087f6219C03a65479B2568d3f9A07777",
+            "100000000000000"
+          ]
+        ],
+        "blockTag": "0x7c01d7a",
+        "inputData": "0xfc847c2b0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000eac597ba087f6219c03a65479b2568d3f9a0777700000000000000000000000000000000000000000000000000005af3107a4000"
+      }
+    }
+  }
 }

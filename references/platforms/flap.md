@@ -14,6 +14,8 @@ Use existing HTTP / ABI / RPC and Binance wallet tools. No checkout, npm install
 
 Include both Flap proof interfaces and integrated TagAI proof interfaces in fixed-block Multicall. A match in both Flap registries is still one issuing platform. A market-address input keeps referring to its ledger / claim state after launch; never silently change a closed share sale into an ERC20 sale.
 
+For a supplied address, ordinary Portal status=1 establishes an internal Flap market even when ID Agent Factory.isMarket=false, marketOfToken=zero and TagAI createdTokens=false. Read [the AIPRO address example](../flap/worked-examples.md#query-a-contract-address-aipro). Internal markets are priced through their platform contracts; pool discovery belongs to external-market routing.
+
 There is **no verified blanket Binance-only restriction for all Flap tokens**. The [official skills page](https://docs.flap.sh/flap/skills) focuses on launching tokens; the [Binance tutorial](https://docs.flap.sh/flap/skills/using-with-binance-agentic-wallet) explains signing. The separately published ID AGENT CURVE app requires Agent ID for buying, while selling / claiming do not. A Binance connection alone does not prove admission. Enforce actual restrictions and full real-wallet simulation.
 
 ## Ticker or address

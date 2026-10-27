@@ -20,9 +20,11 @@ The actual package-relative paths are `config/tagai-bsc.json`, `abis/provenance.
 
 For a concrete TagAI request, follow the matching [worked example](tagai/worked-examples.md), including exact TTAI / AIPRO target addresses, argument sources and wallet steps. The general contract below supplies the shared tooling rules.
 
-## 1. Resolve the token over HTTPS
+## 1. Resolve the user's input
 
-For a ticker input:
+For a contract address, retain that exact asset and continue to the chain snapshot and issuer proof. For example, `0xeac597ba087f6219c03a65479b2568d3f9a07777` uses the [Flap address example](flap/worked-examples.md#query-a-contract-address-aipro). A platform's ticker search is unnecessary for an address. A Flap /bnb/ link supplies its path address to this same workflow.
+
+For a TagAI ticker input:
 
 ```text
 GET https://bsc-api.tagai.fun/community/search?tick=<URL-encoded-ticker>
@@ -66,6 +68,18 @@ Decode the outer result and each child with its exact ABI. Preserve order and re
 
 ## 3. Prove issuance and read state
 
+For an unknown address, assemble the integrated proof set before selecting a platform:
+
+| Proof target / ABI | Method | Meaning |
+| --- | --- | --- |
+| Flap ordinary Portal / [Portal ABI](../abis/flap/portal.json) | getTokenV8Safe(address) | Registered ordinary Flap token state |
+| Flap ID Agent Factory / [Agent ABI](../abis/flap/agent-curve.json) | isMarket(address), marketOfToken(address) | ID Agent submarket only |
+| Trusted TagAI Pumps / [read ABI](../abis/tagai/read-interfaces.json) | createdTokens(address) | Native TagAI issuance only |
+
+Use [Flap routing](platforms/flap.md) for MATCH / NO_MATCH / UNKNOWN decoding. A positive ordinary Flap Portal record selects the ordinary Flap methods, including when both ID Agent results are negative and all TagAI Pump results are false. For an internal Flap token, read its Portal state and ERC20 metadata, then quote-asset metadata at the same B; its reference price may be in SPCXB or another ERC20. Check external DEX pools after its state selects an external market.
+
+The remaining Pump / Token getters in this section apply to a positive TagAI issuer proof:
+
 Read the trusted Pump addresses in the deployment reference and query their documented `createdTokens(address token) view returns(bool)` getters in Multicall. A unique true from a trusted deployment identifies the issuer. Resolve conflicts; do not treat failed or unqueried getters as clean negatives. Read [identity and state](tagai/versions.md) for historical proof handling and implementation identity checks.
 
 Using the matched ABI, read required token metadata, decimals, listed, applicable pending state, bondingCurveSupply, curve identity, buy / sell fee ratios, and any relevant wallet balance in a dependent Multicall stage at the same block. For a recorded clone deployment, use a single independent token-code identity check against the matched implementation record. Do not use current UI defaults to overwrite the token's listing snapshot.
@@ -76,9 +90,11 @@ Return only the token name / symbol, full address, issuing platform, internal or
 
 ## 4. Obtain an amount-specific quote and encode
 
-For internal buys, call the verified curve's getBuyAmountByValue(supply,funds) through Multicall at the same block. Parameters: supply=Token.bondingCurveSupply() in raw token units; funds=parseUnits(userBnbAmount,18) in wei. Example for 0.001 BNB of AIPRO: target=0x97f35B4631F4FFBF8050B17fAd6579D6F60A289D, args=[284811666433559752360740107,1000000000000000]. The return is raw token output. Use funds as transaction value and apply user slippage once to the quote. Follow [internal methods](tagai/internal.md) for the cap/refund branch and wallet buying eligibility.
+For Flap, use the [matching call example](flap/worked-examples.md): ordinary internal markets quote at Portal.quoteExactInput and trade at Portal.swapExactInput; ID Agent markets quote/trade at their separate AgentPortal; verified external markets use the wrapper. The selected address determines the method family.
 
-For internal sales, read the real balance and supply, then call getPrice(supply-amount,amount). Subtract separately rounded fees to obtain net BNB. Internal sales normally require no ERC20 approval. See [the complete method cards](tagai/internal.md) for actual signatures, parameter meanings, caller-only delivery and slippage handling.
+For TagAI internal buys, call the verified curve's getBuyAmountByValue(supply,funds) through Multicall at the same block. Parameters: supply=Token.bondingCurveSupply() in raw token units; funds=parseUnits(userBnbAmount,18) in wei. Example for 0.001 BNB of AIPRO: target=0x97f35B4631F4FFBF8050B17fAd6579D6F60A289D, args=[284811666433559752360740107,1000000000000000]. The return is raw token output. Use funds as transaction value and apply user slippage once to the quote. Follow [internal methods](tagai/internal.md) for the cap/refund branch and wallet buying eligibility.
+
+For TagAI internal sales, read the real balance and supply, then call getPrice(supply-amount,amount). Subtract separately rounded fees to obtain net BNB. These sales normally require no ERC20 approval. See [the complete method cards](tagai/internal.md) for actual signatures, parameter meanings, caller-only delivery and slippage handling.
 
 For an external market, use a verified amount-specific Router / Quoter result with matching execution parameters. Do not replace failed quotes with a spot estimate. Follow [external calls](tagai/external.md) for direct V2 or Infinity payloads and the Permit2 authorization chain. Select the route internally; do not ask the user to choose a Router or protocol variant.
 

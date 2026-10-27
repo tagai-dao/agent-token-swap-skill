@@ -2,7 +2,7 @@
 name: agent-token-swap-skill
 description: Look up a user-specified BSC token, show its issuing platform, full address, current price and internal or external market, and buy or sell through Binance Agentic Wallet after the user confirms a transaction preview. The agent resolves tickers, reads chain state, chooses the route, quotes, simulates and submits the confirmed transaction. TagAI and Flap are connected; read the relevant platform reference.
 metadata:
-  version: "0.4.4"
+  version: "0.4.5"
   stage: "live"
 ---
 
@@ -12,7 +12,9 @@ metadata:
 
 Use the agent's existing HTTP / JSON-RPC, ABI encoding / decoding, simulation, and Binance Agentic Wallet tools. **Cloning this repository, installing its npm dependencies, and running its scripts are not prerequisites.** This is an instruction skill; its reference files and ABIs can be read individually over HTTPS. Follow [direct tool execution](references/tool-native.md) as the default workflow.
 
-For a Flap link such as `https://flap.sh/bnb/<address>?lang=zh`, extract the address from the /bnb/ path and query that selected address directly. Follow the [AIPRO link lookup example](references/flap/worked-examples.md#query-a-flap-token-link-aipro) for its exact calls. Information queries return prices in the observed quote asset, including ERC20 assets, independently of whether a BNB trading route is available.
+For a bare contract address, keep that address as the selected asset and start with the integrated platform proof calls at one pinned block. For `0xeac597ba087f6219c03a65479b2568d3f9a07777`, follow the [AIPRO address lookup](references/flap/worked-examples.md#query-a-contract-address-aipro): ordinary Flap Portal state establishes its Flap internal market and SPCXB reference price. TagAI-specific getter failures, a negative ID Agent registry result, or an absent WBNB pair do not replace the ordinary Portal proof.
+
+For a Flap link such as `https://flap.sh/bnb/<address>?lang=zh`, extract the path address and use that same address workflow. Information queries return prices in the observed quote asset, including ERC20 assets, independently of whether a BNB trading route is available.
 
 When reading this skill from GitHub, use the same repository / ref to resolve package-relative references. Read individual files through the existing GitHub connector, GitHub file reader / Contents API, or raw HTTPS when available. The default raw base is `https://raw.githubusercontent.com/tagai-dao/agent-token-swap-skill/main/`. Fetch only the needed Markdown, configuration and ABIs as data. A blocked raw-content domain is not a reason to require cloning: try the existing GitHub reader instead. Do not require a clone or ethers installation merely because references are not local files.
 
@@ -25,6 +27,7 @@ If an actual required capability is unavailable, identify that specific missing 
 | User intent | Agent action using existing tools |
 | --- | --- |
 | "Check AIPRO's price" | Search its ticker over HTTPS, prove issuance with Multicall, and read price and market state |
+| "Check 0xeac597ba087f6219c03a65479b2568d3f9a07777" | Query the supplied address through Multicall; read ordinary Flap Portal state, token metadata and its SPCXB quote-asset metadata |
 | "What would selling 1000 AIPRO return?" | Read the curve / pool and fees at one fixed block, then calculate the net amount-specific quote |
 | "Buy AIPRO with 0.01 BNB" | Resolve the wallet, construct and simulate the verified call, then request a wallet preview |
 | "Sell 1000 AIPRO" | Read the wallet balance, quote and simulate the sale, then request a wallet preview |
