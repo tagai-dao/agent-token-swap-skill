@@ -12,14 +12,14 @@ const root = new URL('../', import.meta.url);
 const initial = JSON.parse(await readFile(new URL('config/bsc.json', root), 'utf8'));
 const config = () => structuredClone(initial);
 
-test('published capabilities enable TagAI and keep other platforms disabled', () => {
+test('published capabilities enable TagAI and Flap while keeping missing platforms disabled', () => {
   const result = summarizeCapabilities(config());
   assert.equal(result.tradingEnabled, true);
   assert.equal(result.networkAccess, true);
   assert.equal(result.walletAccess, true);
   for (const [id, platform] of Object.entries(result.platforms)) {
-    assert.equal(platform.status, id === 'tagai' ? 'live' : 'not_integrated');
-    for (const [key, value] of Object.entries(platform)) if (key !== 'status') assert.equal(value, id === 'tagai');
+    assert.equal(platform.status, ['tagai', 'flap'].includes(id) ? 'live' : 'not_integrated');
+    for (const [key, value] of Object.entries(platform)) if (key !== 'status') assert.equal(value, ['tagai', 'flap'].includes(id));
   }
 });
 
@@ -42,7 +42,7 @@ test('config edits cannot enable missing adapters or an alternate chain', () => 
 test('unverified deployments, foreign DEX and unsupported source types fail closed', () => {
   for (const mutate of [
     value => { value.multicall.address = '0x1111111111111111111111111111111111111111'; },
-    value => { value.importedTokenSwapWrapper.status = 'verified'; },
+    value => { value.importedTokenSwapWrapper.address = '0x1111111111111111111111111111111111111111'; },
     value => { value.importedTokenSwapWrapper.sourceReferenceTypes.push(2); },
     value => { value.dex.allowedBrands.push('other'); },
     value => { value.dex.deployments.push({ brand: 'pancake' }); },

@@ -12,7 +12,7 @@
       "sha256": "070cb56a265f5dcd302389bfed928bf726109f674003ec79e953f52515865053",
       "kind": "interface-subset",
       "specification": "https://github.com/mds1/multicall3/blob/main/src/Multicall3.sol",
-      "note": "ABI only. No BSC deployment address has been enabled."
+      "note": "BSC deployment and runtime hash are verified in config/bsc.json."
     },
     "imported-token-swap-wrapper.json": {
       "sha256": "9a5dae081b685251a33dac203ca060bc54ce24ccde6e953ceaf2623703bc0abe",
@@ -24,7 +24,7 @@
       "sourceInterfacePath": "src/router/INutboxRouter.sol",
       "sourceInterfaceSha256": "a41eab14070cff892f674b60575252fd4ffc31404eb359e5d13e549bf7969222",
       "artifactSha256": "24c13033be49079bb8467079ee87d5e49636c6b219c6f8caf8ed5ae024f81c96",
-      "note": "Selected trading/getter/event/error ABI from a local artifact, checked against source signatures. Not verified against any production deployment."
+      "note": "Trading signatures retained; BSC deployment address, runtime identity and getters verified read-only on 2026-10-27 in config/flap-bsc.json. No real funds sent."
     },
     "tagai/token-v1.json": {
       "sha256": "6f1cf0dbc86f2a848f40b869f4559f985f75814f208ccdff548cbc4e3a74d57b",
@@ -239,6 +239,29 @@
       "sourcePath": "src/utils/pcsV4Swap.ts",
       "sourceSha256": "c0a8b8c2db25726490a4f506916b868a317b0c2332b39245e2a09cfa97aa3869",
       "note": "Infinity CL / Universal Router / Permit2 interfaces from the source; V2 interfaces are the standard Pancake V2 Router02 interface. Verify each target role before use."
+    },
+    "flap/portal.json": {
+      "sha256": "2e6a11cc93f28bb206f193513c2f41395e67ad5435736231f74d3d1e36a09253",
+      "kind": "official-interface-subset",
+      "source": "https://flap.sh/_next/static/chunks/8960-e9960ed542c71366.js",
+      "retrievedAt": "2026-10-27",
+      "note": "Trading/state subset of the official frontend ABI; quota getters transcribed from the official buy-quota Solidity declarations. getTokenV9Safe is in the frontend ABI and verified on BSC; V8Safe is the published-doc fallback."
+    },
+    "flap/tax-token.json": {
+      "sha256": "3323c2f56a63a4ba12cb3734472a9b53ffda16cfdba298f8875bd6427653ef93",
+      "kind": "official-interface-subset",
+      "source": "https://github.com/flap-sh/FlapVaultExample/blob/5949cc7eb99bcb5ac5f679cc710ae456e627f12a/src/flap/IFlapTaxTokenV3.sol",
+      "retrievedAt": "2026-10-27",
+      "note": "Tax Token V3 read subset. Do not assume older tax implementations use this interface."
+    },
+    "flap/agent-curve.json": {
+      "sha256": "e4520bb067ee1511380897e97cdbdbc16de079f2c56e7b3ba735a2d363570e21",
+      "kind": "official-app-interface-subset",
+      "source": "https://flap.sh/apps/agent-bonding-curve",
+      "artifactVersion": "v20261023134909522_agent-bonding-curve_8b26639fea52",
+      "componentSha256": "08545080fdc1e4c8d86e827cb56a3d1f748d8369d905e29b1b1b98b374ddc83f",
+      "retrievedAt": "2026-10-27",
+      "note": "Typed Portal/Factory/Reader/Market interfaces extracted as data from the published Flap app. buyWithQuote is supplied by the app English interaction guide. Wallet-sensitive reverting probes are deliberately not used as Multicall subcalls."
     }
   }
 }

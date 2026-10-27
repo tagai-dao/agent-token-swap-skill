@@ -1,6 +1,6 @@
 # Token Inputs, Candidates, and Issuance
 
-TagAI has a live [direct tool workflow](tool-native.md) for search, chain verification, prices and trading, with an optional repository runner. Other platforms remain unintegrated. Apply these shared resolution rules without turning internal adapter details into user-facing explanations.
+TagAI and [Flap](platforms/flap.md) have a live [direct tool workflow](tool-native.md) and optional runner. Fourme / GANG remain unintegrated. Flap proofs include ordinary Portal state and ID Agent Factory market / predicted-token bindings. Apply these shared resolution rules without turning internal adapter details into user-facing explanations.
 
 ## Address input
 
@@ -14,11 +14,11 @@ Only after all relevant platforms explicitly return NO_MATCH may the token proce
 
 ## Ticker input
 
-Filter by the user's platform when explicitly specified; otherwise query the four integrated search interfaces. Show the first 3 results from each by default, preserving the source's native order and naming its ranking basis. If the API does not document ranking, label it "platform response order." This resolves the user's input; it is not trending-token discovery or a recommendation.
+Filter by the user's platform when explicitly specified; otherwise query integrated search interfaces. Show the first 3 results from each by default, preserving the source's native order and naming its ranking basis. If the API does not document ranking, label it "platform response order." This resolves the user's input; it is not trending-token discovery or a recommendation.
 
-Show name, symbol, full address, platform, version if known, sources, and available distinguishing fields such as market phase, liquidity, or creation time. Optional fields must come from real data; do not fabricate missing values. Deduplicate by chainId + address while preserving multiple-source labels.
+Show name, symbol, full address, platform, sources, and available distinguishing fields such as market phase, liquidity, or creation time. Optional fields must come from real data; do not fabricate missing values. Deduplicate by chainId + address while preserving multiple-source labels.
 
-A unique exact ticker match may proceed automatically to information or transaction preview, with its full address shown. The user confirms the transaction preview before sending. If multiple candidates remain, ask the user to select an address; ranking alone never selects a token. Report search coverage gaps on API failure rather than claiming the ticker does not exist. When search is unavailable, return NOT_INTEGRATED. The user may supply an address instead; the runtime must still verify its issuer and market before preparing a trade.
+A unique exact ticker match may proceed automatically to information or transaction preview, with its full address shown. The user confirms the transaction preview before sending. If multiple candidates remain, ask the user to select an address; ranking alone never selects a token. Report search coverage gaps on API failure rather than claiming the ticker does not exist. When search fails, return SEARCH_UNAVAILABLE and identify coverage gaps. Flap ID Agent registry search may still work even when ordinary Flap HTTP search is unavailable. The user may supply an address instead; the runtime must still verify its issuer and market before preparing a trade.
 
 ## Dependent reads
 

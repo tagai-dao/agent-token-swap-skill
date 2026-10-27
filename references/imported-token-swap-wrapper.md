@@ -2,9 +2,9 @@
 
 ## Status and ABI provenance
 
-The deployment is unverified: config/bsc.json has address=null and status=pending_verification. No live on-chain capability is enabled. Read the [ABI](../abis/imported-token-swap-wrapper.json) and [provenance](../abis/provenance.json) to understand the interface, not to send transactions.
+The BSC deployment `0xDfFc699FB095a693708E3c15e6F0a224cbbCc98F` is registered with a verified runtime hash and live getters in [BSC configuration](../config/bsc.json) and [Flap registry](../config/flap-bsc.json). The connected external adapter is Flap Pancake V2/WBNB. Recheck runtime and configuration per request; other source types below still need complete route adapters. Read the [ABI](../abis/imported-token-swap-wrapper.json) and [provenance](../abis/provenance.json).
 
-The ABI is a trading-related subset of a local TagAI-contract-V2 compiled artifact: quotes, buys, sales, configuration getters, trade events, and errors. The provenance file records the source commit and SHA-256 hashes. This does not verify production bytecode or configuration. Do not mix it with the legacy TagAISwapWrapper ABI.
+The ABI is a trading-related subset of a local TagAI-contract-V2 compiled artifact: quotes, buys, sales, configuration getters, trade events, and errors. The provenance file records the source commit and SHA-256 hashes. The deployment record separately pins the observed BSC runtime and configuration bindings. Do not mix it with the legacy TagAISwapWrapper ABI.
 
 ## Purpose
 

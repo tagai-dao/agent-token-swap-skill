@@ -1,0 +1,1803 @@
+[
+  {
+    "type": "function",
+    "name": "factory",
+    "constant": true,
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [],
+    "outputs": [
+      {
+        "type": "address",
+        "name": ""
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "createMarket",
+    "constant": false,
+    "stateMutability": "payable",
+    "payable": true,
+    "inputs": [
+      {
+        "type": "tuple",
+        "name": "config",
+        "components": [
+          {
+            "type": "string",
+            "name": "name"
+          },
+          {
+            "type": "string",
+            "name": "symbol"
+          },
+          {
+            "type": "string",
+            "name": "meta"
+          },
+          {
+            "type": "bytes32",
+            "name": "salt"
+          },
+          {
+            "type": "address",
+            "name": "beneficiary"
+          },
+          {
+            "type": "uint16",
+            "name": "buyTaxRate"
+          },
+          {
+            "type": "uint16",
+            "name": "sellTaxRate"
+          },
+          {
+            "type": "uint16",
+            "name": "mktBps"
+          },
+          {
+            "type": "uint16",
+            "name": "deflationBps"
+          },
+          {
+            "type": "uint16",
+            "name": "dividendBps"
+          },
+          {
+            "type": "uint16",
+            "name": "lpBps"
+          },
+          {
+            "type": "uint16",
+            "name": "maxWalletBps"
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "type": "address",
+        "name": "market"
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "createMarketWithQuote",
+    "constant": false,
+    "stateMutability": "payable",
+    "payable": true,
+    "inputs": [
+      {
+        "type": "address",
+        "name": "quoteToken"
+      },
+      {
+        "type": "tuple",
+        "name": "config",
+        "components": [
+          {
+            "type": "string",
+            "name": "name"
+          },
+          {
+            "type": "string",
+            "name": "symbol"
+          },
+          {
+            "type": "string",
+            "name": "meta"
+          },
+          {
+            "type": "bytes32",
+            "name": "salt"
+          },
+          {
+            "type": "address",
+            "name": "beneficiary"
+          },
+          {
+            "type": "uint16",
+            "name": "buyTaxRate"
+          },
+          {
+            "type": "uint16",
+            "name": "sellTaxRate"
+          },
+          {
+            "type": "uint16",
+            "name": "mktBps"
+          },
+          {
+            "type": "uint16",
+            "name": "deflationBps"
+          },
+          {
+            "type": "uint16",
+            "name": "dividendBps"
+          },
+          {
+            "type": "uint16",
+            "name": "lpBps"
+          },
+          {
+            "type": "uint16",
+            "name": "maxWalletBps"
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "type": "address",
+        "name": "market"
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "createMarketAndBuy",
+    "constant": false,
+    "stateMutability": "payable",
+    "payable": true,
+    "inputs": [
+      {
+        "type": "tuple",
+        "name": "config",
+        "components": [
+          {
+            "type": "string",
+            "name": "name"
+          },
+          {
+            "type": "string",
+            "name": "symbol"
+          },
+          {
+            "type": "string",
+            "name": "meta"
+          },
+          {
+            "type": "bytes32",
+            "name": "salt"
+          },
+          {
+            "type": "address",
+            "name": "beneficiary"
+          },
+          {
+            "type": "uint16",
+            "name": "buyTaxRate"
+          },
+          {
+            "type": "uint16",
+            "name": "sellTaxRate"
+          },
+          {
+            "type": "uint16",
+            "name": "mktBps"
+          },
+          {
+            "type": "uint16",
+            "name": "deflationBps"
+          },
+          {
+            "type": "uint16",
+            "name": "dividendBps"
+          },
+          {
+            "type": "uint16",
+            "name": "lpBps"
+          },
+          {
+            "type": "uint16",
+            "name": "maxWalletBps"
+          }
+        ]
+      },
+      {
+        "type": "uint256",
+        "name": "firstBuyWei"
+      },
+      {
+        "type": "uint256",
+        "name": "minShares"
+      }
+    ],
+    "outputs": [
+      {
+        "type": "address",
+        "name": "market"
+      },
+      {
+        "type": "uint256",
+        "name": "shares"
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "buy",
+    "constant": false,
+    "stateMutability": "payable",
+    "payable": true,
+    "inputs": [
+      {
+        "type": "address",
+        "name": "market"
+      },
+      {
+        "type": "uint256",
+        "name": "minShares"
+      }
+    ],
+    "outputs": [
+      {
+        "type": "uint256",
+        "name": ""
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "sellBps",
+    "constant": false,
+    "payable": false,
+    "inputs": [
+      {
+        "type": "address",
+        "name": "market"
+      },
+      {
+        "type": "uint256",
+        "name": "bps"
+      },
+      {
+        "type": "uint256",
+        "name": "minOut"
+      }
+    ],
+    "outputs": [
+      {
+        "type": "uint256",
+        "name": ""
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "sellAll",
+    "constant": false,
+    "payable": false,
+    "inputs": [
+      {
+        "type": "address",
+        "name": "market"
+      },
+      {
+        "type": "uint256",
+        "name": "minOut"
+      }
+    ],
+    "outputs": [
+      {
+        "type": "uint256",
+        "name": ""
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "sell",
+    "constant": false,
+    "payable": false,
+    "inputs": [
+      {
+        "type": "address",
+        "name": "market"
+      },
+      {
+        "type": "uint256",
+        "name": "poolDebitWei"
+      },
+      {
+        "type": "uint256",
+        "name": "maxShares"
+      },
+      {
+        "type": "uint256",
+        "name": "minBnbOut"
+      }
+    ],
+    "outputs": [
+      {
+        "type": "uint256",
+        "name": ""
+      },
+      {
+        "type": "uint256",
+        "name": ""
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "sellAll",
+    "constant": false,
+    "payable": false,
+    "inputs": [
+      {
+        "type": "address",
+        "name": "market"
+      },
+      {
+        "type": "uint256",
+        "name": "expectedShares"
+      },
+      {
+        "type": "uint256",
+        "name": "expectedRemainingPoolWei"
+      },
+      {
+        "type": "uint256",
+        "name": "minBnbOut"
+      }
+    ],
+    "outputs": [
+      {
+        "type": "uint256",
+        "name": ""
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "claim",
+    "constant": false,
+    "payable": false,
+    "inputs": [
+      {
+        "type": "address",
+        "name": "market"
+      }
+    ],
+    "outputs": [
+      {
+        "type": "uint256",
+        "name": ""
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "quoteBuy",
+    "constant": true,
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [
+      {
+        "type": "address",
+        "name": "market"
+      },
+      {
+        "type": "address",
+        "name": "wallet"
+      },
+      {
+        "type": "uint256",
+        "name": "grossWei"
+      }
+    ],
+    "outputs": [
+      {
+        "type": "uint256",
+        "name": "acceptedGross"
+      },
+      {
+        "type": "uint256",
+        "name": "fee"
+      },
+      {
+        "type": "uint256",
+        "name": "refund"
+      },
+      {
+        "type": "uint256",
+        "name": "shares"
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "quoteSell",
+    "constant": true,
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [
+      {
+        "type": "address",
+        "name": "market"
+      },
+      {
+        "type": "address",
+        "name": "wallet"
+      },
+      {
+        "type": "uint256",
+        "name": "poolDebitWei"
+      }
+    ],
+    "outputs": [
+      {
+        "type": "uint256",
+        "name": "shares"
+      },
+      {
+        "type": "uint256",
+        "name": "curveWei"
+      },
+      {
+        "type": "uint256",
+        "name": "fee"
+      },
+      {
+        "type": "uint256",
+        "name": "bnbOut"
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "quoteSellAll",
+    "constant": true,
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [
+      {
+        "type": "address",
+        "name": "market"
+      },
+      {
+        "type": "address",
+        "name": "wallet"
+      }
+    ],
+    "outputs": [
+      {
+        "type": "uint256",
+        "name": "shares"
+      },
+      {
+        "type": "uint256",
+        "name": "remainingPoolWei"
+      },
+      {
+        "type": "uint256",
+        "name": "fee"
+      },
+      {
+        "type": "uint256",
+        "name": "bnbOut"
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "buyWithQuote",
+    "constant": false,
+    "payable": false,
+    "inputs": [
+      {
+        "type": "address",
+        "name": "market"
+      },
+      {
+        "type": "uint256",
+        "name": "grossQuote"
+      },
+      {
+        "type": "uint256",
+        "name": "minShares"
+      }
+    ],
+    "outputs": [
+      {
+        "type": "uint256",
+        "name": ""
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "marketCount",
+    "constant": true,
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [],
+    "outputs": [
+      {
+        "type": "uint256",
+        "name": ""
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "markets",
+    "constant": true,
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [
+      {
+        "type": "uint256",
+        "name": "index"
+      }
+    ],
+    "outputs": [
+      {
+        "type": "address",
+        "name": ""
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "isMarket",
+    "constant": true,
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [
+      {
+        "type": "address",
+        "name": "market"
+      }
+    ],
+    "outputs": [
+      {
+        "type": "bool",
+        "name": ""
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "probeOfMarket",
+    "constant": true,
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [
+      {
+        "type": "address",
+        "name": "market"
+      }
+    ],
+    "outputs": [
+      {
+        "type": "address",
+        "name": ""
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "marketOfToken",
+    "constant": true,
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [
+      {
+        "type": "address",
+        "name": "token"
+      }
+    ],
+    "outputs": [
+      {
+        "type": "address",
+        "name": ""
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "marketBeacon",
+    "constant": true,
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [],
+    "outputs": [
+      {
+        "type": "address",
+        "name": ""
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "probeBeacon",
+    "constant": true,
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [],
+    "outputs": [
+      {
+        "type": "address",
+        "name": ""
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "flapPortal",
+    "constant": true,
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [],
+    "outputs": [
+      {
+        "type": "address",
+        "name": ""
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "taxTokenImplementation",
+    "constant": true,
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [],
+    "outputs": [
+      {
+        "type": "address",
+        "name": ""
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "approvedQuoteToken",
+    "constant": true,
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [
+      {
+        "type": "address",
+        "name": "quoteToken"
+      }
+    ],
+    "outputs": [
+      {
+        "type": "bool",
+        "name": ""
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "quoteHelper",
+    "constant": true,
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [],
+    "outputs": [
+      {
+        "type": "address",
+        "name": ""
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "anonymous": false,
+    "name": "MarketCreated",
+    "inputs": [
+      {
+        "type": "address",
+        "name": "creator",
+        "indexed": true
+      },
+      {
+        "type": "address",
+        "name": "market",
+        "indexed": true
+      },
+      {
+        "type": "address",
+        "name": "predictedToken",
+        "indexed": true
+      },
+      {
+        "type": "address",
+        "name": "pair"
+      },
+      {
+        "type": "bytes32",
+        "name": "configHash"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "anonymous": false,
+    "name": "FlapSharedIndexerLog",
+    "inputs": [
+      {
+        "type": "bytes32",
+        "name": "namespace"
+      },
+      {
+        "type": "uint256",
+        "name": "id"
+      },
+      {
+        "type": "address",
+        "name": "actor"
+      },
+      {
+        "type": "address",
+        "name": "related"
+      },
+      {
+        "type": "uint256",
+        "name": "amount"
+      },
+      {
+        "type": "uint256",
+        "name": "extra"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "anonymous": false,
+    "name": "FlapSharedIndexerUintAddrUint",
+    "inputs": [
+      {
+        "type": "bytes32",
+        "name": "namespace"
+      },
+      {
+        "type": "uint256",
+        "name": "round"
+      },
+      {
+        "type": "address",
+        "name": "account"
+      },
+      {
+        "type": "uint256",
+        "name": "value"
+      },
+      {
+        "type": "string",
+        "name": "data"
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "marketCards",
+    "constant": true,
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [
+      {
+        "type": "address[]",
+        "name": "markets"
+      }
+    ],
+    "outputs": [
+      {
+        "type": "tuple[]",
+        "name": "cards",
+        "components": [
+          {
+            "type": "address",
+            "name": "market"
+          },
+          {
+            "type": "address",
+            "name": "quoteToken"
+          },
+          {
+            "type": "string",
+            "name": "name"
+          },
+          {
+            "type": "string",
+            "name": "symbol"
+          },
+          {
+            "type": "string",
+            "name": "meta"
+          },
+          {
+            "type": "address",
+            "name": "predictedToken"
+          },
+          {
+            "type": "address",
+            "name": "token"
+          },
+          {
+            "type": "address",
+            "name": "pair"
+          },
+          {
+            "type": "uint8",
+            "name": "phase"
+          },
+          {
+            "type": "uint256",
+            "name": "poolRaw"
+          },
+          {
+            "type": "uint256",
+            "name": "capRaw"
+          },
+          {
+            "type": "uint256",
+            "name": "progressBps"
+          },
+          {
+            "type": "uint256",
+            "name": "buyCount"
+          },
+          {
+            "type": "uint256",
+            "name": "sellCount"
+          },
+          {
+            "type": "uint256",
+            "name": "curveH"
+          },
+          {
+            "type": "uint256",
+            "name": "curveK"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "probeOfToken",
+    "constant": true,
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [
+      {
+        "type": "address",
+        "name": "token"
+      }
+    ],
+    "outputs": [
+      {
+        "type": "address",
+        "name": ""
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "marketPage",
+    "constant": true,
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [
+      {
+        "type": "uint256",
+        "name": "cursor"
+      },
+      {
+        "type": "uint256",
+        "name": "limit"
+      }
+    ],
+    "outputs": [
+      {
+        "type": "address[]",
+        "name": "marketAddresses"
+      },
+      {
+        "type": "uint256",
+        "name": "nextCursor"
+      },
+      {
+        "type": "uint256",
+        "name": "total"
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "marketDetail",
+    "constant": true,
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [
+      {
+        "type": "address",
+        "name": "market"
+      }
+    ],
+    "outputs": [
+      {
+        "type": "tuple",
+        "name": "info",
+        "components": [
+          {
+            "type": "address",
+            "name": "market"
+          },
+          {
+            "type": "address",
+            "name": "creator"
+          },
+          {
+            "type": "address",
+            "name": "quoteToken"
+          },
+          {
+            "type": "uint8",
+            "name": "quoteDecimals"
+          },
+          {
+            "type": "uint256",
+            "name": "capRaw"
+          },
+          {
+            "type": "uint256",
+            "name": "poolRaw"
+          },
+          {
+            "type": "uint256",
+            "name": "remainingRaw"
+          },
+          {
+            "type": "uint256",
+            "name": "progressBps"
+          },
+          {
+            "type": "uint8",
+            "name": "phase"
+          },
+          {
+            "type": "address",
+            "name": "predictedToken"
+          },
+          {
+            "type": "address",
+            "name": "token"
+          },
+          {
+            "type": "address",
+            "name": "pair"
+          },
+          {
+            "type": "uint256",
+            "name": "curveReserveRaw"
+          },
+          {
+            "type": "uint256",
+            "name": "totalShares"
+          },
+          {
+            "type": "uint256",
+            "name": "claimedShares"
+          },
+          {
+            "type": "uint256",
+            "name": "maxWalletShares"
+          },
+          {
+            "type": "uint256",
+            "name": "predictedInitialBuyNetRaw"
+          },
+          {
+            "type": "bytes32",
+            "name": "configHash"
+          },
+          {
+            "type": "uint256",
+            "name": "flapBuyFeeBps"
+          },
+          {
+            "type": "uint256",
+            "name": "flapSellFeeBps"
+          },
+          {
+            "type": "uint256",
+            "name": "agentFeeBps"
+          },
+          {
+            "type": "uint256",
+            "name": "buyCount"
+          },
+          {
+            "type": "uint256",
+            "name": "sellCount"
+          },
+          {
+            "type": "uint256",
+            "name": "cumulativeBuyGrossRaw"
+          },
+          {
+            "type": "uint256",
+            "name": "cumulativeBuySubmittedRaw"
+          },
+          {
+            "type": "uint256",
+            "name": "cumulativeBuyNetRaw"
+          },
+          {
+            "type": "uint256",
+            "name": "cumulativeBuyFeesRaw"
+          },
+          {
+            "type": "uint256",
+            "name": "cumulativeBuyRefundRaw"
+          },
+          {
+            "type": "uint256",
+            "name": "cumulativeBuyShares"
+          },
+          {
+            "type": "uint256",
+            "name": "cumulativeBuyCurveRaw"
+          },
+          {
+            "type": "uint256",
+            "name": "cumulativeSellDebitRaw"
+          },
+          {
+            "type": "uint256",
+            "name": "cumulativeSellPayoutRaw"
+          },
+          {
+            "type": "uint256",
+            "name": "cumulativeSellFeesRaw"
+          },
+          {
+            "type": "uint256",
+            "name": "cumulativeSellShares"
+          },
+          {
+            "type": "uint256",
+            "name": "cumulativeSellCurveRaw"
+          },
+          {
+            "type": "uint256",
+            "name": "cumulativeSellReserveRefundRaw"
+          },
+          {
+            "type": "uint256",
+            "name": "claimCount"
+          },
+          {
+            "type": "uint256",
+            "name": "uniqueBuyerCount"
+          },
+          {
+            "type": "uint256",
+            "name": "holderCount"
+          },
+          {
+            "type": "uint256",
+            "name": "virtualCurveVolumeRaw"
+          },
+          {
+            "type": "uint256",
+            "name": "cumulativeAgentFeesRaw"
+          },
+          {
+            "type": "uint256",
+            "name": "launchedAt"
+          },
+          {
+            "type": "uint256",
+            "name": "statsStartBlock"
+          },
+          {
+            "type": "bool",
+            "name": "statsComplete"
+          },
+          {
+            "type": "bool",
+            "name": "quoteBalanceKnown"
+          },
+          {
+            "type": "uint256",
+            "name": "quoteBalanceRaw"
+          },
+          {
+            "type": "bool",
+            "name": "quoteBackingEnough"
+          },
+          {
+            "type": "bool",
+            "name": "inventoryKnown"
+          },
+          {
+            "type": "uint256",
+            "name": "inventoryRaw"
+          },
+          {
+            "type": "bool",
+            "name": "inventoryEnough"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "marketSettings",
+    "constant": true,
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [
+      {
+        "type": "address",
+        "name": "market"
+      }
+    ],
+    "outputs": [
+      {
+        "type": "tuple",
+        "name": "info",
+        "components": [
+          {
+            "type": "tuple",
+            "name": "launch",
+            "components": [
+              {
+                "type": "string",
+                "name": "name"
+              },
+              {
+                "type": "string",
+                "name": "symbol"
+              },
+              {
+                "type": "string",
+                "name": "meta"
+              },
+              {
+                "type": "bytes32",
+                "name": "salt"
+              },
+              {
+                "type": "address",
+                "name": "beneficiary"
+              },
+              {
+                "type": "uint16",
+                "name": "buyTaxRate"
+              },
+              {
+                "type": "uint16",
+                "name": "sellTaxRate"
+              },
+              {
+                "type": "uint16",
+                "name": "mktBps"
+              },
+              {
+                "type": "uint16",
+                "name": "deflationBps"
+              },
+              {
+                "type": "uint16",
+                "name": "dividendBps"
+              },
+              {
+                "type": "uint16",
+                "name": "lpBps"
+              },
+              {
+                "type": "uint16",
+                "name": "maxWalletBps"
+              }
+            ]
+          },
+          {
+            "type": "address",
+            "name": "quoteToken"
+          },
+          {
+            "type": "uint8",
+            "name": "quoteDecimals"
+          },
+          {
+            "type": "uint256",
+            "name": "capRaw"
+          },
+          {
+            "type": "address",
+            "name": "quoteHelper"
+          },
+          {
+            "type": "bytes32",
+            "name": "quoteConfigHash"
+          },
+          {
+            "type": "uint8",
+            "name": "curveType"
+          },
+          {
+            "type": "uint256",
+            "name": "curveR"
+          },
+          {
+            "type": "uint256",
+            "name": "curveH"
+          },
+          {
+            "type": "uint256",
+            "name": "curveK"
+          },
+          {
+            "type": "uint256",
+            "name": "predictedInitialBuyNetRaw"
+          },
+          {
+            "type": "uint256",
+            "name": "virtualReserveAtCapRaw"
+          },
+          {
+            "type": "uint256",
+            "name": "maxWalletShares"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "holderPage",
+    "constant": true,
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [
+      {
+        "type": "address",
+        "name": "market"
+      },
+      {
+        "type": "uint256",
+        "name": "cursor"
+      },
+      {
+        "type": "uint256",
+        "name": "limit"
+      }
+    ],
+    "outputs": [
+      {
+        "type": "tuple[]",
+        "name": "positions",
+        "components": [
+          {
+            "type": "address",
+            "name": "wallet"
+          },
+          {
+            "type": "uint256",
+            "name": "shares"
+          }
+        ]
+      },
+      {
+        "type": "uint256",
+        "name": "nextCursor"
+      },
+      {
+        "type": "uint256",
+        "name": "indexedTotal"
+      },
+      {
+        "type": "uint256",
+        "name": "activeTotal"
+      },
+      {
+        "type": "bool",
+        "name": "complete"
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "userPosition",
+    "constant": true,
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [
+      {
+        "type": "address",
+        "name": "market"
+      },
+      {
+        "type": "address",
+        "name": "wallet"
+      }
+    ],
+    "outputs": [
+      {
+        "type": "tuple",
+        "name": "info",
+        "components": [
+          {
+            "type": "uint256",
+            "name": "shares"
+          },
+          {
+            "type": "uint256",
+            "name": "claimableRaw"
+          },
+          {
+            "type": "uint256",
+            "name": "remainingWalletShares"
+          },
+          {
+            "type": "tuple",
+            "name": "cumulative",
+            "components": [
+              {
+                "type": "uint256",
+                "name": "buySpentRaw"
+              },
+              {
+                "type": "uint256",
+                "name": "buyShares"
+              },
+              {
+                "type": "uint256",
+                "name": "sellReceivedRaw"
+              },
+              {
+                "type": "uint256",
+                "name": "sellShares"
+              },
+              {
+                "type": "uint256",
+                "name": "claimedShares"
+              },
+              {
+                "type": "uint256",
+                "name": "buyCount"
+              },
+              {
+                "type": "uint256",
+                "name": "sellCount"
+              },
+              {
+                "type": "uint256",
+                "name": "claimCount"
+              }
+            ]
+          },
+          {
+            "type": "bool",
+            "name": "statsComplete"
+          },
+          {
+            "type": "bool",
+            "name": "eligibilityKnown"
+          },
+          {
+            "type": "bool",
+            "name": "eligible"
+          },
+          {
+            "type": "bool",
+            "name": "inventoryKnown"
+          },
+          {
+            "type": "uint256",
+            "name": "inventoryRaw"
+          },
+          {
+            "type": "bool",
+            "name": "inventoryEnough"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "portal",
+    "constant": true,
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [],
+    "outputs": [
+      {
+        "type": "address",
+        "name": ""
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "phase",
+    "constant": true,
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [],
+    "outputs": [
+      {
+        "type": "uint8",
+        "name": ""
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "poolWei",
+    "constant": true,
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [],
+    "outputs": [
+      {
+        "type": "uint256",
+        "name": ""
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "totalShares",
+    "constant": true,
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [],
+    "outputs": [
+      {
+        "type": "uint256",
+        "name": ""
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "sharesOf",
+    "constant": true,
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [
+      {
+        "type": "address",
+        "name": "wallet"
+      }
+    ],
+    "outputs": [
+      {
+        "type": "uint256",
+        "name": ""
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "holderRegistryCount",
+    "constant": true,
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [],
+    "outputs": [
+      {
+        "type": "uint256",
+        "name": ""
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "holderAddresses",
+    "constant": true,
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [
+      {
+        "type": "uint256",
+        "name": "index"
+      }
+    ],
+    "outputs": [
+      {
+        "type": "address",
+        "name": ""
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "holderListComplete",
+    "constant": true,
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [],
+    "outputs": [
+      {
+        "type": "bool",
+        "name": ""
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "maxSharesPerWallet",
+    "constant": true,
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [],
+    "outputs": [
+      {
+        "type": "uint256",
+        "name": ""
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "predictedToken",
+    "constant": true,
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [],
+    "outputs": [
+      {
+        "type": "address",
+        "name": ""
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "token",
+    "constant": true,
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [],
+    "outputs": [
+      {
+        "type": "address",
+        "name": ""
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "creator",
+    "constant": true,
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [],
+    "outputs": [
+      {
+        "type": "address",
+        "name": ""
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "launchConfig",
+    "constant": true,
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [],
+    "outputs": [
+      {
+        "type": "tuple",
+        "name": "",
+        "components": [
+          {
+            "type": "string",
+            "name": "name"
+          },
+          {
+            "type": "string",
+            "name": "symbol"
+          },
+          {
+            "type": "string",
+            "name": "meta"
+          },
+          {
+            "type": "bytes32",
+            "name": "salt"
+          },
+          {
+            "type": "address",
+            "name": "beneficiary"
+          },
+          {
+            "type": "uint16",
+            "name": "buyTaxRate"
+          },
+          {
+            "type": "uint16",
+            "name": "sellTaxRate"
+          },
+          {
+            "type": "uint16",
+            "name": "mktBps"
+          },
+          {
+            "type": "uint16",
+            "name": "deflationBps"
+          },
+          {
+            "type": "uint16",
+            "name": "dividendBps"
+          },
+          {
+            "type": "uint16",
+            "name": "lpBps"
+          },
+          {
+            "type": "uint16",
+            "name": "maxWalletBps"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "anonymous": false,
+    "name": "VirtualTrade",
+    "inputs": [
+      {
+        "type": "uint256",
+        "name": "id",
+        "indexed": true
+      },
+      {
+        "type": "address",
+        "name": "wallet",
+        "indexed": true
+      },
+      {
+        "type": "uint8",
+        "name": "side"
+      },
+      {
+        "type": "uint256",
+        "name": "shares"
+      },
+      {
+        "type": "uint256",
+        "name": "quoteSubmitted"
+      },
+      {
+        "type": "uint256",
+        "name": "quoteUser"
+      },
+      {
+        "type": "uint256",
+        "name": "agentFee"
+      },
+      {
+        "type": "uint256",
+        "name": "quotePool"
+      },
+      {
+        "type": "uint256",
+        "name": "quoteCurve"
+      },
+      {
+        "type": "uint256",
+        "name": "refund"
+      },
+      {
+        "type": "uint256",
+        "name": "launchReserveRefund"
+      },
+      {
+        "type": "uint256",
+        "name": "poolAfter"
+      },
+      {
+        "type": "uint256",
+        "name": "expectedFlapReserveAfter"
+      },
+      {
+        "type": "uint256",
+        "name": "outstandingSharesAfter"
+      },
+      {
+        "type": "uint256",
+        "name": "spotPriceBefore"
+      },
+      {
+        "type": "uint256",
+        "name": "spotPriceAfter"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "anonymous": false,
+    "name": "Launched",
+    "inputs": [
+      {
+        "type": "address",
+        "name": "token",
+        "indexed": true
+      },
+      {
+        "type": "uint256",
+        "name": "deliveredInventory"
+      },
+      {
+        "type": "uint256",
+        "name": "totalShares"
+      },
+      {
+        "type": "uint256",
+        "name": "burnedSurplus"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "anonymous": false,
+    "name": "Claimed",
+    "inputs": [
+      {
+        "type": "address",
+        "name": "wallet",
+        "indexed": true
+      },
+      {
+        "type": "uint256",
+        "name": "amount"
+      },
+      {
+        "type": "address",
+        "name": "caller",
+        "indexed": true
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "implementation",
+    "constant": true,
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [],
+    "outputs": [
+      {
+        "type": "address",
+        "name": ""
+      }
+    ]
+  }
+]

@@ -1,5 +1,7 @@
 # Direct Execution with Existing Agent Tools
 
+This is the default mode for TagAI and Flap. For Flap first read [its platform reference](platforms/flap.md) and select ordinary Portal / ID Agent / external instructions. The TagAI-specific deployment and quote steps below apply only to TagAI. Never reuse TagAI Pump getters or version exclusions for Flap.
+
 ## Execution contract
 
 This is the default workflow. It does not require a Git checkout, Node.js, npm install, ethers installation, or the repository CLI. Use existing HTTP / RPC and ABI tools for reads and calldata, and an existing Binance Agentic Wallet connector or the already installed baw CLI for preview / execution. Inspect each available tool's real schema rather than inventing tool arguments.

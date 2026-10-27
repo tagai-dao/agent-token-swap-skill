@@ -8,7 +8,7 @@ Give the agent [SKILL.md](SKILL.md). The default workflow uses its existing HTTP
 
 See [direct tool execution](references/tool-native.md) for the complete route from ticker lookup through Multicall, quoting, wallet preview and confirmed execution. Actual wallet / chain capabilities are still required; use what the agent already has rather than assuming a particular local SDK.
 
-The TagAI workflow is connected. Other platforms are added separately. Contract versions, ABI selection and routing details stay internal to the agent. Answer users in their preferred language while keeping repository-authored instructions in English.
+TagAI and Flap workflows are connected. Flap covers ordinary Portal internal trading, ID Agent native-BNB share buys / percentage sales, and verified Pancake V2/WBNB external pools through ImportedTokenSwapWrapper. Read [Flap coverage](references/platforms/flap.md) for remaining token-specific routes. Fourme / GANG are added separately. Contract versions, ABI selection and routing details stay internal to the agent. Answer users in their preferred language while keeping repository-authored instructions in English.
 
 ## Optional repository automation
 

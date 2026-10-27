@@ -5,7 +5,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash, randomUUID } from 'node:crypto';
 import { formatUnits, getAddress } from 'ethers';
-import { TagaiLive } from './tagai-live.mjs';
+import { PlatformLive } from './platform-live.mjs';
 import { TradeError, requireTrade } from './live-rpc.mjs';
 import { abiInterface } from './tagai.mjs';
 
@@ -67,7 +67,7 @@ function previewRisks(data) {
 }
 
 export class WalletExecution {
-  constructor({ live = new TagaiLive(), wallet = runWallet, store = new PlanStore(), now = () => Date.now() } = {}) {
+  constructor({ live = new PlatformLive(), wallet = runWallet, store = new PlanStore(), now = () => Date.now() } = {}) {
     this.live = live; this.wallet = wallet; this.store = store; this.now = now;
   }
 
@@ -114,7 +114,7 @@ export class WalletExecution {
     requireTrade(Number.isFinite(expiresAt) && expiresAt > this.now(), 'PREVIEW_EXPIRED', 'The quote expired during preview. Refresh it before confirming.');
     const plan = {
       id: randomUUID(), status: 'PREVIEWED', kind, createdAt: this.now(), expiresAt, wallet,
-      intent: { token: quote.info.token, side: intent.side, amount: intent.amount, slippageBps: quote.slippageBps, ...(intent.subject ? { subject: intent.subject } : {}), ...(intent.recipient ? { recipient: intent.recipient } : {}) },
+      intent: { token: quote.info.token, platform: quote.summary.platform.toLowerCase(), side: intent.side, amount: intent.amount, slippageBps: quote.slippageBps, ...(intent.subject ? { subject: intent.subject } : {}), ...(intent.recipient ? { recipient: intent.recipient } : {}) },
       summary: { ...quote.summary, estimatedNetworkFeeBnb: formatUnits(gas * gasPrice, 18), wallet, recipient: quote.recipient ?? wallet, step: approval ? 'Token approval required before the swap' : 'Trade', approval: approval?.scope ?? null },
       transaction, preview: { requestId: preview.requestId, requiresAppConfirmation: preview.requireConfirmation === true, ...previewRisks(preview) },
       snapshot: quote.info.snapshot, tokenAbi: quote.info.release.tokenAbi, decimals: quote.info.decimals,
@@ -207,6 +207,18 @@ export class WalletExecution {
   }
 
   async captureActualOutput(plan, receipt) {
+    if (plan.summary.assetKind === 'pre-launch shares') {
+      const abi = await abiInterface('abis/flap/agent-curve.json');
+      if (plan.intent.side === 'buy') {
+        const trades = [];
+        for (const log of receipt.logs || []) {
+          if (!same(log.address, plan.intent.token)) continue;
+          try { const event = abi.parseLog(log); if (event?.name === 'VirtualTrade' && same(event.args.wallet, plan.wallet)) trades.push(event); } catch { /* Not a matching ledger trade. */ }
+        }
+        if (trades.length === 1) plan.actualOutput = { amount: formatUnits(trades[0].args.shares, 18), symbol: plan.summary.expectedOutput.symbol, unit: 'pre-launch shares' };
+      }
+      return;
+    }
     const erc20 = await abiInterface('abis/erc20.json');
     if (plan.intent.side === 'buy') {
       let amount = 0n;
@@ -219,6 +231,24 @@ export class WalletExecution {
         } catch { /* Unrelated or undecodable events are not delivery evidence. */ }
       }
       if (amount > 0n) plan.actualOutput = { amount: formatUnits(amount, plan.decimals), symbol: plan.summary.expectedOutput.symbol };
+    } else if (plan.summary.platform === 'Flap') {
+      // A Portal event may be denominated in an intermediate settlement asset.
+      // Only the wrapper's matching native-delivery event proves net BNB here.
+      if (plan.summary.market !== 'external') return;
+      const abi = await abiInterface('abis/imported-token-swap-wrapper.json');
+      const parsed = abi.parseTransaction({ data: plan.transaction.inputData });
+      const { keccak256 } = await import('ethers');
+      for (const log of receipt.logs || []) {
+        if (!same(log.address, plan.transaction.to)) continue;
+        try {
+          const event = abi.parseLog(log);
+          if (event.name === 'ImportedTokenTrade' && !event.args.isBuy && same(event.args.trader, plan.wallet)
+              && same(event.args.token, plan.intent.token) && same(event.args.recipient, plan.summary.recipient)
+              && event.args.sourceType === parsed.args.sourceType && event.args.sourceHash === keccak256(parsed.args.sourceData)) {
+            plan.actualOutput = { amount: formatUnits(event.args.netNativeAmount, 18), symbol: 'BNB' };
+          }
+        } catch { /* An estimate is not proof of native delivery. */ }
+      }
     } else if (plan.summary.market === 'internal') {
       const abi = await abiInterface(plan.tokenAbi);
       for (const log of receipt.logs || []) {

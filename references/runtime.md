@@ -21,13 +21,21 @@ node scripts/trade.mjs status --plan <plan-id>
 
 CLI JSON contains user-relevant summaries, not version groups or ABI selection. Render the summary in the user's language. Do not dump tool JSON or internal config as the answer. For ambiguous names, show only the returned candidates and ask which contract to use. A unique exact ticker proceeds automatically, with the full address in the information or trade preview.
 
+## Flap commands and coverage
+
+Use the same commands with `--platform flap` when the user specified Flap; otherwise the dispatcher probes integrated issuers automatically. Tickers search available indexes; the ID Agent registry provides a chain-native search. `info --token <market-or-predicted-token-address>` also works before the token is deployed.
+
+Flap ordinary inner markets quote / trade through Portal, while ID Agent native-BNB markets buy ledger shares and sell a user-selected percentage, e.g. `quote --platform flap --token <market-address> --side sell --amount 50% --wallet <actual-wallet>`. Those shares need no ERC20 approval; a buy needs Agent ID. The runner cannot automate currently missing ERC20 settlement bridges or claim; a tool-native claim uses the verified app ABI and its own explicit confirmation.
+
+External Flap coverage is verified Pancake V2/WBNB through ImportedTokenSwapWrapper. Ordinary sales approve Portal; external sales approve Wrapper; Agent share sales need neither. See [Flap](platforms/flap.md) for ABI and route limits. Never interpret a closed share market as permission to sell later tokens.
+
 ## Query and quote checks
 
 The runtime resolves the ticker, opens a fixed BSC snapshot, verifies Multicall runtime identity, queries trusted issuing Pump contracts, checks token implementation identity where recorded, reads market and fee state, and obtains a reference price / amount-specific quote. All batch contract reads target Multicall. Required subcall failure stops the result; capacity errors can only split into smaller Multicalls at the same block. Dependent stages, retries, and pool / allowance reads keep that snapshot. A final block-hash check rejects reorganizations.
 
 Internal quotes use the real curve and separately rounded fee amounts. Buying eligibility is checked for a connected buyer where required, not for price queries or sales. External routes verify the listing pool, official router / factory / manager, and Hook bindings; concentrated-liquidity quotes use the compatible Quoter with execution-matching Hook data.
 
-The historical source registry remains a reference, not an assertion that every deployment was preverified forever. The live adapter verifies each requested token and selected route. A disabled external-platform adapter does not disable the connected TagAI adapter. Do not quote unsupported internals as a generic explanation to the user; report the actual token-specific blocker in plain language.
+The historical source registry remains a reference, not an assertion that every deployment was preverified forever. The live adapter verifies each requested token and selected route. Disabled Fourme / GANG adapters do not disable connected TagAI / Flap routes. Do not quote unsupported internals as a generic explanation to the user; report the actual token-specific blocker in plain language.
 
 ## Preview and confirmation
 
@@ -35,7 +43,7 @@ The runtime automatically finds the owned BSC wallet through `baw`, requires a c
 
 Each preview has a planId and expiration. Show that preview and risks, then await explicit human confirmation. Once confirmed, execute the same plan immediately without asking a second confirmation for an unchanged preview. Backend `requireConfirmation=false` is not human consent. Backend `PENDING_CONFIRMATION` means the user must also approve in Binance App.
 
-Internal sales normally need no approval. External sales may require an ERC20 approval and a Permit2 allowance approval before the swap. Each approval is a separate preview with finite authority. After its confirmed receipt, use the returned continueIntent to prepare the original trade again, refresh its quote, and show that trade preview. Do not mark approval as a completed sale, or silently execute a newly quoted transaction under an old confirmation.
+TagAI internal sales and Flap ID Agent share sales need no approval. Ordinary Flap internal sales approve Portal; Flap external sales approve Wrapper. External sales may require an ERC20 approval and a Permit2 allowance approval before the swap. Each approval is a separate preview with finite authority. After its confirmed receipt, use the returned continueIntent to prepare the original trade again, refresh its quote, and show that trade preview. Do not mark approval as a completed sale, or silently execute a newly quoted transaction under an old confirmation.
 
 ## Persistence and recovery
 

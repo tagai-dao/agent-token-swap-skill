@@ -60,10 +60,10 @@ export class TagaiLive {
     throw new TradeError('TOKEN_AMBIGUOUS', 'Several tokens match this name. Select the contract address to continue.', { candidates: (exact.length ? exact : rows).slice(0, 3) });
   }
 
-  async inspect(input, { wallet = null } = {}) {
+  async inspect(input, { wallet = null, snapshot: providedSnapshot = null } = {}) {
     const { address: token } = await this.resolve(input);
     if (wallet) wallet = getAddress(wallet);
-    const snapshot = await this.reader.snapshot();
+    const snapshot = providedSnapshot ?? await this.reader.snapshot();
     const proofs = R.versions.filter(v => v.issuanceGetterDocumented && v.marketFamily !== 'import');
     const issuers = await this.reader.batch(snapshot, proofs.map(v => call(`issuer:${v.id}`, v.pump, P, 'createdTokens', [token], false)));
     const matches = proofs.filter(v => value(issuers, `issuer:${v.id}`) === true);
@@ -143,10 +143,10 @@ export class TagaiLive {
     info.pool = { kind: 'infinity', key, poolId, sqrtPriceX96 };
   }
 
-  async quote({ token: input, side, amount, wallet = null, slippageBps = 100, subject = ZeroAddress, recipient = null }) {
+  async quote({ token: input, side, amount, wallet = null, slippageBps = 100, subject = ZeroAddress, recipient = null, snapshot = null }) {
     requireTrade(['buy', 'sell'].includes(side), 'INVALID_DIRECTION', 'Choose buy or sell.');
     requireTrade(Number.isInteger(slippageBps) && slippageBps >= 0 && slippageBps < 10000, 'INVALID_SLIPPAGE', 'Slippage must be between 0 and 9999 basis points.');
-    const info = await this.inspect(input, { wallet });
+    const info = await this.inspect(input, { wallet, snapshot });
     requireTrade(info.phase !== 'migrating', 'MARKET_MIGRATING', 'This token is moving to its trading pool. Wait for trading to reopen.');
     let amountIn;
     if (side === 'sell' && typeof amount === 'string' && amount.endsWith('%')) {

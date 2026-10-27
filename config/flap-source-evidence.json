@@ -1,0 +1,177 @@
+{
+  "checkedAt": "2026-10-27",
+  "chainId": 56,
+  "realTransactionsSent": false,
+  "walletConnected": false,
+  "walletSigningTested": false,
+  "binancePreviewAndExecutionTests": "mocked only; exact requestId binding, protected minimum and no duplicate submission are tested",
+  "sourcePages": {
+    "deployments": "https://docs.flap.sh/flap/developers/deployed-contract-addresses",
+    "trade": "https://docs.flap.sh/flap/developers/wallet-and-terminal-and-bot-developers/trade-tokens",
+    "inspection": "https://docs.flap.sh/flap/developers/wallet-and-terminal-and-bot-developers/inspect-a-token",
+    "quota": "https://docs.flap.sh/flap/developers/preview/recent-release/v5.14.16-buy-quota",
+    "officialInterfaceCommit": "5949cc7eb99bcb5ac5f679cc710ae456e627f12a"
+  },
+  "officialApp": {
+    "url": "https://flap.sh/apps/agent-bonding-curve",
+    "artifactVersion": "v20261023134909522_agent-bonding-curve_8b26639fea52",
+    "componentSha256": "08545080fdc1e4c8d86e827cb56a3d1f748d8369d905e29b1b1b98b374ddc83f",
+    "manifestSha256": "d2c4aabf6cfd3b39748e13e506d1588a00c1730ee52652ac7f5ffa020c8f8159",
+    "metadataSha256": "e71598144d565d5ecbc52b014e8f1ddf538111cd859b02fc26ed829b961aa810"
+  },
+  "publicHttpSearch": {
+    "url": "https://bnb.taxed.fun/extension/search?q=FLAP",
+    "status": 403,
+    "meaning": "Search unavailable from this environment; not a token-not-found result. App registry ticker search was separately exercised."
+  },
+  "proxyIdentity": {
+    "ordinaryPortal": {
+      "address": "0xe2cE6ab80874Fa9Fa2aAE65D277Dd6B8e65C9De0",
+      "runtimeHash": "0x0a3fe6f701ee3cb432f45912e054896327ce5902337eae4d62d01406005a91c3",
+      "bytes": 2882,
+      "implementation": "0x6fc1ac64c90a5a6d9e7efc0d4064452af3fc9968",
+      "implementationRuntimeHash": "0x90b3b19ddc87293d5bbd33167d7d977adf1cda5c078549b8cada05c6f9b3fa75"
+    },
+    "agentCurve": {
+      "factory": {
+        "address": "0xC55820f24015bE7c4f18949D9e1363A3609B300e",
+        "runtimeHash": "0x3ea4b59b1bec2e0c48086ef81a1ee5437f53cd88e339192ec4a22e4213a95a68",
+        "implementation": "0x39115a0a6dfd118a3c30835a2da74bbe7bde573b",
+        "implementationRuntimeHash": "0xa1c0cc96c1418e8d72d24e7c01c4ccbb4510f2dd17736fe2cd9dcf59aa4c3b9e"
+      },
+      "portal": {
+        "address": "0x49387D2E6cbF8FefE856e3FBc3E98a01aC3af062",
+        "runtimeHash": "0x3ea4b59b1bec2e0c48086ef81a1ee5437f53cd88e339192ec4a22e4213a95a68",
+        "implementation": "0x6b606f48443c1929f58e4e1e5a36516d6185b2c3",
+        "implementationRuntimeHash": "0xe878c0e9cec0943326c4b8af05355c97983a7467d7e79d0db0a4901859563d96"
+      },
+      "reader": {
+        "address": "0x18Aa6C93f1887a243fdc348C9A77F5136555174a",
+        "runtimeHash": "0x3ea4b59b1bec2e0c48086ef81a1ee5437f53cd88e339192ec4a22e4213a95a68",
+        "implementation": "0xac82f3c8797975eb82a24d374d6692c9605febcd",
+        "implementationRuntimeHash": "0x7ae6fcc667e720ff725aee16d33669bbcdfad51e9e2985404762687e1d2d0bf7"
+      },
+      "marketBeacon": {
+        "address": "0xe6af4e69982821A48D2e759991B96f14Fbbc9a1F",
+        "runtimeHash": "0xc5013b479bf0e344ea6e64ed28bc669b8d107b5077cc60acbb5a8a58d7cced0d"
+      },
+      "probeBeacon": {
+        "address": "0x8E6F34B590E825AeEb352aBc69e16051C4D28c00",
+        "runtimeHash": "0xc5013b479bf0e344ea6e64ed28bc669b8d107b5077cc60acbb5a8a58d7cced0d"
+      },
+      "marketImplementation": {
+        "address": "0xBEA6346198D5e65DdB1d063f854Dd234E05b1B22",
+        "runtimeHash": "0xc6cbe06109800c2ee531b8ae873875c38ed354e9832708f231e4102ced0ba07a"
+      },
+      "probeImplementation": {
+        "address": "0x09970C5b517e586c2E10151ec477c770D7307B99",
+        "runtimeHash": "0xd072c932bea820fe9f711bbec0235d9722584b209d50026569d571b8825f18a3"
+      }
+    }
+  },
+  "wrapperIdentity": {
+    "address": "0xDfFc699FB095a693708E3c15e6F0a224cbbCc98F",
+    "runtimeHash": "0xb37aca4aa4b401c8a13b57063ad5dd7b350afaf834439af0b654aa26ffe1c651",
+    "bytes": 17253,
+    "getters": {
+      "wrappedNative": [
+        "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
+      ],
+      "nutboxRouter": [
+        "0x04e2d43bA38e3f3F0D0dab3A30D1B58BFE9B659f"
+      ],
+      "paused": [
+        false
+      ],
+      "sellsmanRatio": [
+        "20"
+      ],
+      "tagaiRatio": [
+        "20"
+      ],
+      "nutboxTokenRatio": [
+        "20"
+      ]
+    }
+  },
+  "wrapperArtifactComparison": {
+    "normalizedBodyMatch": false,
+    "liveBytes": 17253,
+    "artifactBytes": 17209,
+    "liveBodyBytes": 17200,
+    "artifactBodyBytes": 17156,
+    "note": "The available local compiled artifact does not reproduce the deployed runtime after normalization. Deployment identity is pinned from the trusted deployment record and observed BSC runtime/getters, not claimed as reproducible-source verification. Real-caller protected V2 buy simulation was separately successful."
+  },
+  "readOnlyFullTransactionSimulations": [
+    {
+      "kind": "ordinary-internal",
+      "blockTag": "0x7bfed93",
+      "blockHash": "0x209d17f44064c7eeac9738beeebee9f35a5212b549508f901475ef86824af68e",
+      "token": "0x25E9328bA48c0C79e23233945942663dbD987777",
+      "from": "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
+      "to": "0xe2cE6ab80874Fa9Fa2aAE65D277Dd6B8e65C9De0",
+      "valueWei": "1000000000000000",
+      "quotedOutputRaw": "176507241153887822017313",
+      "minimumRaw": "174742168742348943797139",
+      "success": true,
+      "decodedSimulationOutputRaw": "176507241153887822017313",
+      "quotedOutputMatchesSimulation": true
+    },
+    {
+      "kind": "agent-native-buy",
+      "blockTag": "0x7bfed97",
+      "blockHash": "0xd62eb6b3a5d030fa3316a3a4ad022b1473d634bc0916ef4ed592bf7146aedbd4",
+      "token": "0xef77Eb3f3c185076d77d928465bc265D436512a9",
+      "from": "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
+      "to": "0x49387D2E6cbF8FefE856e3FBc3E98a01aC3af062",
+      "valueWei": "1000000000000000",
+      "quotedOutputRaw": "166151592068491961650358",
+      "minimumRaw": "164490076147807042033854",
+      "success": true,
+      "decodedSimulationOutputRaw": "166151592068491961650358",
+      "quotedOutputMatchesSimulation": true
+    },
+    {
+      "kind": "agent-native-sell",
+      "blockTag": "0x7bfed9c",
+      "blockHash": "0x6beaffc1069581335714660a218db0c3dd6471e0ef48cb3acd30adcdbb3160c7",
+      "token": "0xef77Eb3f3c185076d77d928465bc265D436512a9",
+      "from": "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
+      "to": "0x49387D2E6cbF8FefE856e3FBc3E98a01aC3af062",
+      "valueWei": "0",
+      "quotedOutputRaw": "6836780364695842",
+      "minimumRaw": "6768412561048883",
+      "success": true,
+      "decodedSimulationOutputRaw": "6836780364695842",
+      "quotedOutputMatchesSimulation": true
+    },
+    {
+      "kind": "wrapper-v2-buy",
+      "blockTag": "0x7bfeda2",
+      "blockHash": "0x4a5363176dd6eeb499ed33470c4aa8819f3f7d2475728e64e4e6dd6307d711e8",
+      "token": "0x14f6a94909c407854390aa2d2462a3095d317777",
+      "from": "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
+      "to": "0xDfFc699FB095a693708E3c15e6F0a224cbbCc98F",
+      "valueWei": "1000000000000000",
+      "quotedOutputRaw": "81258246618887407566",
+      "minimumRaw": "80445664152698533490",
+      "success": true,
+      "decodedSimulationOutputRaw": "81258246618887407566",
+      "quotedOutputMatchesSimulation": true
+    }
+  ],
+  "probeCallerCompatibility": {
+    "compatible": false,
+    "blockTag": "0x7bfe47f",
+    "market": "0xeddc6C5736CD9f280bE750c408D36c8d6E1a473d",
+    "explicitWalletReaderSharesRaw": "9999866076513213264840414",
+    "multicallProbeSharesRaw": "0",
+    "resolution": "Use explicit-wallet typed views in Multicall, plus a complete real-caller sellBps transaction simulation for percentage-sale quotes. No individual probe state-read fallback."
+  },
+  "limits": [
+    "Only native-BNB ID Agent trading is automated; ERC20 quote assets need a separately verified complete BNB bridge.",
+    "External automation currently supports Pancake V2/WBNB with documented non-tax or Tax Token V3 rules.",
+    "Claim ABI and safeguards are documented for tool-native agents; the optional runner has no claim command.",
+    "No assertion that every Flap market is Binance-only; ID Agent registration is the verified buy prerequisite for ID Agent Curve."
+  ]
+}

@@ -1,4 +1,4 @@
-import { Interface, keccak256 } from 'ethers';
+import { Interface, getAddress, keccak256 } from 'ethers';
 import { readFile } from 'node:fs/promises';
 import { abiInterface, tagaiRegistry } from './tagai.mjs';
 
@@ -62,7 +62,8 @@ export class ChainReader {
     requireTrade(header?.hash === snapshot.blockHash, 'SNAPSHOT_REORG', 'Chain data changed during the query. Refresh the quote.');
   }
 
-  async batch(snapshot, specs) {
+  async batch(snapshot, specs, { from } = {}) {
+    if (from) from = getAddress(from);
     const labels = new Set();
     const entries = [];
     for (const spec of specs) {
@@ -70,7 +71,10 @@ export class ChainReader {
       labels.add(spec.label);
       const abi = await abiInterface(spec.abi);
       const method = abi.getFunction(spec.method);
-      requireTrade(method && (['view', 'pure'].includes(method.stateMutability) || method.name === 'quoteExactInputSingle'), 'INVALID_READ', 'A transaction cannot be used as a batch state read.');
+      const quoteOnly = (spec.abi === 'abis/tagai/pancake.json' && method?.name === 'quoteExactInputSingle')
+        || (spec.abi === 'abis/flap/portal.json' && method?.name === 'quoteExactInput')
+        || (spec.abi === 'abis/imported-token-swap-wrapper.json' && ['quoteBuy', 'quoteSell'].includes(method?.name));
+      requireTrade(method && (['view', 'pure'].includes(method.stateMutability) || quoteOnly), 'INVALID_READ', 'A transaction cannot be used as a batch state read.');
       entries.push({ ...spec, iface: abi, call: { target: spec.target, allowFailure: true, callData: abi.encodeFunctionData(method, spec.args ?? []) } });
     }
     const rows = [];
@@ -78,7 +82,7 @@ export class ChainReader {
       if (!chunk.length) return;
       let raw;
       try {
-        raw = await this.rpc('eth_call', [{ to: registry.multicall, data: multi.encodeFunctionData('aggregate3', [chunk.map(s => s.call)]) }, snapshot.blockTag]);
+        raw = await this.rpc('eth_call', [{ to: registry.multicall, ...(from ? { from } : {}), data: multi.encodeFunctionData('aggregate3', [chunk.map(s => s.call)]) }, snapshot.blockTag]);
       } catch (error) {
         if (chunk.length > 1 && capacityError(error)) {
           const middle = Math.ceil(chunk.length / 2);
@@ -101,7 +105,7 @@ export class ChainReader {
         result[spec.label] = { ok: true, value: values.length === 1 ? values[0] : values };
       } catch {
         requireTrade(spec.required !== true, 'INCOMPLETE_STATE', 'Required token data could not be read. Refresh before trading.');
-        result[spec.label] = { ok: false, value: null };
+        result[spec.label] = { ok: false, value: null, errorData: row.success ? null : row.returnData };
       }
     }
     return result;
