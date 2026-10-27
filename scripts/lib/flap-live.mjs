@@ -3,6 +3,7 @@ import { AbiCoder, ZeroAddress, ZeroHash, formatUnits, getAddress, isAddress, ke
 import { abiInterface, minimumOutput, tagaiRegistry } from './tagai.mjs';
 import { ChainReader, TradeError, requireTrade } from './live-rpc.mjs';
 import { FlapAgentCurve } from './flap-agent-curve.mjs';
+import { normalizeTokenInput } from './token-input.mjs';
 
 const R = JSON.parse(await readFile(new URL('../../config/flap-bsc.json', import.meta.url), 'utf8'));
 const DEX = tagaiRegistry().dex;
@@ -63,8 +64,7 @@ export class FlapLive {
   }
 
   async resolve(input) {
-    requireTrade(typeof input === 'string' && input.trim(), 'INVALID_TOKEN', 'Provide a token ticker or contract address.');
-    input = input.trim();
+    input = normalizeTokenInput(input);
     if (/^0x/i.test(input)) requireTrade(isAddress(input), 'INVALID_TOKEN_ADDRESS', 'The contract address or its checksum is invalid.');
     if (isAddress(input)) return getAddress(input);
     const rows = await this.search(input);

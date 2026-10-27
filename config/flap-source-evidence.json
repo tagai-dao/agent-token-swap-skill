@@ -182,5 +182,12 @@
     "quoteExamples": 6,
     "successfulFullCallSimulations": 4,
     "note": "Ordinary and external sales have amount quotes and encoded calls; their actual-wallet approvals and complete simulations remain required before preview. No wallet connected, signed or broadcast."
+  },
+  "addressLinkLookup": {
+    "path": "config/flap-aipro-query.json",
+    "sourceUrl": "https://flap.sh/bnb/0xeac597ba087f6219c03a65479b2568d3f9a07777?lang=zh",
+    "blockTag": "0x7c00471",
+    "observedAt": "2026-10-27T04:21:31.000Z",
+    "note": "Read-only lookup succeeded for the supplied address: AIPRO, ordinary internal market, reference price in SPCXB. Complete URL normalization now selects the path address before any ticker search."
   }
 }

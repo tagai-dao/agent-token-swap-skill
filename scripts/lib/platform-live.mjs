@@ -4,6 +4,7 @@ import { FlapLive, flapProof, decodeFlapProof } from './flap-live.mjs';
 import { tagaiRegistry } from './tagai.mjs';
 import { ChainReader, TradeError, requireTrade } from './live-rpc.mjs';
 import { agentCurveProofs } from './flap-agent-curve.mjs';
+import { normalizeTokenInput } from './token-input.mjs';
 
 const releases = tagaiRegistry().versions.filter(v => v.issuanceGetterDocumented && v.marketFamily !== 'import');
 
@@ -15,8 +16,7 @@ export class PlatformLive {
 
   async resolve(input, platform = null) {
     if (platform) requireTrade(Object.hasOwn(this.adapters, platform), 'PLATFORM_UNAVAILABLE', 'This issuing platform is not connected yet.');
-    requireTrade(typeof input === 'string' && input.trim(), 'INVALID_TOKEN', 'Provide a token ticker or address.');
-    input = input.trim();
+    input = normalizeTokenInput(input);
     if (/^0x/i.test(input)) requireTrade(isAddress(input), 'INVALID_TOKEN_ADDRESS', 'The contract address or its checksum is invalid.');
     if (isAddress(input)) return getAddress(input);
     const rows = [], failures = [];

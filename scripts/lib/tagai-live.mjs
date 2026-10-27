@@ -1,6 +1,7 @@
 import { AbiCoder, ZeroAddress, formatUnits, getAddress, isAddress, keccak256, parseUnits } from 'ethers';
 import { abiInterface, encodeTagai, minimumOutput, tagaiRegistry } from './tagai.mjs';
 import { ChainReader, TradeError, requireTrade } from './live-rpc.mjs';
+import { normalizeTokenInput } from './token-input.mjs';
 
 const R = tagaiRegistry();
 const T = 'abis/tagai/token-v16.json';
@@ -49,8 +50,7 @@ export class TagaiLive {
   }
 
   async resolve(input) {
-    requireTrade(typeof input === 'string' && input.trim().length > 0, 'INVALID_TOKEN', 'Provide a token ticker or contract address.');
-    input = input.trim();
+    input = normalizeTokenInput(input);
     if (/^0x/i.test(input)) requireTrade(isAddress(input), 'INVALID_TOKEN_ADDRESS', 'The contract address or its checksum is invalid. Check the full address.');
     if (isAddress(input)) return { address: getAddress(input) };
     const rows = await this.search(input);

@@ -18,6 +18,8 @@ There is **no verified blanket Binance-only restriction for all Flap tokens**. T
 
 ## Ticker or address
 
+For a Flap /bnb/ token link, use its path address as the selected input. The [AIPRO link example](../flap/worked-examples.md#query-a-flap-token-link-aipro) shows the actual token, Portal calls and SPCXB-denominated price. A supplied address or link proceeds directly to chain reads; HTTP search is the ticker path.
+
 The ordinary BSC frontend search is `GET https://bnb.taxed.fun/extension/search?q=<URL-encoded query>`. The frontend accepts an array of `{coin:{address,name,symbol,...},listed,...}` or flat `{address,name,symbol,img,...}`. Preserve response order; ranking / pagination are not documented by this call. It returned HTTP 403 from the development environment on 2026-10-27: report unavailability, not token absence, and do not bypass access challenges.
 
 For a user-specified ID Agent ticker, Reader.marketPage(cursor,limit), limit<=16, and marketCards(address[]) provide a chain-native alternative. Pin every page and follow-up to one block. Search only the requested name; return matching candidates, not an unsolicited feed. The runner scans at most 1000 registered markets and reports incomplete coverage beyond that. Reverse registry order for newest matching creations first. Ordinary HTTP search failure remains a coverage gap for ordinary tokens.

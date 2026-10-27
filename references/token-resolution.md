@@ -4,6 +4,8 @@ TagAI and [Flap](platforms/flap.md) have a live [direct tool workflow](tool-nati
 
 ## Address input
 
+For `https://flap.sh/bnb/<address>` links, including language/query parameters, extract and validate the path address, then follow the address workflow. Example: `https://flap.sh/bnb/0xeac597ba087f6219c03a65479b2568d3f9a07777?lang=zh` selects `0xeac597Ba087f6219C03a65479B2568d3f9A07777`. This uses on-chain reads directly; the page and ticker-search HTTP endpoints are unnecessary. Follow the [concrete lookup example](flap/worked-examples.md#query-a-flap-token-link-aipro).
+
 Validate the 20-byte EVM address, mixed-case checksum, chainId=56, and contract code. If the user specifies a platform, check that platform's issuance-proof interface first. Otherwise assemble a Multicall across all integrated platform proof interfaces. Names, symbols, suffixes, and the presence of a method do not prove issuance.
 
 Each platform proof returns MATCH / NO_MATCH / UNKNOWN, with platform version, proof contract, method, and snapshot. RPC failures, decode failures, missing integrations, and unknown versions are UNKNOWN, not NO_MATCH. Only a normal negative result defined by the interface is NO_MATCH.

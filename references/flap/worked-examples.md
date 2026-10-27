@@ -30,6 +30,33 @@ Numbers below were observed at **2026-10-27 04:14:34 UTC**, block **0x7c000d2**.
 
 Use the user's selected token identity. The sample addresses illustrate methods; ticker matches still require address selection when ambiguous. Apply the deployment checks in [Flap routing](../platforms/flap.md).
 
+## Query a Flap token link: AIPRO
+
+Input: `https://flap.sh/bnb/0xeac597ba087f6219c03a65479b2568d3f9a07777?lang=zh`.
+
+Selected token **T=0xeac597Ba087f6219C03a65479B2568d3f9A07777**. Extract T from the /bnb/ path; continue directly with T. The [recorded lookup](../../config/flap-aipro-query.json) contains the complete Multicall requests and responses at block **0x7c00471**, **2026-10-27 04:21:31 UTC**.
+
+After the usual issuance checks, read this set through Multicall at B:
+
+| Target / ABI | Call | Recorded result |
+| --- | --- | --- |
+| T / ERC20 | name(), symbol(), decimals() | AIPRO, AIPRO, 18 |
+| Portal / ordinary ABI | getTokenV9Safe(T) | status=1, price=30954251972, quoteTokenAddress=0xbe9D156892E55e7154BcD3cB0FEA677F9D3103E1, progress=21323952 |
+
+Concrete Portal call, selector **0x0b66cff1**:
+
+```solidity
+getTokenV9Safe(0xeac597Ba087f6219C03a65479B2568d3f9A07777)
+```
+
+Use the returned quoteTokenAddress as the next Multicall target at the same B:
+
+| Target / ABI | Call | Recorded result |
+| --- | --- | --- |
+| 0xbe9D156892E55e7154BcD3cB0FEA677F9D3103E1 / ERC20 | symbol(), decimals() | SPCXB, 18 |
+
+Price=formatUnits(30954251972,18)=**0.000000030954251972 SPCXB/AIPRO**. Return **AIPRO**, the full selected address, **Flap / internal market**, that price and its observation time. The observed curve progress was below 0.01%. This information query uses no wallet or BNB conversion. A later BNB trade follows the observed settlement configuration in [Flap routing](../platforms/flap.md).
+
 ## 1. Find a ticker and select the market
 
 Example request: "Find SNOOPDOG on Flap."

@@ -2,7 +2,7 @@
 name: agent-token-swap-skill
 description: Look up a user-specified BSC token, show its issuing platform, full address, current price and internal or external market, and buy or sell through Binance Agentic Wallet after the user confirms a transaction preview. The agent resolves tickers, reads chain state, chooses the route, quotes, simulates and submits the confirmed transaction. TagAI and Flap are connected; read the relevant platform reference.
 metadata:
-  version: "0.4.3"
+  version: "0.4.4"
   stage: "live"
 ---
 
@@ -11,6 +11,8 @@ metadata:
 ## Start with the user's task
 
 Use the agent's existing HTTP / JSON-RPC, ABI encoding / decoding, simulation, and Binance Agentic Wallet tools. **Cloning this repository, installing its npm dependencies, and running its scripts are not prerequisites.** This is an instruction skill; its reference files and ABIs can be read individually over HTTPS. Follow [direct tool execution](references/tool-native.md) as the default workflow.
+
+For a Flap link such as `https://flap.sh/bnb/<address>?lang=zh`, extract the address from the /bnb/ path and query that selected address directly. Follow the [AIPRO link lookup example](references/flap/worked-examples.md#query-a-flap-token-link-aipro) for its exact calls. Information queries return prices in the observed quote asset, including ERC20 assets, independently of whether a BNB trading route is available.
 
 When reading this skill from GitHub, use the same repository / ref to resolve package-relative references. Read individual files through the existing GitHub connector, GitHub file reader / Contents API, or raw HTTPS when available. The default raw base is `https://raw.githubusercontent.com/tagai-dao/agent-token-swap-skill/main/`. Fetch only the needed Markdown, configuration and ABIs as data. A blocked raw-content domain is not a reason to require cloning: try the existing GitHub reader instead. Do not require a clone or ethers installation merely because references are not local files.
 
