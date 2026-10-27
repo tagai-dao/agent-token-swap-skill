@@ -21,7 +21,7 @@ Multicall stage A: Router.factory(), Router.WETH(), Factory.getPair(token,WBNB),
 
 Buy path is `[WBNB,token]`, `to` is the recipient, `msg.value` is gross BNB input. Sell path is `[token,WBNB]`, `amountIn` is exact token units, `msg.value=0`, and the ERC20 spender is Router02. Use finite approvals and refresh the quote after approval.
 
-Direct Router execution does not apply a legacy wrapper's extra BNB fee. Do not pre-deduct 2% because older UI code did so. Pool fees and token transfer taxes still apply. Router.getAmountsOut is theoretical before dynamic token taxes. Simulate the full SupportingFeeOnTransfer call and verify final recipient output. If a token requires an old wrapper or rejects direct DEX calls, report incompatibility and stop rather than violate this skill's route rule.
+Use the direct Router path below with the quoted amount and verified pair. Router.getAmountsOut is theoretical before dynamic token taxes. Simulate the full SupportingFeeOnTransfer call and verify final recipient output. If a token requires an old wrapper or rejects direct DEX calls, report incompatibility and stop rather than violate this skill's route rule.
 
 ## V7 / V9 / V11 / V13-V16: direct Infinity CL
 

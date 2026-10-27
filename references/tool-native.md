@@ -76,7 +76,7 @@ Return only the token name / symbol, full address, issuing platform, internal or
 
 ## 4. Obtain an amount-specific quote and encode
 
-For internal buys, call the verified curve's getBuyAmountByValue(supply,funds) through Multicall at the same block, with funds equal to the user's full requested BNB amount converted to wei. For 0.001 BNB, pass 1000000000000000; do not pre-deduct fees, slippage, gas or a reserve. Read current fee ratios for separate disclosure, without reducing the method input or deducting fees again from its token result. Use the same full input as transaction value and apply slippage once to the quote. Account for the curve cap, refunds and migration boundary. Check buying eligibility for the actual wallet where required. Do not impose a buying gate on a sale or a price query.
+For internal buys, call the verified curve's getBuyAmountByValue(supply,funds) through Multicall at the same block. Parameters: supply=Token.bondingCurveSupply() in raw token units; funds=parseUnits(userBnbAmount,18) in wei. Example for 0.001 BNB of AIPRO: target=0x97f35B4631F4FFBF8050B17fAd6579D6F60A289D, args=[284811666433559752360740107,1000000000000000]. The return is raw token output. Use funds as transaction value and apply user slippage once to the quote. Follow [internal methods](tagai/internal.md) for the cap/refund branch and wallet buying eligibility.
 
 For internal sales, read the real balance and supply, then call getPrice(supply-amount,amount). Subtract separately rounded fees to obtain net BNB. Internal sales normally require no ERC20 approval. See [the complete method cards](tagai/internal.md) for actual signatures, parameter meanings, caller-only delivery and slippage handling.
 

@@ -141,7 +141,7 @@ getAmountsOut(
 )
 ```
 
-Full signature=getAmountsOut(uint256,address[]), selector=0xd06ca61f. Decode uint256[]; require length=2, amounts[0]=G, amounts[1]>0. The Router / Factory binding proves this path selects the quoted pair. The pool fee is included. TagAI-native external trades use the DEX directly; **do not subtract legacy wrapper fees or call ImportedTokenSwapWrapper**.
+Full signature=getAmountsOut(uint256,address[]), selector=0xd06ca61f. Decode uint256[]; require length=2, amounts[0]=G, amounts[1]>0. The Router / Factory binding proves this path selects the quoted pair. TagAI-native external trades execute directly through that DEX.
 
 At the recorded block:
 
@@ -257,16 +257,16 @@ Recorded S=**284811666433559752360740107**. To obtain the one-token reference pr
 
 ### Stage 6B: exact amount quote
 
-Convert the user's full requested amount to wei. Read live fee ratios for disclosure; do not hardcode 30/30 or reduce the quote input:
+Target: **AIPRO Pump 0x97f35B4631F4FFBF8050B17fAd6579D6F60A289D**. ABI: [shared TagAI reads](../../abis/tagai/read-interfaces.json). Call through Multicall at B:
 
-```text
-G             = 1000000000000000
-funds         = G = 1000000000000000
-platformFee   = floor(G * 30 / 10000) = 3000000000000
-subjectFee    = floor(G * 30 / 10000) = 3000000000000
+```solidity
+getBuyAmountByValue(
+    284811666433559752360740107, // supply: AIPRO.bondingCurveSupply() at B
+    1000000000000000            // funds: 0.001 BNB in wei
+)
 ```
 
-Call **AIPRO Pump.getBuyAmountByValue(284811666433559752360740107,1000000000000000)** through a dependent Multicall at the same B, using the shared read ABI. It returned **49627760779259275379321** raw AIPRO. Apply slippage once: minimum=floor(output*9900/10000)=**49131483171466682625527**. Curve quote=49627.760779259275379321 AIPRO; minimum=49131.483171466682625527 AIPRO. Disclose estimated fees of 0.000006 BNB within the 0.001 BNB spend, with gas separate. Do not pre-deduct those fees from funds or deduct them again from the returned quote.
+Signature: getBuyAmountByValue(uint256 supply,uint256 funds) returns(uint256 amount). Selector: **0xb3368bb2**. Return: **49627760779259275379321** raw AIPRO = **49627.760779259275379321 AIPRO**. With slippageBps=100, minimum=floor(amount*9900/10000)=**49131483171466682625527** raw AIPRO = **49131.483171466682625527 AIPRO**.
 
 If curveOut reaches the remaining curve cap, apply the source-verified cap/refund branch in [internal methods](internal.md); do not use the unconstrained output. The observed example did not hit that branch. No wallet signing is needed for a read-only quote, but this buyer-specific eligibility check needs the actual W.
 

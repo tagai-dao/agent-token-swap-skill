@@ -43,17 +43,29 @@ All post-creation internal buys are checked, including a creator's later purchas
 
 ## Buy quote: source-verified modern family
 
-Stage A reads supply S, the actual curve / Pump, listed / pending state, token decimals, createdAt when needed, wallet eligibility, and current `(platformBps, subjectBps)` from Token.getBuyFeeRatios(). Stage B calls `getBuyAmountByValue(S, funds)` on the proven curve at the same block. The second argument is the user's full requested BNB amount in wei:
+Stage A reads supply S, the actual curve / Pump, listed / pending state, token decimals, createdAt when needed, wallet eligibility, and current `(platformBps, subjectBps)` from Token.getBuyFeeRatios(). Stage B calls the proven curve through Multicall at the same block:
 
-```text
-funds       = parseUnits(userBnbAmount, 18)
-curveOut    = curve.getBuyAmountByValue(S, funds)
-quotedOut   = min(curveOut, curveCap - S)
-platformFee = floor(funds * platformBps / 10000) // disclosure only
-subjectFee  = floor(funds * subjectBps  / 10000) // disclosure only
+```solidity
+function getBuyAmountByValue(uint256 supply, uint256 funds)
+    external pure returns (uint256 amount);
 ```
 
-Do not deduct trading fees, slippage, gas or a reserve from funds before this call, and do not deduct fees from its returned token quote. For a 0.001 BNB request, funds is exactly 1000000000000000, and the payable buy uses that same value. Fee estimates are a separate disclosure within that spend, not an additional charge or a smaller quote input. Apply slippage once to the returned quote. The modern anti-snipe window lasts 15 seconds with a quadratic subject-fee decay; read the actual getter instead of copying constants to an unverified version. It may also inject purchased tokens into the calculator and alter post-trade supply beyond the buyer's delivered output. A full actual-wallet simulation must validate the final protected transaction.
+| Parameter | Value |
+| --- | --- |
+| `supply` | Token.bondingCurveSupply() at the pinned block, in raw token units |
+| `funds` | parseUnits(userBnbAmount, 18), in wei |
+| Return `amount` | Token quote in raw token units |
+
+Example: quote 0.001 BNB of AIPRO on its internal market. Target=0x97f35B4631F4FFBF8050B17fAd6579D6F60A289D; use the shared read ABI:
+
+```solidity
+getBuyAmountByValue(
+    284811666433559752360740107, // supply from bondingCurveSupply()
+    1000000000000000            // 0.001 BNB in wei
+)
+```
+
+At the [recorded snapshot](worked-examples.md), the return was 49627760779259275379321. Set quotedOut=min(amount,curveCap-S), then minimumOut=floor(quotedOut*(10000-slippageBps)/10000). The payable buy uses msg.value=1000000000000000. Simulate the complete actual-wallet transaction before obtaining its wallet preview.
 
 A fill-to-cap buy uses a separate gross-up calculation, can refund unused BNB, and queues listing in V13+. The pinned source uses `usedBnb=floor(curve.getPrice(S, remaining)*10000/(10000-platformBps-subjectBps))`; exact fee and refund behavior must be checked by full simulation. Filling during the anti-snipe window can revert `ListingDisabledDuringAntiSnipe`. Do not promise immediate external trading after the fill.
 
