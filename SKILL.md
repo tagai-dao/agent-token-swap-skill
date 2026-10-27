@@ -2,7 +2,7 @@
 name: agent-token-swap-skill
 description: Look up a user-specified BSC token, show its issuing platform, full address, current price and internal or external market, and buy or sell through Binance Agentic Wallet after the user confirms a transaction preview. The agent resolves tickers, reads chain state, chooses the route, quotes, simulates and submits the confirmed transaction. TagAI and Flap are connected; read the relevant platform reference.
 metadata:
-  version: "0.4.0"
+  version: "0.4.1"
   stage: "live"
 ---
 
@@ -71,6 +71,7 @@ Persist requestId / orderId / txHash and execution status. If submission is unkn
 - [Optional script runner](references/runtime.md): repository automation for agents that choose to use it.
 - [Binance wallet](references/binance-wallet.md): preview contents, user confirmation, and App confirmation.
 - [Flap routing reference](references/platforms/flap.md): ordinary Portal / ID Agent identification, exact ABI calls, quotes, quota / ID requirements and external routes.
+- [TagAI worked examples](references/tagai/worked-examples.md): exact TTAI search / price / 0.001 BNB buy / sale and AIPRO internal call sequences; follow the matching recipe before constructing calls.
 - [TagAI routing reference](references/platforms/tagai.md): issuer, ABI and market-specific rules, kept internal.
 - [DEX verification](references/external-dex.md), [wrapper](references/imported-token-swap-wrapper.md), and [token resolution](references/token-resolution.md): use when relevant.
 - [Data model](references/data-model.md) and [integration contract](references/integration-contract.md): adapter maintenance, not ordinary user-facing explanations.

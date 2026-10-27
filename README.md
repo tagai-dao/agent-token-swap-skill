@@ -10,6 +10,8 @@ See [direct tool execution](references/tool-native.md) for the complete route fr
 
 TagAI and Flap workflows are connected. Flap covers ordinary Portal internal trading, ID Agent native-BNB share buys / percentage sales, and verified Pancake V2/WBNB external pools through ImportedTokenSwapWrapper. Read [Flap coverage](references/platforms/flap.md) for remaining token-specific routes. Fourme / GANG are added separately. Contract versions, ABI selection and routing details stay internal to the agent. Answer users in their preferred language while keeping repository-authored instructions in English.
 
+For concrete TagAI operations, read [worked examples](references/tagai/worked-examples.md): TTAI candidate lookup / price, 0.001 BNB external buy, 1000-token sale and AIPRO internal buy/sell. Every example specifies contracts, ABI calls, argument units and wallet preview steps; historical observations must be refreshed.
+
 ## Optional repository automation
 
 Agents with a checkout may use the script runner as a convenience. Only this optional runner requires Node.js 22+ and its locked dependencies:

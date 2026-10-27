@@ -18,6 +18,8 @@ Append the package paths below to that base, or follow their relative links thro
 
 The actual package-relative paths are `config/tagai-bsc.json`, `abis/provenance.json`, `abis/multicall3.json`, `abis/erc20.json`, `abis/tagai/read-interfaces.json`, the matched token / Pump ABI, and `abis/tagai/pancake.json` when the market is external. Only fetch what the current task needs. For correct clickable references use [deployments](../config/tagai-bsc.json), [ABI provenance](../abis/provenance.json), [Multicall ABI](../abis/multicall3.json), and [ERC20 ABI](../abis/erc20.json).
 
+For a concrete TagAI request, follow the matching [worked example](tagai/worked-examples.md), including exact TTAI / AIPRO target addresses, argument sources and wallet steps. The general contract below supplies the shared tooling rules.
+
 ## 1. Resolve the token over HTTPS
 
 For a ticker input:

@@ -26,10 +26,18 @@
       "marketFamily": "v2",
       "internalBuy": "receiver",
       "internalSell": "standard",
-      "issuanceGetterDocumented": false,
+      "issuanceGetterDocumented": true,
       "source": "tiptag-ui/src/config.ts",
       "requiresBuyerHandle": false,
-      "supported": true
+      "supported": true,
+      "issuanceGetterEvidence": {
+        "method": "createdTokens(address) via registered read interface",
+        "checkedAt": "2026-10-27",
+        "blockTag": "0x7bff350",
+        "positiveToken": "0x8e11E90B463bf521382E2B88539F053270a3848c",
+        "negativeToken": "0x51B561b3e30E626142A710E5e36da46A7DD124A5",
+        "note": "Historical Pump ABI export omits the getter, but the trusted deployed Pump returns typed true/false; token.bondingCurve also matches this Pump."
+      }
     },
     {
       "id": "2",

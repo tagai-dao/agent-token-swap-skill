@@ -22,9 +22,10 @@ const interfaces = await Promise.all(['abis/tagai/token-v16.json', 'abis/tagai/r
 const eventAbi = await abiInterface('abis/tagai/token-v15.json');
 
 function fixture(settings = {}) {
+  const release = registry.versions.find(v => v.id === (settings.releaseId ?? '15'));
   const state = { listed: false, pending: false, handle: 'registered', allowance: 0n, permitAmount: 0n, permitExpiration: 0n, capacity: false, ...settings };
   const trace = [], walletTrace = [];
-  const key = { currency0: ZeroAddress, currency1: token, hooks: release.hook, poolManager: registry.dex.clPoolManager, fee: 0, parameters: `0x${'00'.repeat(32)}` };
+  const key = { currency0: ZeroAddress, currency1: token, hooks: release.hook ?? ZeroAddress, poolManager: registry.dex.clPoolManager, fee: 0, parameters: `0x${'00'.repeat(32)}` };
   const poolId = keccak256(coder.encode(['tuple(address,address,address,address,uint24,bytes32)'], [Object.values(key)]));
   const header = () => ({ number: '0x100', hash: state.reorg ? `0x${'ef'.repeat(32)}` : blockHash, timestamp: `0x${now.toString(16)}` });
   const transport = async (url, options) => {
@@ -58,7 +59,7 @@ function fixture(settings = {}) {
           let output;
           switch (parsed.name) {
             case 'createdTokens': output = [child.target.toLowerCase() === release.pump.toLowerCase()]; break;
-            case 'name': case 'symbol': output = ['AIPRO']; break;
+            case 'name': case 'symbol': output = [state.symbol ?? 'AIPRO']; break;
             case 'decimals': output = [18]; break;
             case 'listed': output = [state.listed]; break;
             case 'listingPending': output = [state.pending]; break;
@@ -66,7 +67,7 @@ function fixture(settings = {}) {
             case 'bondingCurve': output = [release.pump]; break;
             case 'getBuyFeeRatios': output = [30, 30]; break;
             case 'getFeeRatio': output = [[30, 30]]; break;
-            case 'tokenImplementation': output = [release.tokenImplementation]; break;
+            case 'tokenImplementation': if (!release.tokenImplementation) return [false, '0x']; output = [release.tokenImplementation]; break;
             case 'balanceOf': output = [5000n * 10n ** 18n]; break;
             case 'getPrice': output = [parsed.args[1] / 1000000000n]; break;
             case 'getBuyAmountByValue': output = [parsed.args[1] * 1000000000n]; break;
@@ -81,6 +82,13 @@ function fixture(settings = {}) {
             case 'getLiquidity': output = [1000000000000000000n]; break;
             case 'quoteExactInputSingle': output = [parsed.args[0].exactAmount * 2n, 150000n]; break;
             case 'allowance': output = parsed.args.length === 3 ? [state.permitAmount, state.permitExpiration, 0] : [state.allowance]; break;
+            case 'factory': output = [registry.dex.v2Factory]; break;
+            case 'WETH': output = [registry.wrappedNative]; break;
+            case 'getPair': output = ['0x4444444444444444444444444444444444444444']; break;
+            case 'token0': output = [token]; break;
+            case 'token1': output = [registry.wrappedNative]; break;
+            case 'getReserves': output = [1000000n * 10n ** 18n, 100n * 10n ** 18n, 0]; break;
+            case 'getAmountsOut': output = [[parsed.args[0], parsed.args[0] * 1000000000n]]; break;
             default: throw new Error(`unhandled method ${parsed.name}`);
           }
           return [true, iface.encodeFunctionResult(parsed.name, output)];
@@ -193,6 +201,33 @@ test('Infinity quotes use the verified listing pool and Hook-inclusive amount qu
   const tx = await f.live.transaction(q, wallet);
   assert.equal(tx.to, registry.dex.universalRouter);
   assert.equal(tx.valueWei, '1000000000000000');
+});
+
+test('legacy TTAI recipe proves the first Pump through Multicall and binds direct V2 quote to execution', async () => {
+  const f = fixture({ releaseId: '1', listed: true, symbol: 'TTAI' });
+  const q = await f.live.quote({ token, side: 'buy', amount: '0.001', wallet });
+  assert.equal(q.info.release.id, '1');
+  assert.equal(q.summary.platform, 'TagAI'); assert.equal(q.summary.symbol, 'TTAI');
+  const tx = await f.live.transaction(q, wallet);
+  assert.equal(tx.to, registry.dex.v2Router); assert.equal(tx.valueWei, '1000000000000000');
+  const dex = await abiInterface('abis/tagai/pancake.json');
+  const trade = dex.parseTransaction({ data: tx.inputData });
+  assert.equal(trade.name, 'swapExactETHForTokensSupportingFeeOnTransferTokens');
+  assert.equal(trade.args[0], q.quoteOut * 9900n / 10000n);
+  assert.deepEqual(Array.from(trade.args[1]), [registry.wrappedNative, token]);
+  const calls = f.trace.filter(r => r.method === 'eth_call');
+  assert.ok(calls.every(r => r.params[0].to === registry.multicall && r.params[1] === '0x100'));
+  const proof = multi.decodeFunctionData('aggregate3', calls[0].params[0].data)[0];
+  const pump = registry.versions.find(v => v.id === '1').pump;
+  const issuer = proof.find(c => c.target.toLowerCase() === pump.toLowerCase());
+  assert.ok(issuer); assert.equal(interfaces[1].parseTransaction({ data: issuer.callData }).args[0], token);
+  const quotes = calls.flatMap(r => Array.from(multi.decodeFunctionData('aggregate3', r.params[0].data)[0])).flatMap(c => {
+    const parsed = dex.parseTransaction({ data: c.callData });
+    return parsed?.name === 'getAmountsOut' ? [{ target: c.target, args: parsed.args }] : [];
+  });
+  assert.equal(quotes.length, 1); assert.equal(quotes[0].target, registry.dex.v2Router);
+  assert.equal(quotes[0].args[0], 1000000000000000n);
+  assert.deepEqual(Array.from(quotes[0].args[1]), Array.from(trade.args[1]));
 });
 
 test('prepare simulates the real-wallet transaction and creates one wallet preview without executing', async () => {

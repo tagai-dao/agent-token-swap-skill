@@ -9,7 +9,7 @@ const flap = flapRegistry();
 const isObject = value => value !== null && typeof value === 'object' && !Array.isArray(value);
 const sameSet = (actual, expected) => actual.length === expected.length && actual.every(value => expected.includes(value));
 const same = (a, b) => typeof a === 'string' && typeof b === 'string' && a.toLowerCase() === b.toLowerCase();
-const liveVersions = ['2', '3', '4', '9', '11', '13', '14', '15', '15-2', '16'];
+const liveVersions = ['1', '2', '3', '4', '9', '11', '13', '14', '15', '15-2', '16'];
 const runtimeHash = '0xd5c15df687b16f2ff992fc8d767b4216323184a2bbc6ee2f9c398c318e770891';
 
 export function validateConfig(config) {

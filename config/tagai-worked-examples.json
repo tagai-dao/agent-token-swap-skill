@@ -1,0 +1,618 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-27T03:51:44.000Z",
+  "snapshot": {
+    "blockTag": "0x7bff4ee",
+    "blockHash": "0x50cb1722fb19550a3da7471ccb8c08fb22c6740e84ab5254854b36c77ff50b35",
+    "timestamp": 1793073104
+  },
+  "liveOrder": false,
+  "walletConnected": false,
+  "transactionBroadcast": false,
+  "warning": "Historical worked-example observations only. Re-resolve identity, reread current state and requote before every preview; never execute recorded calldata or reuse the public sample account as the user wallet.",
+  "search": {
+    "query": "TTAI",
+    "tagaiExactCandidates": [
+      {
+        "symbol": "TTAI",
+        "address": "0x8e11E90B463bf521382E2B88539F053270a3848c",
+        "sourcePlatform": "TagAI index",
+        "apiReleaseHint": 1,
+        "apiCreationTime": "2025-02-15T13:58:41.000Z"
+      },
+      {
+        "symbol": "ttai",
+        "address": "0x51B561b3e30E626142A710E5e36da46A7DD124A5",
+        "sourcePlatform": "TagAI index",
+        "apiReleaseHint": 2,
+        "apiCreationTime": "2025-03-08T07:29:45.000Z"
+      }
+    ],
+    "flapOrdinarySearch": {
+      "status": 403,
+      "checkedAt": "2026-10-27T03:51:41.633Z"
+    },
+    "flapIdAgentExactCandidates": [],
+    "fourme": "not integrated / not checked",
+    "gang": "not integrated / not checked"
+  },
+  "observations": {
+    "0x8e11E90B463bf521382E2B88539F053270a3848c": {
+      "name": "TTAI",
+      "symbol": "TTAI",
+      "contractAddress": "0x8e11E90B463bf521382E2B88539F053270a3848c",
+      "platform": "TagAI",
+      "network": "BNB Smart Chain",
+      "market": "external",
+      "referencePrice": {
+        "amount": "0.000000067030883685",
+        "currency": "BNB",
+        "perToken": "1",
+        "includesTradingFees": false
+      },
+      "internalProgressPercent": null,
+      "observedAt": "2026-10-27T03:51:44.000Z",
+      "issuerPump": "0xa77253Ac630502A35A6FcD210A01f613D33ba7cD",
+      "abi": "abis/tagai/token-v1.json",
+      "internalReleaseId": "1",
+      "curve": "0xa77253Ac630502A35A6FcD210A01f613D33ba7cD",
+      "decimals": 18,
+      "chainState": {
+        "name": {
+          "ok": true,
+          "value": "TTAI"
+        },
+        "symbol": {
+          "ok": true,
+          "value": "TTAI"
+        },
+        "decimals": {
+          "ok": true,
+          "value": "18"
+        },
+        "listed": {
+          "ok": true,
+          "value": true
+        },
+        "pending": {
+          "ok": false,
+          "value": null
+        },
+        "supply": {
+          "ok": true,
+          "value": "650000000000000000000000000"
+        },
+        "curve": {
+          "ok": true,
+          "value": "0xa77253Ac630502A35A6FcD210A01f613D33ba7cD"
+        },
+        "buyFees": {
+          "ok": false,
+          "value": null
+        },
+        "sellFees": {
+          "ok": true,
+          "value": [
+            "100",
+            "100"
+          ]
+        },
+        "implementation": {
+          "ok": false,
+          "value": null
+        }
+      },
+      "pool": {
+        "kind": "v2",
+        "pair": "0xA2e6b0F1E795F9b3E87aA2BDCfCdA0f4A41746C8",
+        "tokenReserve": "469496850710988923879440835",
+        "nativeReserve": "31470788790588337203"
+      },
+      "issuerProof": {
+        "to": "0xa77253Ac630502A35A6FcD210A01f613D33ba7cD",
+        "abi": "abis/tagai/read-interfaces.json",
+        "method": "createdTokens",
+        "args": [
+          "0x8e11E90B463bf521382E2B88539F053270a3848c"
+        ],
+        "result": true
+      }
+    },
+    "0x51B561b3e30E626142A710E5e36da46A7DD124A5": {
+      "name": "ttai",
+      "symbol": "ttai",
+      "contractAddress": "0x51B561b3e30E626142A710E5e36da46A7DD124A5",
+      "platform": "TagAI",
+      "network": "BNB Smart Chain",
+      "market": "internal",
+      "referencePrice": {
+        "amount": "0.000000006500007799",
+        "currency": "BNB",
+        "perToken": "1",
+        "includesTradingFees": false
+      },
+      "internalProgressPercent": null,
+      "observedAt": "2026-10-27T03:51:44.000Z",
+      "issuerPump": "0x3DC52C69C3C8be568372E16d50E9F3FEc796610c",
+      "abi": "abis/tagai/token-v2.json",
+      "internalReleaseId": "2",
+      "curve": "0x3DC52C69C3C8be568372E16d50E9F3FEc796610c",
+      "decimals": 18,
+      "chainState": {
+        "name": {
+          "ok": true,
+          "value": "ttai"
+        },
+        "symbol": {
+          "ok": true,
+          "value": "ttai"
+        },
+        "decimals": {
+          "ok": true,
+          "value": "18"
+        },
+        "listed": {
+          "ok": true,
+          "value": false
+        },
+        "pending": {
+          "ok": false,
+          "value": null
+        },
+        "supply": {
+          "ok": true,
+          "value": "301538280954880474592"
+        },
+        "curve": {
+          "ok": true,
+          "value": "0x3DC52C69C3C8be568372E16d50E9F3FEc796610c"
+        },
+        "buyFees": {
+          "ok": false,
+          "value": null
+        },
+        "sellFees": {
+          "ok": true,
+          "value": [
+            "100",
+            "100"
+          ]
+        },
+        "implementation": {
+          "ok": false,
+          "value": null
+        }
+      },
+      "pool": null,
+      "issuerProof": {
+        "to": "0x3DC52C69C3C8be568372E16d50E9F3FEc796610c",
+        "abi": "abis/tagai/read-interfaces.json",
+        "method": "createdTokens",
+        "args": [
+          "0x51B561b3e30E626142A710E5e36da46A7DD124A5"
+        ],
+        "result": true
+      }
+    },
+    "0xfA81C13f979f0dff4A40B68c4aba147fA0723333": {
+      "name": "AIPRO",
+      "symbol": "AIPRO",
+      "contractAddress": "0xfA81C13f979f0dff4A40B68c4aba147fA0723333",
+      "platform": "TagAI",
+      "network": "BNB Smart Chain",
+      "market": "internal",
+      "referencePrice": {
+        "amount": "0.000000020148026548",
+        "currency": "BNB",
+        "perToken": "1",
+        "includesTradingFees": false
+      },
+      "internalProgressPercent": "43.81",
+      "observedAt": "2026-10-27T03:51:44.000Z",
+      "issuerPump": "0x97f35B4631F4FFBF8050B17fAd6579D6F60A289D",
+      "abi": "abis/tagai/token-v15.json",
+      "internalReleaseId": "15",
+      "curve": "0x97f35B4631F4FFBF8050B17fAd6579D6F60A289D",
+      "decimals": 18,
+      "chainState": {
+        "name": {
+          "ok": true,
+          "value": "AIPRO"
+        },
+        "symbol": {
+          "ok": true,
+          "value": "AIPRO"
+        },
+        "decimals": {
+          "ok": true,
+          "value": "18"
+        },
+        "listed": {
+          "ok": true,
+          "value": false
+        },
+        "pending": {
+          "ok": true,
+          "value": false
+        },
+        "supply": {
+          "ok": true,
+          "value": "284811666433559752360740107"
+        },
+        "curve": {
+          "ok": true,
+          "value": "0x97f35B4631F4FFBF8050B17fAd6579D6F60A289D"
+        },
+        "buyFees": {
+          "ok": true,
+          "value": [
+            "30",
+            "30"
+          ]
+        },
+        "sellFees": {
+          "ok": true,
+          "value": [
+            "30",
+            "30"
+          ]
+        },
+        "implementation": {
+          "ok": true,
+          "value": "0x8851D281f76951d41C9ff5c820D2D387f820f073"
+        }
+      },
+      "pool": null,
+      "issuerProof": {
+        "to": "0x97f35B4631F4FFBF8050B17fAd6579D6F60A289D",
+        "abi": "abis/tagai/read-interfaces.json",
+        "method": "createdTokens",
+        "args": [
+          "0xfA81C13f979f0dff4A40B68c4aba147fA0723333"
+        ],
+        "result": true
+      }
+    }
+  },
+  "otherPlatformProofForSelectedTtai": {
+    "flap-state": {
+      "ok": false,
+      "value": null,
+      "errorData": "0xde6137d10000000000000000000000008e11e90b463bf521382e2b88539f053270a3848c"
+    },
+    "flap-market": {
+      "ok": true,
+      "value": false
+    },
+    "flap-token": {
+      "ok": true,
+      "value": "0x0000000000000000000000000000000000000000"
+    }
+  },
+  "examples": [
+    {
+      "id": "ttai-buy-0.001",
+      "intent": {
+        "token": "0x8e11E90B463bf521382E2B88539F053270a3848c",
+        "side": "buy",
+        "amount": "0.001",
+        "slippageBps": 100
+      },
+      "summary": {
+        "name": "TTAI",
+        "symbol": "TTAI",
+        "contractAddress": "0x8e11E90B463bf521382E2B88539F053270a3848c",
+        "platform": "TagAI",
+        "network": "BNB Smart Chain",
+        "market": "external",
+        "referencePrice": {
+          "amount": "0.000000067030883685",
+          "currency": "BNB",
+          "perToken": "1",
+          "includesTradingFees": false
+        },
+        "internalProgressPercent": null,
+        "observedAt": "2026-10-27T03:51:44.000Z",
+        "side": "buy",
+        "input": {
+          "amount": "0.001",
+          "symbol": "BNB"
+        },
+        "expectedOutput": {
+          "amount": "14880.7285439741261461",
+          "symbol": "TTAI"
+        },
+        "minimumOutput": {
+          "amount": "14731.921258534384884639",
+          "symbol": "TTAI"
+        },
+        "slippagePercent": "1.0",
+        "fees": null,
+        "gasIncluded": false,
+        "expectedBnbRefund": null,
+        "expiresAt": "2026-10-27T03:52:44.000Z"
+      },
+      "amountInRaw": "1000000000000000",
+      "quoteOutRaw": "14880728543974126146100",
+      "minimumOutRaw": "14731921258534384884639",
+      "transaction": {
+        "binanceChainId": "56",
+        "from": "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
+        "to": "0x10ED43C718714eb63d5aA57B78B54704E256024E",
+        "valueWei": "1000000000000000",
+        "inputData": "0xb6f9de9500000000000000000000000000000000000000000000031e9e7a2b92af9adb9f00000000000000000000000000000000000000000000000000000000000000800000000000000000000000008eec229385a366f0ff2f88db27f428b8a7343c08000000000000000000000000000000000000000000000000000000006ae020870000000000000000000000000000000000000000000000000000000000000002000000000000000000000000bb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c0000000000000000000000008e11e90b463bf521382e2b88539f053270a3848c",
+        "decoded": {
+          "signature": "swapExactETHForTokensSupportingFeeOnTransferTokens(uint256,address[],address,uint256)",
+          "selector": "0xb6f9de95",
+          "args": [
+            "14731921258534384884639",
+            [
+              "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+              "0x8e11E90B463bf521382E2B88539F053270a3848c"
+            ],
+            "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
+            "1793073287"
+          ]
+        }
+      },
+      "decoded": {
+        "signature": "swapExactETHForTokensSupportingFeeOnTransferTokens(uint256,address[],address,uint256)",
+        "selector": "0xb6f9de95",
+        "args": [
+          "14731921258534384884639",
+          [
+            "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+            "0x8e11E90B463bf521382E2B88539F053270a3848c"
+          ],
+          "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
+          "1793073287"
+        ]
+      },
+      "simulation": {
+        "mode": "eth_call only",
+        "fromIsPublicSampleNotOwned": true,
+        "returnData": "0x"
+      }
+    },
+    {
+      "id": "ttai-sell-1000",
+      "intent": {
+        "token": "0x8e11E90B463bf521382E2B88539F053270a3848c",
+        "side": "sell",
+        "amount": "1000",
+        "slippageBps": 100
+      },
+      "summary": {
+        "name": "TTAI",
+        "symbol": "TTAI",
+        "contractAddress": "0x8e11E90B463bf521382E2B88539F053270a3848c",
+        "platform": "TagAI",
+        "network": "BNB Smart Chain",
+        "market": "external",
+        "referencePrice": {
+          "amount": "0.000000067030883685",
+          "currency": "BNB",
+          "perToken": "1",
+          "includesTradingFees": false
+        },
+        "internalProgressPercent": null,
+        "observedAt": "2026-10-27T03:51:44.000Z",
+        "side": "sell",
+        "input": {
+          "amount": "1000.0",
+          "symbol": "TTAI"
+        },
+        "expectedOutput": {
+          "amount": "0.000066863164417538",
+          "symbol": "BNB"
+        },
+        "minimumOutput": {
+          "amount": "0.000066194532773362",
+          "symbol": "BNB"
+        },
+        "slippagePercent": "1.0",
+        "fees": null,
+        "gasIncluded": false,
+        "expectedBnbRefund": null,
+        "expiresAt": "2026-10-27T03:52:44.000Z"
+      },
+      "amountInRaw": "1000000000000000000000",
+      "quoteOutRaw": "66863164417538",
+      "minimumOutRaw": "66194532773362",
+      "transaction": {
+        "binanceChainId": "56",
+        "from": "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
+        "to": "0x10ED43C718714eb63d5aA57B78B54704E256024E",
+        "valueWei": "0",
+        "inputData": "0x791ac94700000000000000000000000000000000000000000000003635c9adc5dea0000000000000000000000000000000000000000000000000000000003c341d9cadf200000000000000000000000000000000000000000000000000000000000000a00000000000000000000000008eec229385a366f0ff2f88db27f428b8a7343c08000000000000000000000000000000000000000000000000000000006ae0208800000000000000000000000000000000000000000000000000000000000000020000000000000000000000008e11e90b463bf521382e2b88539f053270a3848c000000000000000000000000bb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c",
+        "decoded": {
+          "signature": "swapExactTokensForETHSupportingFeeOnTransferTokens(uint256,uint256,address[],address,uint256)",
+          "selector": "0x791ac947",
+          "args": [
+            "1000000000000000000000",
+            "66194532773362",
+            [
+              "0x8e11E90B463bf521382E2B88539F053270a3848c",
+              "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
+            ],
+            "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
+            "1793073288"
+          ]
+        }
+      },
+      "decoded": {
+        "signature": "swapExactTokensForETHSupportingFeeOnTransferTokens(uint256,uint256,address[],address,uint256)",
+        "selector": "0x791ac947",
+        "args": [
+          "1000000000000000000000",
+          "66194532773362",
+          [
+            "0x8e11E90B463bf521382E2B88539F053270a3848c",
+            "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
+          ],
+          "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
+          "1793073288"
+        ]
+      },
+      "simulation": null
+    },
+    {
+      "id": "aipro-buy-0.001",
+      "intent": {
+        "token": "0xfA81C13f979f0dff4A40B68c4aba147fA0723333",
+        "side": "buy",
+        "amount": "0.001",
+        "slippageBps": 100
+      },
+      "summary": {
+        "name": "AIPRO",
+        "symbol": "AIPRO",
+        "contractAddress": "0xfA81C13f979f0dff4A40B68c4aba147fA0723333",
+        "platform": "TagAI",
+        "network": "BNB Smart Chain",
+        "market": "internal",
+        "referencePrice": {
+          "amount": "0.000000020148026548",
+          "currency": "BNB",
+          "perToken": "1",
+          "includesTradingFees": false
+        },
+        "internalProgressPercent": "43.81",
+        "observedAt": "2026-10-27T03:51:44.000Z",
+        "side": "buy",
+        "input": {
+          "amount": "0.001",
+          "symbol": "BNB"
+        },
+        "expectedOutput": {
+          "amount": "49330.023385523107940646",
+          "symbol": "AIPRO"
+        },
+        "minimumOutput": {
+          "amount": "48836.723151667876861239",
+          "symbol": "AIPRO"
+        },
+        "slippagePercent": "1.0",
+        "fees": {
+          "currency": "BNB",
+          "amount": "0.000006",
+          "includedInQuote": true
+        },
+        "gasIncluded": false,
+        "expectedBnbRefund": null,
+        "expiresAt": "2026-10-27T03:52:44.000Z"
+      },
+      "amountInRaw": "1000000000000000",
+      "quoteOutRaw": "49330023385523107940646",
+      "minimumOutRaw": "48836723151667876861239",
+      "transaction": {
+        "binanceChainId": "56",
+        "from": "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
+        "to": "0xfA81C13f979f0dff4A40B68c4aba147fA0723333",
+        "valueWei": "1000000000000000",
+        "inputData": "0x9c4c5062000000000000000000000000000000000000000000000a722f98db77c944492600000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000064",
+        "decoded": {
+          "signature": "buyToken(uint256,address,uint16)",
+          "selector": "0x9c4c5062",
+          "args": [
+            "49330023385523107940646",
+            "0x0000000000000000000000000000000000000000",
+            "100"
+          ]
+        }
+      },
+      "decoded": {
+        "signature": "buyToken(uint256,address,uint16)",
+        "selector": "0x9c4c5062",
+        "args": [
+          "49330023385523107940646",
+          "0x0000000000000000000000000000000000000000",
+          "100"
+        ]
+      },
+      "simulation": {
+        "mode": "eth_call only",
+        "fromIsPublicSampleNotOwned": true,
+        "returnData": "0x000000000000000000000000000000000000000000000a722f98db77c9444926"
+      }
+    },
+    {
+      "id": "aipro-sell-1000",
+      "intent": {
+        "token": "0xfA81C13f979f0dff4A40B68c4aba147fA0723333",
+        "side": "sell",
+        "amount": "1000",
+        "slippageBps": 100
+      },
+      "summary": {
+        "name": "AIPRO",
+        "symbol": "AIPRO",
+        "contractAddress": "0xfA81C13f979f0dff4A40B68c4aba147fA0723333",
+        "platform": "TagAI",
+        "network": "BNB Smart Chain",
+        "market": "internal",
+        "referencePrice": {
+          "amount": "0.000000020148026548",
+          "currency": "BNB",
+          "perToken": "1",
+          "includesTradingFees": false
+        },
+        "internalProgressPercent": "43.81",
+        "observedAt": "2026-10-27T03:51:44.000Z",
+        "side": "sell",
+        "input": {
+          "amount": "1000.0",
+          "symbol": "AIPRO"
+        },
+        "expectedOutput": {
+          "amount": "0.00002002709857366",
+          "symbol": "BNB"
+        },
+        "minimumOutput": {
+          "amount": "0.000019826827587923",
+          "symbol": "BNB"
+        },
+        "slippagePercent": "1.0",
+        "fees": {
+          "currency": "BNB",
+          "amount": "0.000000120887918954",
+          "includedInQuote": true
+        },
+        "gasIncluded": false,
+        "expectedBnbRefund": null,
+        "expiresAt": "2026-10-27T03:52:44.000Z"
+      },
+      "amountInRaw": "1000000000000000000000",
+      "quoteOutRaw": "20027098573660",
+      "minimumOutRaw": "19826827587923",
+      "transaction": {
+        "binanceChainId": "56",
+        "from": "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
+        "to": "0xfA81C13f979f0dff4A40B68c4aba147fA0723333",
+        "valueWei": "0",
+        "inputData": "0xbd2bb69b00000000000000000000000000000000000000000000003635c9adc5dea0000000000000000000000000000000000000000000000000000000001236ec18ab5c00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000064",
+        "decoded": {
+          "signature": "sellToken(uint256,uint256,address,uint16)",
+          "selector": "0xbd2bb69b",
+          "args": [
+            "1000000000000000000000",
+            "20027098573660",
+            "0x0000000000000000000000000000000000000000",
+            "100"
+          ]
+        }
+      },
+      "decoded": {
+        "signature": "sellToken(uint256,uint256,address,uint16)",
+        "selector": "0xbd2bb69b",
+        "args": [
+          "1000000000000000000000",
+          "20027098573660",
+          "0x0000000000000000000000000000000000000000",
+          "100"
+        ]
+      },
+      "simulation": null
+    }
+  ]
+}

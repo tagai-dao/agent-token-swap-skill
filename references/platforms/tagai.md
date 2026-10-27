@@ -1,16 +1,20 @@
 # TagAI Token Interaction
 
-## Release scope
+## Start with a worked example
+
+Read [worked examples](../tagai/worked-examples.md) first for information queries, amount quotes and purchases / sales. It specifies the search URLs, actual candidate addresses, ordered fixed-block call sets, exact method arguments, integer calculations, transaction fields and wallet confirmation flow. Use its TTAI external recipe or AIPRO internal recipe according to the observed state. Do not invent a different sequence or replay historical prices / calldata. The recipes are executable through existing tools without installing this repository.
+
+## Internal support boundary
 
 Use [direct tool execution](../tool-native.md) for ordinary requests: resolve tickers, read BSC state, quote, simulate, obtain a Binance wallet preview, and send the confirmed transaction with the agent’s existing tools. No repository clone or npm installation is required. The [repository runner](../runtime.md) automates the same checks when available, but is optional. The version-specific [ABIs](../../abis/provenance.json), [deployment reference registry](../../config/tagai-bsc.json) and auxiliary [offline tools](../tagai/tools.md) below are internal implementation references.
 
 **V5 and V8 are explicitly unsupported in this release, for both internal and external trading.** Recognizing either version must stop quotation and trade construction. Do not work around this exclusion by calling another version's ABI or treating the token as unclassified external issuance. V6 and V10 are imported-token records, not TagAI-native issuance. V12, V17, and unknown versions are outside this integration.
 
-TagAI live flags are enabled in config/bsc.json. The runtime verifies issuance, token identity, market state and pool bindings per request; it uses fixed-block Multicall and real-wallet simulation, then requires confirmation of the Binance preview before sending. Do not explain version families or excluded-version lists in ordinary user replies. Report the token information, price, market and trade preview; surface only a relevant actionable blocker. Other platform adapters remain unintegrated.
+TagAI live flags are enabled in config/bsc.json. The runtime verifies issuance, token identity, market state and pool bindings per request; it uses fixed-block Multicall and real-wallet simulation, then requires confirmation of the Binance preview before sending. Do not explain version families or excluded-version lists in ordinary user replies. Report the token information, price, market and trade preview; surface only a relevant actionable blocker. Flap is also integrated for its documented subset; Fourme and GANG remain unintegrated.
 
 Read in this order:
 
-1. [Versions, identity, and state](../tagai/versions.md).
+1. [Worked examples](../tagai/worked-examples.md), then [versions, identity, and state](../tagai/versions.md).
 2. [Internal-market calls](../tagai/internal.md) or [external-market calls](../tagai/external.md), according to the verified state.
 3. Use the existing ABI / RPC tools for encoding and Multicall; [offline helpers](../tagai/tools.md) are optional.
 4. [Binance wallet](../binance-wallet.md) for each approval and transaction.
