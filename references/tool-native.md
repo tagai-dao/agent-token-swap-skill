@@ -1,6 +1,6 @@
 # Direct Execution with Existing Agent Tools
 
-This is the default mode for TagAI and Flap. For Flap first read [its platform reference](platforms/flap.md) and select ordinary Portal / ID Agent / external instructions. The TagAI-specific deployment and quote steps below apply only to TagAI. Never reuse TagAI Pump getters or version exclusions for Flap.
+This is the default mode for TagAI and Flap. For Flap first read [its platform reference](platforms/flap.md), then follow the matching [call example](flap/worked-examples.md) for ordinary Portal / ID Agent / external trading. The TagAI-specific deployment and quote steps below apply only to TagAI. Never reuse TagAI Pump getters or version exclusions for Flap.
 
 ## Execution contract
 

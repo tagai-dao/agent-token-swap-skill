@@ -1,5 +1,7 @@
 # Flap External Markets
 
+Start with the [0.001 BNB external buy and 1000-token sale examples](worked-examples.md) for concrete pool checks, quote stages, sourceData, wrapper parameters and wallet calls.
+
 Read [Flap](../platforms/flap.md), [DEX verification](../external-dex.md) and [wrapper methods](../imported-token-swap-wrapper.md). Graduated Flap tokens prefer ImportedTokenSwapWrapper. Internal ordinary Portal and ID Agent share trades never use it; native TagAI tokens retain their own direct-DEX route.
 
 ## Connected route

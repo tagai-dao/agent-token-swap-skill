@@ -1,0 +1,1146 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-27T04:14:34.000Z",
+  "snapshot": {
+    "blockTag": "0x7c000d2",
+    "blockHash": "0x2668d87fc9ad847854d8fa49e21dfd40496158bf88d0d4d82840fa00e9056493",
+    "timestamp": 1793074474
+  },
+  "liveOrder": false,
+  "walletConnected": false,
+  "transactionBroadcast": false,
+  "warning": "Historical read-only examples. Refresh current state, quotes and wallet parameters before preparing a transaction. The public sample account is not the user wallet.",
+  "addresses": {
+    "ordinary": "0x25E9328bA48c0C79e23233945942663dbD987777",
+    "agent": "0xef77Eb3f3c185076d77d928465bc265D436512a9",
+    "external": "0x14f6a94909c407854390aa2d2462a3095d317777"
+  },
+  "observations": {
+    "ordinary": {
+      "summary": {
+        "name": "Snoop Dog",
+        "symbol": "SNOOPDOG",
+        "contractAddress": "0x25E9328bA48c0C79e23233945942663dbD987777",
+        "platform": "Flap",
+        "network": "BNB Smart Chain",
+        "market": "internal",
+        "referencePrice": {
+          "amount": "0.000000005551294504",
+          "currency": "BNB",
+          "perToken": "1",
+          "includesTradingFees": false
+        },
+        "internalProgressPercent": "0.01",
+        "observedAt": "2026-10-27T04:14:34.000Z"
+      },
+      "decimals": 18,
+      "quoteAsset": {
+        "address": "0x0000000000000000000000000000000000000000",
+        "symbol": "BNB",
+        "decimals": 18
+      },
+      "state": {
+        "status": "1",
+        "reserve": "2742906237159281",
+        "circulatingSupply": "494322822585034743463670",
+        "price": "5551294504",
+        "tokenVersion": "6",
+        "r": "6140000000000000000",
+        "h": "107036752000000000000000000",
+        "k": "6797205657280000000000000000",
+        "dexSupplyThresh": "800000000000000000000000000",
+        "quoteTokenAddress": "0x0000000000000000000000000000000000000000",
+        "nativeToQuoteSwapEnabled": false,
+        "extensionID": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "buyTaxRate": "100",
+        "sellTaxRate": "100",
+        "pool": "0x0000000000000000000000000000000000000000",
+        "progress": "171452162479219",
+        "lpFeeProfile": "0",
+        "dexId": "0",
+        "bondingCurveFeeRate": "125"
+      },
+      "pool": null
+    },
+    "agent": {
+      "summary": {
+        "name": "test",
+        "symbol": "test",
+        "contractAddress": "0xaa8240c3ba6981F4e0141ecF7665B35E36467777",
+        "marketAddress": "0xef77Eb3f3c185076d77d928465bc265D436512a9",
+        "platform": "Flap",
+        "network": "BNB Smart Chain",
+        "market": "internal",
+        "assetKind": "pre-launch shares",
+        "tokenDeployed": false,
+        "referencePrice": {
+          "amount": "0.0000000057787763",
+          "currency": "BNB",
+          "perShare": "1",
+          "includesTradingFees": false
+        },
+        "internalProgressPercent": "2.62",
+        "observedAt": "2026-10-27T04:14:34.000Z"
+      },
+      "decimals": 18,
+      "quoteAsset": {
+        "address": "0x0000000000000000000000000000000000000000",
+        "symbol": "BNB",
+        "decimals": 18
+      },
+      "market": "0xef77Eb3f3c185076d77d928465bc265D436512a9",
+      "detail": {
+        "market": "0xef77Eb3f3c185076d77d928465bc265D436512a9",
+        "creator": "0x000028394938F61a29ECDf76b9c35Ca08d6E0000",
+        "quoteToken": "0x0000000000000000000000000000000000000000",
+        "quoteDecimals": "18",
+        "capRaw": "5000000000000000000",
+        "poolRaw": "131276729209139124",
+        "remainingRaw": "4868723270790860876",
+        "progressBps": "262",
+        "phase": "1",
+        "predictedToken": "0xaa8240c3ba6981F4e0141ecF7665B35E36467777",
+        "token": "0x0000000000000000000000000000000000000000",
+        "pair": "0xd4eBCAa9d9D5403e35DaDda7b57A1fba37ed6995",
+        "curveReserveRaw": "127338427332864950",
+        "totalShares": "22492533414914608550484379",
+        "claimedShares": "0",
+        "maxWalletShares": "10000000000000000000000000",
+        "predictedInitialBuyNetRaw": "4900000000000000000",
+        "configHash": "0xd27da341a153aa70995059517153314247c543b92b751dcaee111eafef5c470e",
+        "flapBuyFeeBps": "100",
+        "flapSellFeeBps": "100",
+        "agentFeeBps": "100",
+        "buyCount": "38",
+        "sellCount": "29",
+        "cumulativeBuyGrossRaw": "316008298404857217",
+        "cumulativeBuySubmittedRaw": "316008298404857217",
+        "cumulativeBuyNetRaw": "312848215420808649",
+        "cumulativeBuyFeesRaw": "3160082984048568",
+        "cumulativeBuyRefundRaw": "0",
+        "cumulativeBuyShares": "53845880178739146702036697",
+        "cumulativeBuyCurveRaw": "303462768958184388",
+        "cumulativeSellDebitRaw": "181571486211669525",
+        "cumulativeSellPayoutRaw": "179810242795416340",
+        "cumulativeSellFeesRaw": "1761243416253185",
+        "cumulativeSellShares": "31353346763824538151552318",
+        "cumulativeSellCurveRaw": "176124341625319438",
+        "cumulativeSellReserveRefundRaw": "5447144586350087",
+        "claimCount": "0",
+        "uniqueBuyerCount": "20",
+        "holderCount": "4",
+        "virtualCurveVolumeRaw": "479587110583503826",
+        "cumulativeAgentFeesRaw": "4921326400301753",
+        "launchedAt": "0",
+        "statsStartBlock": "129337234",
+        "statsComplete": true,
+        "quoteBalanceKnown": true,
+        "quoteBalanceRaw": "131276729209139124",
+        "quoteBackingEnough": true,
+        "inventoryKnown": false,
+        "inventoryRaw": "0",
+        "inventoryEnough": false
+      },
+      "settings": {
+        "launch": {
+          "name": "test",
+          "symbol": "test",
+          "meta": "bafkreib3f55qjntq3xcong3plotiyc5xwlc7nzez2fnevpo64taphrzpoy",
+          "salt": "0x42b837247c7de791e480b29ca4700622a092c4691f9464c19621084d41df28fe",
+          "beneficiary": "0x000028394938F61a29ECDf76b9c35Ca08d6E0000",
+          "buyTaxRate": "100",
+          "sellTaxRate": "100",
+          "mktBps": "0",
+          "deflationBps": "10000",
+          "dividendBps": "0",
+          "lpBps": "0",
+          "maxWalletBps": "100"
+        },
+        "quoteToken": "0x0000000000000000000000000000000000000000",
+        "quoteDecimals": "18",
+        "capRaw": "5000000000000000000",
+        "quoteHelper": "0x0000000000000000000000000000000000000000",
+        "quoteConfigHash": "0x7ca212a3129ef113387ae2b32902da28cd891ea2421d902810fa20a5a5db7078",
+        "curveType": "20",
+        "curveR": "6140000000000000000",
+        "curveH": "107036752000000000000000000",
+        "curveK": "6797205657280000000000000000",
+        "predictedInitialBuyNetRaw": "4900000000000000000",
+        "virtualReserveAtCapRaw": "4850000000000000000",
+        "maxWalletShares": "10000000000000000000000000"
+      },
+      "position": {
+        "shares": "2320144247579777575291208",
+        "claimableRaw": "0",
+        "remainingWalletShares": "7679855752420222424708792",
+        "cumulative": {
+          "buySpentRaw": "13428439469388608",
+          "buyShares": "2320144247579777575291208",
+          "sellReceivedRaw": "0",
+          "sellShares": "0",
+          "claimedShares": "0",
+          "buyCount": "1",
+          "sellCount": "0",
+          "claimCount": "0"
+        },
+        "statsComplete": true,
+        "eligibilityKnown": true,
+        "eligible": true,
+        "inventoryKnown": false,
+        "inventoryRaw": "0",
+        "inventoryEnough": false
+      }
+    },
+    "external": {
+      "summary": {
+        "name": "WangChai",
+        "symbol": "\u65fa\u67f4",
+        "contractAddress": "0x14F6A94909C407854390Aa2d2462a3095D317777",
+        "platform": "Flap",
+        "network": "BNB Smart Chain",
+        "market": "external",
+        "referencePrice": {
+          "amount": "0.000011772654275157",
+          "currency": "BNB",
+          "perToken": "1",
+          "includesTradingFees": false
+        },
+        "internalProgressPercent": null,
+        "observedAt": "2026-10-27T04:14:34.000Z"
+      },
+      "decimals": 18,
+      "quoteAsset": {
+        "address": "0x0000000000000000000000000000000000000000",
+        "symbol": "BNB",
+        "decimals": 18
+      },
+      "state": {
+        "status": "4",
+        "reserve": "0",
+        "circulatingSupply": "1000000000000000000000000000",
+        "price": "0",
+        "tokenVersion": "6",
+        "r": "6140000000000000000",
+        "h": "107036752000000000000000000",
+        "k": "6797205657280000000000000000",
+        "dexSupplyThresh": "800000000000000000000000000",
+        "quoteTokenAddress": "0x0000000000000000000000000000000000000000",
+        "nativeToQuoteSwapEnabled": false,
+        "extensionID": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "buyTaxRate": "100",
+        "sellTaxRate": "100",
+        "pool": "0x223C585c50D4747653a57D577707B1EadBB2cFB0",
+        "progress": "1000000000000000000",
+        "lpFeeProfile": "0",
+        "dexId": "0",
+        "bondingCurveFeeRate": "125"
+      },
+      "pool": {
+        "kind": "v2",
+        "pair": "0x223C585c50D4747653a57D577707B1EadBB2cFB0",
+        "quote": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+        "tokenReserve": "22261164407864197175403331",
+        "quoteReserve": "262072992336226490787"
+      }
+    }
+  },
+  "examples": [
+    {
+      "id": "ordinary-buy-0.001",
+      "kind": "ordinary",
+      "intent": {
+        "token": "0x25E9328bA48c0C79e23233945942663dbD987777",
+        "side": "buy",
+        "amount": "0.001",
+        "slippageBps": 100
+      },
+      "summary": {
+        "name": "Snoop Dog",
+        "symbol": "SNOOPDOG",
+        "contractAddress": "0x25E9328bA48c0C79e23233945942663dbD987777",
+        "platform": "Flap",
+        "network": "BNB Smart Chain",
+        "market": "internal",
+        "referencePrice": {
+          "amount": "0.000000005551294504",
+          "currency": "BNB",
+          "perToken": "1",
+          "includesTradingFees": false
+        },
+        "internalProgressPercent": "0.01",
+        "observedAt": "2026-10-27T04:14:34.000Z",
+        "side": "buy",
+        "input": {
+          "amount": "0.001",
+          "symbol": "BNB"
+        },
+        "expectedOutput": {
+          "amount": "176507.241153887822017313",
+          "symbol": "SNOOPDOG"
+        },
+        "minimumOutput": {
+          "amount": "174742.168742348943797139",
+          "symbol": "SNOOPDOG"
+        },
+        "slippagePercent": "1.0",
+        "fees": {
+          "includedInQuote": true,
+          "protocolFeeBps": 125,
+          "tokenTaxBps": 100,
+          "amount": null
+        },
+        "gasIncluded": false,
+        "buyingLimit": null,
+        "expiresAt": "2026-10-27T04:15:34.000Z"
+      },
+      "amountInRaw": "1000000000000000",
+      "quoteOutRaw": "176507241153887822017313",
+      "minimumOutRaw": "174742168742348943797139",
+      "shareBps": null,
+      "abi": "abis/flap/portal.json",
+      "transaction": {
+        "binanceChainId": "56",
+        "from": "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
+        "to": "0xe2cE6ab80874Fa9Fa2aAE65D277Dd6B8e65C9De0",
+        "valueWei": "1000000000000000",
+        "inputData": "0xef7ec2e70000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000000000000000000000000000025e9328ba48c0c79e23233945942663dbd98777700000000000000000000000000000000000000000000000000038d7ea4c68000000000000000000000000000000000000000000000002500cabd277a33f42b9300000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "decoded": {
+        "signature": "swapExactInput((address,address,uint256,uint256,bytes))",
+        "selector": "0xef7ec2e7",
+        "args": [
+          [
+            "0x0000000000000000000000000000000000000000",
+            "0x25E9328bA48c0C79e23233945942663dbD987777",
+            "1000000000000000",
+            "174742168742348943797139",
+            "0x"
+          ]
+        ]
+      },
+      "reads": [
+        {
+          "target": "0xe2cE6ab80874Fa9Fa2aAE65D277Dd6B8e65C9De0",
+          "abi": "abis/flap/portal.json",
+          "method": "maxBuyPerOrigin",
+          "args": [
+            "0x25E9328bA48c0C79e23233945942663dbD987777"
+          ],
+          "inputData": "0x4b02c8e900000000000000000000000025e9328ba48c0c79e23233945942663dbd987777",
+          "returnData": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "result": [
+            "0",
+            "0"
+          ],
+          "blockTag": "0x7c000d2",
+          "outerFrom": "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08"
+        },
+        {
+          "target": "0xe2cE6ab80874Fa9Fa2aAE65D277Dd6B8e65C9De0",
+          "abi": "abis/flap/portal.json",
+          "method": "quoteExactInput",
+          "args": [
+            [
+              "0x0000000000000000000000000000000000000000",
+              "0x25E9328bA48c0C79e23233945942663dbD987777",
+              "1000000000000000"
+            ]
+          ],
+          "inputData": "0xfc847c2b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000025e9328ba48c0c79e23233945942663dbd98777700000000000000000000000000000000000000000000000000038d7ea4c68000",
+          "returnData": "0x0000000000000000000000000000000000000000000025607a0a0e047ce1f321",
+          "result": [
+            "176507241153887822017313"
+          ],
+          "blockTag": "0x7c000d2",
+          "outerFrom": "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08"
+        }
+      ],
+      "simulation": {
+        "mode": "eth_call only",
+        "fromIsPublicSampleNotOwned": true,
+        "returnData": "0x0000000000000000000000000000000000000000000025607a0a0e047ce1f321",
+        "outputRaw": "176507241153887822017313"
+      }
+    },
+    {
+      "id": "ordinary-sell-1000",
+      "kind": "ordinary",
+      "intent": {
+        "token": "0x25E9328bA48c0C79e23233945942663dbD987777",
+        "side": "sell",
+        "amount": "1000",
+        "slippageBps": 100
+      },
+      "summary": {
+        "name": "Snoop Dog",
+        "symbol": "SNOOPDOG",
+        "contractAddress": "0x25E9328bA48c0C79e23233945942663dbD987777",
+        "platform": "Flap",
+        "network": "BNB Smart Chain",
+        "market": "internal",
+        "referencePrice": {
+          "amount": "0.000000005551294504",
+          "currency": "BNB",
+          "perToken": "1",
+          "includesTradingFees": false
+        },
+        "internalProgressPercent": "0.01",
+        "observedAt": "2026-10-27T04:14:34.000Z",
+        "side": "sell",
+        "input": {
+          "amount": "1000.0",
+          "symbol": "SNOOPDOG"
+        },
+        "expectedOutput": {
+          "amount": "0.000005440263698089",
+          "symbol": "BNB"
+        },
+        "minimumOutput": {
+          "amount": "0.000005385861061108",
+          "symbol": "BNB"
+        },
+        "slippagePercent": "1.0",
+        "fees": {
+          "includedInQuote": true,
+          "protocolFeeBps": 125,
+          "tokenTaxBps": 100,
+          "amount": null
+        },
+        "gasIncluded": false,
+        "buyingLimit": null,
+        "expiresAt": "2026-10-27T04:15:34.000Z"
+      },
+      "amountInRaw": "1000000000000000000000",
+      "quoteOutRaw": "5440263698089",
+      "minimumOutRaw": "5385861061108",
+      "shareBps": null,
+      "abi": "abis/flap/portal.json",
+      "transaction": {
+        "binanceChainId": "56",
+        "from": "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
+        "to": "0xe2cE6ab80874Fa9Fa2aAE65D277Dd6B8e65C9De0",
+        "valueWei": "0",
+        "inputData": "0xef7ec2e7000000000000000000000000000000000000000000000000000000000000002000000000000000000000000025e9328ba48c0c79e23233945942663dbd987777000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003635c9adc5dea00000000000000000000000000000000000000000000000000000000004e5fe55d9f400000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "decoded": {
+        "signature": "swapExactInput((address,address,uint256,uint256,bytes))",
+        "selector": "0xef7ec2e7",
+        "args": [
+          [
+            "0x25E9328bA48c0C79e23233945942663dbD987777",
+            "0x0000000000000000000000000000000000000000",
+            "1000000000000000000000",
+            "5385861061108",
+            "0x"
+          ]
+        ]
+      },
+      "reads": [
+        {
+          "target": "0xe2cE6ab80874Fa9Fa2aAE65D277Dd6B8e65C9De0",
+          "abi": "abis/flap/portal.json",
+          "method": "quoteExactInput",
+          "args": [
+            [
+              "0x25E9328bA48c0C79e23233945942663dbD987777",
+              "0x0000000000000000000000000000000000000000",
+              "1000000000000000000000"
+            ]
+          ],
+          "inputData": "0xfc847c2b00000000000000000000000025e9328ba48c0c79e23233945942663dbd987777000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003635c9adc5dea00000",
+          "returnData": "0x000000000000000000000000000000000000000000000000000004f2a8fc36a9",
+          "result": [
+            "5440263698089"
+          ],
+          "blockTag": "0x7c000d2",
+          "outerFrom": null
+        }
+      ],
+      "simulation": null
+    },
+    {
+      "id": "agent-buy-0.001",
+      "kind": "agent",
+      "intent": {
+        "token": "0xef77Eb3f3c185076d77d928465bc265D436512a9",
+        "side": "buy",
+        "amount": "0.001",
+        "slippageBps": 100
+      },
+      "summary": {
+        "name": "test",
+        "symbol": "test",
+        "contractAddress": "0xaa8240c3ba6981F4e0141ecF7665B35E36467777",
+        "marketAddress": "0xef77Eb3f3c185076d77d928465bc265D436512a9",
+        "platform": "Flap",
+        "network": "BNB Smart Chain",
+        "market": "internal",
+        "assetKind": "pre-launch shares",
+        "tokenDeployed": false,
+        "referencePrice": {
+          "amount": "0.0000000057787763",
+          "currency": "BNB",
+          "perShare": "1",
+          "includesTradingFees": false
+        },
+        "internalProgressPercent": "2.62",
+        "observedAt": "2026-10-27T04:14:34.000Z",
+        "side": "buy",
+        "input": {
+          "amount": "0.001",
+          "symbol": "BNB"
+        },
+        "expectedOutput": {
+          "amount": "166151.592068491961650358",
+          "symbol": "test",
+          "unit": "pre-launch shares"
+        },
+        "minimumOutput": {
+          "amount": "164490.076147807042033854",
+          "symbol": "test"
+        },
+        "slippagePercent": "1.0",
+        "expectedBnbRefund": null,
+        "fees": {
+          "includedInQuote": true,
+          "amount": "0.00001",
+          "currency": "BNB"
+        },
+        "gasIncluded": false,
+        "expiresAt": "2026-10-27T04:15:34.000Z"
+      },
+      "amountInRaw": "1000000000000000",
+      "quoteOutRaw": "166151592068491961650358",
+      "minimumOutRaw": "164490076147807042033854",
+      "shareBps": null,
+      "abi": "abis/flap/agent-curve.json",
+      "transaction": {
+        "binanceChainId": "56",
+        "from": "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
+        "to": "0x49387D2E6cbF8FefE856e3FBc3E98a01aC3af062",
+        "valueWei": "1000000000000000",
+        "inputData": "0xcce7ec13000000000000000000000000ef77eb3f3c185076d77d928465bc265d436512a90000000000000000000000000000000000000000000022d5065f8ea7f11258be"
+      },
+      "decoded": {
+        "signature": "buy(address,uint256)",
+        "selector": "0xcce7ec13",
+        "args": [
+          "0xef77Eb3f3c185076d77d928465bc265D436512a9",
+          "164490076147807042033854"
+        ]
+      },
+      "reads": [
+        {
+          "target": "0x18Aa6C93f1887a243fdc348C9A77F5136555174a",
+          "abi": "abis/flap/agent-curve.json",
+          "method": "userPosition",
+          "args": [
+            "0xef77Eb3f3c185076d77d928465bc265D436512a9",
+            "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08"
+          ],
+          "inputData": "0x6878353e000000000000000000000000ef77eb3f3c185076d77d928465bc265d436512a90000000000000000000000008eec229385a366f0ff2f88db27f428b8a7343c08",
+          "returnData": "0x00000000000000000000000000000000000000000001eb4f458d2abeaa3209480000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000065a45d086d6899fcdf6b8000000000000000000000000000000000000000000000000002fb5183475f34000000000000000000000000000000000000000000001eb4f458d2abeaa320948000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "result": [
+            [
+              "2320144247579777575291208",
+              "0",
+              "7679855752420222424708792",
+              [
+                "13428439469388608",
+                "2320144247579777575291208",
+                "0",
+                "0",
+                "0",
+                "1",
+                "0",
+                "0"
+              ],
+              true,
+              true,
+              true,
+              false,
+              "0",
+              false
+            ]
+          ],
+          "blockTag": "0x7c000d2",
+          "outerFrom": null
+        },
+        {
+          "target": "0x60B9262456dE011F7d15a54CdD8c48bAaa8B022F",
+          "abi": "abis/tagai/read-interfaces.json",
+          "method": "handleOf",
+          "args": [
+            "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08"
+          ],
+          "inputData": "0xc50a15140000000000000000000000008eec229385a366f0ff2f88db27f428b8a7343c08",
+          "returnData": "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000036770750000000000000000000000000000000000000000000000000000000000",
+          "result": [
+            "gpu"
+          ],
+          "blockTag": "0x7c000d2",
+          "outerFrom": null
+        },
+        {
+          "target": "0x49387D2E6cbF8FefE856e3FBc3E98a01aC3af062",
+          "abi": "abis/flap/agent-curve.json",
+          "method": "quoteBuy",
+          "args": [
+            "0xef77Eb3f3c185076d77d928465bc265D436512a9",
+            "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
+            "1000000000000000"
+          ],
+          "inputData": "0x34259b1b000000000000000000000000ef77eb3f3c185076d77d928465bc265d436512a90000000000000000000000008eec229385a366f0ff2f88db27f428b8a7343c0800000000000000000000000000000000000000000000000000038d7ea4c68000",
+          "returnData": "0x00000000000000000000000000000000000000000000000000038d7ea4c68000000000000000000000000000000000000000000000000000000009184e72a000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000232f1889e56e29cf4cb6",
+          "result": [
+            "1000000000000000",
+            "10000000000000",
+            "0",
+            "166151592068491961650358"
+          ],
+          "blockTag": "0x7c000d2",
+          "outerFrom": null
+        }
+      ],
+      "simulation": {
+        "mode": "eth_call only",
+        "fromIsPublicSampleNotOwned": true,
+        "returnData": "0x00000000000000000000000000000000000000000000232f1889e56e29cf4cb6",
+        "outputRaw": "166151592068491961650358"
+      }
+    },
+    {
+      "id": "agent-sell-50pct",
+      "kind": "agent",
+      "intent": {
+        "token": "0xef77Eb3f3c185076d77d928465bc265D436512a9",
+        "side": "sell",
+        "amount": "50%",
+        "slippageBps": 100
+      },
+      "summary": {
+        "name": "test",
+        "symbol": "test",
+        "contractAddress": "0xaa8240c3ba6981F4e0141ecF7665B35E36467777",
+        "marketAddress": "0xef77Eb3f3c185076d77d928465bc265D436512a9",
+        "platform": "Flap",
+        "network": "BNB Smart Chain",
+        "market": "internal",
+        "assetKind": "pre-launch shares",
+        "tokenDeployed": false,
+        "referencePrice": {
+          "amount": "0.0000000057787763",
+          "currency": "BNB",
+          "perShare": "1",
+          "includesTradingFees": false
+        },
+        "internalProgressPercent": "2.62",
+        "observedAt": "2026-10-27T04:14:34.000Z",
+        "side": "sell",
+        "input": {
+          "amount": "1160072.123789888787645604",
+          "symbol": "test",
+          "unit": "pre-launch shares",
+          "percentage": "50%"
+        },
+        "expectedOutput": {
+          "amount": "0.006836780364695842",
+          "symbol": "BNB"
+        },
+        "minimumOutput": {
+          "amount": "0.006768412561048883",
+          "symbol": "BNB"
+        },
+        "slippagePercent": "1.0",
+        "expectedBnbRefund": null,
+        "fees": {
+          "includedInQuote": true,
+          "amount": null,
+          "currency": "BNB"
+        },
+        "gasIncluded": false,
+        "expiresAt": "2026-10-27T04:15:34.000Z"
+      },
+      "amountInRaw": "1160072123789888787645604",
+      "quoteOutRaw": "6836780364695842",
+      "minimumOutRaw": "6768412561048883",
+      "shareBps": "5000",
+      "abi": "abis/flap/agent-curve.json",
+      "transaction": {
+        "binanceChainId": "56",
+        "from": "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
+        "to": "0x49387D2E6cbF8FefE856e3FBc3E98a01aC3af062",
+        "valueWei": "0",
+        "inputData": "0x2f9d7c27000000000000000000000000ef77eb3f3c185076d77d928465bc265d436512a9000000000000000000000000000000000000000000000000000000000000138800000000000000000000000000000000000000000000000000180bd5da650533"
+      },
+      "decoded": {
+        "signature": "sellBps(address,uint256,uint256)",
+        "selector": "0x2f9d7c27",
+        "args": [
+          "0xef77Eb3f3c185076d77d928465bc265D436512a9",
+          "5000",
+          "6768412561048883"
+        ]
+      },
+      "reads": [
+        {
+          "target": "0x18Aa6C93f1887a243fdc348C9A77F5136555174a",
+          "abi": "abis/flap/agent-curve.json",
+          "method": "userPosition",
+          "args": [
+            "0xef77Eb3f3c185076d77d928465bc265D436512a9",
+            "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08"
+          ],
+          "inputData": "0x6878353e000000000000000000000000ef77eb3f3c185076d77d928465bc265d436512a90000000000000000000000008eec229385a366f0ff2f88db27f428b8a7343c08",
+          "returnData": "0x00000000000000000000000000000000000000000001eb4f458d2abeaa3209480000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000065a45d086d6899fcdf6b8000000000000000000000000000000000000000000000000002fb5183475f34000000000000000000000000000000000000000000001eb4f458d2abeaa320948000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "result": [
+            [
+              "2320144247579777575291208",
+              "0",
+              "7679855752420222424708792",
+              [
+                "13428439469388608",
+                "2320144247579777575291208",
+                "0",
+                "0",
+                "0",
+                "1",
+                "0",
+                "0"
+              ],
+              true,
+              true,
+              true,
+              false,
+              "0",
+              false
+            ]
+          ],
+          "blockTag": "0x7c000d2",
+          "outerFrom": null
+        }
+      ],
+      "simulation": {
+        "mode": "eth_call only",
+        "fromIsPublicSampleNotOwned": true,
+        "returnData": "0x00000000000000000000000000000000000000000000000000184a03f90b8922",
+        "outputRaw": "6836780364695842"
+      },
+      "quoteSimulation": {
+        "from": "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
+        "to": "0x49387D2E6cbF8FefE856e3FBc3E98a01aC3af062",
+        "valueWei": "0",
+        "inputData": "0x2f9d7c27000000000000000000000000ef77eb3f3c185076d77d928465bc265d436512a900000000000000000000000000000000000000000000000000000000000013880000000000000000000000000000000000000000000000000000000000000001",
+        "blockTag": "0x7c000d2",
+        "outputRaw": "6836780364695842",
+        "purpose": "Read-only percentage-sale quote"
+      }
+    },
+    {
+      "id": "external-buy-0.001",
+      "kind": "external",
+      "intent": {
+        "token": "0x14f6a94909c407854390aa2d2462a3095d317777",
+        "side": "buy",
+        "amount": "0.001",
+        "slippageBps": 100
+      },
+      "summary": {
+        "name": "WangChai",
+        "symbol": "\u65fa\u67f4",
+        "contractAddress": "0x14F6A94909C407854390Aa2d2462a3095D317777",
+        "platform": "Flap",
+        "network": "BNB Smart Chain",
+        "market": "external",
+        "referencePrice": {
+          "amount": "0.000011772654275157",
+          "currency": "BNB",
+          "perToken": "1",
+          "includesTradingFees": false
+        },
+        "internalProgressPercent": null,
+        "observedAt": "2026-10-27T04:14:34.000Z",
+        "side": "buy",
+        "input": {
+          "amount": "0.001",
+          "symbol": "BNB"
+        },
+        "expectedOutput": {
+          "amount": "83.547104019686709081",
+          "symbol": "\u65fa\u67f4"
+        },
+        "minimumOutput": {
+          "amount": "82.71163297948984199",
+          "symbol": "\u65fa\u67f4"
+        },
+        "slippagePercent": "1.0",
+        "fees": {
+          "includedInQuote": true,
+          "tokenTaxBps": 100
+        },
+        "gasIncluded": false,
+        "buyingLimit": null,
+        "expiresAt": "2026-10-27T04:15:34.000Z"
+      },
+      "amountInRaw": "1000000000000000",
+      "quoteOutRaw": "83547104019686709081",
+      "minimumOutRaw": "82711632979489841990",
+      "shareBps": null,
+      "abi": "abis/imported-token-swap-wrapper.json",
+      "transaction": {
+        "binanceChainId": "56",
+        "from": "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
+        "to": "0xDfFc699FB095a693708E3c15e6F0a224cbbCc98F",
+        "valueWei": "1000000000000000",
+        "inputData": "0xc3ad65c400000000000000000000000014f6a94909c407854390aa2d2462a3095d317777000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000e00000000000000000000000000000000000000000000000047bdabff846f9e3460000000000000000000000008eec229385a366f0ff2f88db27f428b8a7343c08000000000000000000000000000000000000000000000000000000006ae025e70000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004000000000000000000000000010ed43c718714eb63d5aa57b78b54704e256024e000000000000000000000000223c585c50d4747653a57d577707b1eadbb2cfb0"
+      },
+      "decoded": {
+        "signature": "buyToken(address,uint8,bytes,uint256,address,uint256,address)",
+        "selector": "0xc3ad65c4",
+        "args": [
+          "0x14F6A94909C407854390Aa2d2462a3095D317777",
+          "0",
+          "0x00000000000000000000000010ed43c718714eb63d5aa57b78b54704e256024e000000000000000000000000223c585c50d4747653a57d577707b1eadbb2cfb0",
+          "82711632979489841990",
+          "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
+          "1793074663",
+          "0x0000000000000000000000000000000000000000"
+        ]
+      },
+      "reads": [
+        {
+          "target": "0xDfFc699FB095a693708E3c15e6F0a224cbbCc98F",
+          "abi": "abis/imported-token-swap-wrapper.json",
+          "method": "previewFees",
+          "args": [
+            "1000000000000000"
+          ],
+          "inputData": "0xfd215c3b00000000000000000000000000000000000000000000000000038d7ea4c68000",
+          "returnData": "0x000000000000000000000000000000000000000000000000000389db52324000000000000000000000000000000000000000000000000000000001d1a94a2000000000000000000000000000000000000000000000000000000001d1a94a2000",
+          "result": [
+            "996000000000000",
+            "2000000000000",
+            "2000000000000"
+          ],
+          "blockTag": "0x7c000d2",
+          "outerFrom": null
+        },
+        {
+          "target": "0xDfFc699FB095a693708E3c15e6F0a224cbbCc98F",
+          "abi": "abis/imported-token-swap-wrapper.json",
+          "method": "previewTokenFee",
+          "args": [
+            "0x14F6A94909C407854390Aa2d2462a3095D317777",
+            "1000000000000000"
+          ],
+          "inputData": "0x0515688500000000000000000000000014f6a94909c407854390aa2d2462a3095d31777700000000000000000000000000000000000000000000000000038d7ea4c68000",
+          "returnData": "0x00000000000000000000000000000000000000000000000000038d7ea4c680000000000000000000000000000000000000000000000000000000000000000000",
+          "result": [
+            "1000000000000000",
+            "0"
+          ],
+          "blockTag": "0x7c000d2",
+          "outerFrom": null
+        },
+        {
+          "target": "0x14F6A94909C407854390Aa2d2462a3095D317777",
+          "abi": "abis/flap/tax-token.json",
+          "method": "state",
+          "args": [],
+          "inputData": "0xc19d93fb",
+          "returnData": "0x0000000000000000000000000000000000000000000000000000000000000003",
+          "result": [
+            "3"
+          ],
+          "blockTag": "0x7c000d2",
+          "outerFrom": null
+        },
+        {
+          "target": "0x14F6A94909C407854390Aa2d2462a3095D317777",
+          "abi": "abis/flap/tax-token.json",
+          "method": "mainPool",
+          "args": [],
+          "inputData": "0xa5a302d3",
+          "returnData": "0x000000000000000000000000223c585c50d4747653a57d577707b1eadbb2cfb0",
+          "result": [
+            "0x223C585c50D4747653a57D577707B1EadBB2cFB0"
+          ],
+          "blockTag": "0x7c000d2",
+          "outerFrom": null
+        },
+        {
+          "target": "0x14F6A94909C407854390Aa2d2462a3095D317777",
+          "abi": "abis/flap/tax-token.json",
+          "method": "buyTaxRate",
+          "args": [],
+          "inputData": "0x691f224f",
+          "returnData": "0x0000000000000000000000000000000000000000000000000000000000000064",
+          "result": [
+            "100"
+          ],
+          "blockTag": "0x7c000d2",
+          "outerFrom": null
+        },
+        {
+          "target": "0x14F6A94909C407854390Aa2d2462a3095D317777",
+          "abi": "abis/flap/tax-token.json",
+          "method": "sellTaxRate",
+          "args": [],
+          "inputData": "0x24024efd",
+          "returnData": "0x0000000000000000000000000000000000000000000000000000000000000064",
+          "result": [
+            "100"
+          ],
+          "blockTag": "0x7c000d2",
+          "outerFrom": null
+        },
+        {
+          "target": "0x10ED43C718714eb63d5aA57B78B54704E256024E",
+          "abi": "abis/tagai/pancake.json",
+          "method": "getAmountsOut",
+          "args": [
+            "996000000000000",
+            [
+              "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+              "0x14F6A94909C407854390Aa2d2462a3095D317777"
+            ]
+          ],
+          "inputData": "0xd06ca61f000000000000000000000000000000000000000000000000000389db5232400000000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000002000000000000000000000000bb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c00000000000000000000000014f6a94909c407854390aa2d2462a3095d317777",
+          "returnData": "0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000389db5232400000000000000000000000000000000000000000000000000493291c41c73a911e",
+          "result": [
+            [
+              "996000000000000",
+              "84391014161299706142"
+            ]
+          ],
+          "blockTag": "0x7c000d2",
+          "outerFrom": null
+        },
+        {
+          "target": "0xDfFc699FB095a693708E3c15e6F0a224cbbCc98F",
+          "abi": "abis/imported-token-swap-wrapper.json",
+          "method": "previewTokenFee",
+          "args": [
+            "0x14F6A94909C407854390Aa2d2462a3095D317777",
+            "83547104019686709081"
+          ],
+          "inputData": "0x0515688500000000000000000000000014f6a94909c407854390aa2d2462a3095d3177770000000000000000000000000000000000000000000000048772f07452095759",
+          "returnData": "0x0000000000000000000000000000000000000000000000048772f074520957590000000000000000000000000000000000000000000000000000000000000000",
+          "result": [
+            "83547104019686709081",
+            "0"
+          ],
+          "blockTag": "0x7c000d2",
+          "outerFrom": null
+        }
+      ],
+      "simulation": {
+        "mode": "eth_call only",
+        "fromIsPublicSampleNotOwned": true,
+        "returnData": "0x0000000000000000000000000000000000000000000000048772f07452095759",
+        "outputRaw": "83547104019686709081"
+      }
+    },
+    {
+      "id": "external-sell-1000",
+      "kind": "external",
+      "intent": {
+        "token": "0x14f6a94909c407854390aa2d2462a3095d317777",
+        "side": "sell",
+        "amount": "1000",
+        "slippageBps": 100
+      },
+      "summary": {
+        "name": "WangChai",
+        "symbol": "\u65fa\u67f4",
+        "contractAddress": "0x14F6A94909C407854390Aa2d2462a3095D317777",
+        "platform": "Flap",
+        "network": "BNB Smart Chain",
+        "market": "external",
+        "referencePrice": {
+          "amount": "0.000011772654275157",
+          "currency": "BNB",
+          "perToken": "1",
+          "includesTradingFees": false
+        },
+        "internalProgressPercent": null,
+        "observedAt": "2026-10-27T04:14:34.000Z",
+        "side": "sell",
+        "input": {
+          "amount": "1000.0",
+          "symbol": "\u65fa\u67f4"
+        },
+        "expectedOutput": {
+          "amount": "0.011578773606754415",
+          "symbol": "BNB"
+        },
+        "minimumOutput": {
+          "amount": "0.01146298587068687",
+          "symbol": "BNB"
+        },
+        "slippagePercent": "1.0",
+        "fees": {
+          "includedInQuote": true,
+          "tokenTaxBps": 100
+        },
+        "gasIncluded": false,
+        "buyingLimit": null,
+        "expiresAt": "2026-10-27T04:15:34.000Z"
+      },
+      "amountInRaw": "1000000000000000000000",
+      "quoteOutRaw": "11578773606754415",
+      "minimumOutRaw": "11462985870686870",
+      "shareBps": null,
+      "abi": "abis/imported-token-swap-wrapper.json",
+      "transaction": {
+        "binanceChainId": "56",
+        "from": "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
+        "to": "0xDfFc699FB095a693708E3c15e6F0a224cbbCc98F",
+        "valueWei": "0",
+        "inputData": "0xf9e3428300000000000000000000000014f6a94909c407854390aa2d2462a3095d3177770000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000003635c9adc5dea000000000000000000000000000000000000000000000000000000028b98660e33a960000000000000000000000008eec229385a366f0ff2f88db27f428b8a7343c08000000000000000000000000000000000000000000000000000000006ae025e90000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004000000000000000000000000010ed43c718714eb63d5aa57b78b54704e256024e000000000000000000000000223c585c50d4747653a57d577707b1eadbb2cfb0"
+      },
+      "decoded": {
+        "signature": "sellToken(address,uint8,bytes,uint256,uint256,address,uint256,address)",
+        "selector": "0xf9e34283",
+        "args": [
+          "0x14F6A94909C407854390Aa2d2462a3095D317777",
+          "0",
+          "0x00000000000000000000000010ed43c718714eb63d5aa57b78b54704e256024e000000000000000000000000223c585c50d4747653a57d577707b1eadbb2cfb0",
+          "1000000000000000000000",
+          "11462985870686870",
+          "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
+          "1793074665",
+          "0x0000000000000000000000000000000000000000"
+        ]
+      },
+      "reads": [
+        {
+          "target": "0xDfFc699FB095a693708E3c15e6F0a224cbbCc98F",
+          "abi": "abis/imported-token-swap-wrapper.json",
+          "method": "previewFees",
+          "args": [
+            "1000000000000000000000"
+          ],
+          "inputData": "0xfd215c3b00000000000000000000000000000000000000000000003635c9adc5dea00000",
+          "returnData": "0x000000000000000000000000000000000000000000000035fe46d2f7411000000000000000000000000000000000000000000000000000001bc16d674ec800000000000000000000000000000000000000000000000000001bc16d674ec80000",
+          "result": [
+            "996000000000000000000",
+            "2000000000000000000",
+            "2000000000000000000"
+          ],
+          "blockTag": "0x7c000d2",
+          "outerFrom": null
+        },
+        {
+          "target": "0xDfFc699FB095a693708E3c15e6F0a224cbbCc98F",
+          "abi": "abis/imported-token-swap-wrapper.json",
+          "method": "previewTokenFee",
+          "args": [
+            "0x14F6A94909C407854390Aa2d2462a3095D317777",
+            "1000000000000000000000"
+          ],
+          "inputData": "0x0515688500000000000000000000000014f6a94909c407854390aa2d2462a3095d31777700000000000000000000000000000000000000000000003635c9adc5dea00000",
+          "returnData": "0x00000000000000000000000000000000000000000000003635c9adc5dea000000000000000000000000000000000000000000000000000000000000000000000",
+          "result": [
+            "1000000000000000000000",
+            "0"
+          ],
+          "blockTag": "0x7c000d2",
+          "outerFrom": null
+        },
+        {
+          "target": "0x14F6A94909C407854390Aa2d2462a3095D317777",
+          "abi": "abis/flap/tax-token.json",
+          "method": "state",
+          "args": [],
+          "inputData": "0xc19d93fb",
+          "returnData": "0x0000000000000000000000000000000000000000000000000000000000000003",
+          "result": [
+            "3"
+          ],
+          "blockTag": "0x7c000d2",
+          "outerFrom": null
+        },
+        {
+          "target": "0x14F6A94909C407854390Aa2d2462a3095D317777",
+          "abi": "abis/flap/tax-token.json",
+          "method": "mainPool",
+          "args": [],
+          "inputData": "0xa5a302d3",
+          "returnData": "0x000000000000000000000000223c585c50d4747653a57d577707b1eadbb2cfb0",
+          "result": [
+            "0x223C585c50D4747653a57D577707B1EadBB2cFB0"
+          ],
+          "blockTag": "0x7c000d2",
+          "outerFrom": null
+        },
+        {
+          "target": "0x14F6A94909C407854390Aa2d2462a3095D317777",
+          "abi": "abis/flap/tax-token.json",
+          "method": "buyTaxRate",
+          "args": [],
+          "inputData": "0x691f224f",
+          "returnData": "0x0000000000000000000000000000000000000000000000000000000000000064",
+          "result": [
+            "100"
+          ],
+          "blockTag": "0x7c000d2",
+          "outerFrom": null
+        },
+        {
+          "target": "0x14F6A94909C407854390Aa2d2462a3095D317777",
+          "abi": "abis/flap/tax-token.json",
+          "method": "sellTaxRate",
+          "args": [],
+          "inputData": "0x24024efd",
+          "returnData": "0x0000000000000000000000000000000000000000000000000000000000000064",
+          "result": [
+            "100"
+          ],
+          "blockTag": "0x7c000d2",
+          "outerFrom": null
+        },
+        {
+          "target": "0x10ED43C718714eb63d5aA57B78B54704E256024E",
+          "abi": "abis/tagai/pancake.json",
+          "method": "getAmountsOut",
+          "args": [
+            "990000000000000000000",
+            [
+              "0x14F6A94909C407854390Aa2d2462a3095D317777",
+              "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
+            ]
+          ],
+          "inputData": "0xd06ca61f000000000000000000000000000000000000000000000035ab028ac154b800000000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000200000000000000000000000014f6a94909c407854390aa2d2462a3095d317777000000000000000000000000bb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c",
+          "returnData": "0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000035ab028ac154b8000000000000000000000000000000000000000000000000000000294d20313e0311",
+          "result": [
+            [
+              "990000000000000000000",
+              "11625274705576721"
+            ]
+          ],
+          "blockTag": "0x7c000d2",
+          "outerFrom": null
+        },
+        {
+          "target": "0xDfFc699FB095a693708E3c15e6F0a224cbbCc98F",
+          "abi": "abis/imported-token-swap-wrapper.json",
+          "method": "previewFees",
+          "args": [
+            "11625274705576721"
+          ],
+          "inputData": "0xfd215c3b00000000000000000000000000000000000000000000000000294d20313e0311",
+          "returnData": "0x000000000000000000000000000000000000000000000000002922d54fc3e86f0000000000000000000000000000000000000000000000000000152570bd0d510000000000000000000000000000000000000000000000000000152570bd0d51",
+          "result": [
+            "11578773606754415",
+            "23250549411153",
+            "23250549411153"
+          ],
+          "blockTag": "0x7c000d2",
+          "outerFrom": null
+        }
+      ],
+      "simulation": null
+    }
+  ]
+}

@@ -1,5 +1,7 @@
 # Flap Quotes and Trading
 
+Start with [call examples](../flap/worked-examples.md): ticker lookup, token information, ordinary internal buy/sell, ID Agent buy/50% sale, and external wrapper buy/sell. Each recipe gives targets, ABI methods, parameter values, return values and wallet steps. Use the recipe matching the observed market; consult the details below when needed.
+
 Use existing HTTP / ABI / RPC and Binance wallet tools. No checkout, npm installation or Flap launch-skill installation is required. Fetch the [deployment registry](../../config/flap-bsc.json) and needed JSON ABIs individually. The optional runner implements the same verified subset.
 
 ## Select the actual market
@@ -57,7 +59,7 @@ function maxBuyPerOrigin(address token) external view returns (uint16 bps,uint25
 function buyQuotaOf(address token,address origin) external view returns (uint256 bought,uint256 remaining);
 ```
 
-Quote selector=0xfc847c2b, to=Portal, value=0, nonpayable **eth_call only**, never broadcast. Buy tuple=(zero,token,grossBnbWei); sell tuple=(token,zero,tokenAmountRaw). The quote already includes applicable protocol fee, directional curve tax and enabled conversion costs; do not deduct twice or hardcode the documentation's 1% example. V9Safe token fee profiles can differ from global fees.
+Quote selector=0xfc847c2b, to=Portal, value=0, nonpayable **eth_call only**. Buy tuple=(zero,token,bnbWei); sell tuple=(token,zero,tokenAmountRaw). See the [0.001 BNB buy and 1000-token sale](../flap/worked-examples.md) for concrete calls and outputs.
 
 Quota selectors: maxBuyPerOrigin=0x4b02c8e9, buyQuotaOf=0x929b098c. Zero cap is uncapped; maxUint256 remaining means no quota. Capped amount quotes need the actual executing origin. Set the **outer Multicall eth_call from** to that wallet for quota / quote stages; ordinary Portal quotes use tx.origin, preserved by Multicall. For relayed / smart-wallet execution verify the actual origin. Incompatible caller semantics must be resolved explicitly, never replaced with individual state RPCs.
 
@@ -78,7 +80,7 @@ Use permitData=0x and a separately confirmed finite ERC20 approval to **Portal**
 
 Decode final calldata, simulate the full real-wallet transaction, obtain a successful Binance preview, display amounts/fees/risks, then execute that exact requestId after confirmation. Recover uncertain submissions by status, never resend automatically. TokenBought / TokenSold identify token, wallet and settlement amounts, but their eth field can mean ERC20 Q. Verify actual delivery/refunds before reporting final BNB; see [wallet](../binance-wallet.md).
 
-Encoding test vector (synthetic, not sendable): quote tuple=(zero,0x1111111111111111111111111111111111111111,1000000000000000); swap tuple adds minOutputAmount=990000000000000000000 and permitData=0x. Encode using the JSON ABI and an existing encoder, decode and compare every field, selector, Portal destination and native value. No repository setup is needed.
+The [recorded examples](../../config/flap-worked-examples.json) contain the exact quote arguments, transaction calldata and read-only simulation results for the linked recipes.
 
 ## Coverage and sources
 

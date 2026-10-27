@@ -1,5 +1,7 @@
 # Flap ID AGENT CURVE
 
+For concrete calls, start with the [0.001 BNB buy and 50% share-sale examples](worked-examples.md). They include market / predicted-token addresses, explicit-wallet quotes, final transaction parameters and wallet submission steps.
+
 Read only for a market / predicted token from this app. Fetch the [registry](../../config/flap-bsc.json) and [typed JSON ABI](../../abis/flap/agent-curve.json) using existing tools. These methods come from the app published at [Flap Apps](https://flap.sh/apps/agent-bonding-curve), distinct from the ordinary Portal launch skill.
 
 ## Contracts and identity
@@ -83,4 +85,4 @@ Selector=0x1e83409a, to=ID Agent Portal, from=owning wallet, value=0. Claim is a
 
 For later ERC20 sales read the wallet's actual claimed balance and ordinary Flap state, then verify its current DEX pool using [external routing](external.md). Market.pair / predictedToken / phase provide no external quote. The runner has no claim command; a tool-native agent can construct an explicitly requested claim with this ABI and the same safeguards.
 
-Encoding test: synthetic buy(0x1111111111111111111111111111111111111111,990000000000000000000), value=1000000000000000. Use an existing ABI encoder and round-trip both parameters / selector. This tests encoding only, not issuance, a quote or authorization.
+The [recorded examples](../../config/flap-worked-examples.json) contain ABI-decoded buy/sell calls and their successful read-only simulations.
