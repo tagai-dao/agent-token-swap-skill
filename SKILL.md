@@ -2,7 +2,7 @@
 name: agent-token-swap-skill
 description: Look up a user-specified BSC token, show its issuing platform, full address, current price and internal or external market, and buy or sell through Binance Agentic Wallet after the user confirms a transaction preview. The agent resolves tickers, reads chain state, chooses the route, quotes, simulates and submits the confirmed transaction. TagAI and Flap are connected; read the relevant platform reference.
 metadata:
-  version: "0.4.1"
+  version: "0.4.2"
   stage: "live"
 ---
 

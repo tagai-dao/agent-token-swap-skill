@@ -2,7 +2,7 @@
 
 Follow the matching numbered recipe. Use existing HTTP / JSON-RPC, ABI encoding / decoding and Binance wallet tools. A clone, npm install, repository script, or new SDK is not required. All contract read sets below go through **Multicall3.aggregate3** at one pinned block, never independent eth_call loops or a JSON-RPC batch. Full actual-wallet transaction simulation is a separate single eth_call.
 
-The numerical observations below were collected on **2026-10-27 at 03:51:44 UTC**, block **0x7bff4ee** (hash 0x50cb1722fb19550a3da7471ccb8c08fb22c6740e84ab5254854b36c77ff50b35). They are historical test vectors, **not current quotes or permission to trade**. [Structured observations](../../config/tagai-worked-examples.json) contain exact raw quantities, ABI-decoded transactions, calldata and read-only simulation results. Re-run every relevant read and quote for a real request. Use the user's owned wallet, never the public account used for those read-only simulations.
+The numerical observations below were collected on **2026-10-27 at 04:07:24 UTC**, block **0x7bffd17** (hash 0xc5a1fe4d8ccad08b4302fc85873994a4b76db5afbbe6726c1661e0d6010c03c9). They are historical test vectors, **not current quotes or permission to trade**. [Structured observations](../../config/tagai-worked-examples.json) contain exact raw quantities, ABI-decoded transactions, calldata and read-only simulation results. Re-run every relevant read and quote for a real request. Use the user's owned wallet, never the public account used for those read-only simulations.
 
 ## Choose the recipe
 
@@ -257,16 +257,16 @@ Recorded S=**284811666433559752360740107**. To obtain the one-token reference pr
 
 ### Stage 6B: exact amount quote
 
-Read the live fee ratios; do not hardcode 30/30. With the observed values:
+Convert the user's full requested amount to wei. Read live fee ratios for disclosure; do not hardcode 30/30 or reduce the quote input:
 
 ```text
 G             = 1000000000000000
+funds         = G = 1000000000000000
 platformFee   = floor(G * 30 / 10000) = 3000000000000
 subjectFee    = floor(G * 30 / 10000) = 3000000000000
-netFunds      = 994000000000000
 ```
 
-Call **AIPRO Pump.getBuyAmountByValue(284811666433559752360740107,994000000000000)** through a dependent Multicall at the same B, using the shared read ABI. It returned **49330023385523107940646** raw AIPRO. Apply slippage once: minimum=floor(output*9900/10000)=**48836723151667876861239**. Expected=49330.023385523107940646 AIPRO; minimum=48836.723151667876861239 AIPRO. Fees=0.000006 BNB included; gas separate.
+Call **AIPRO Pump.getBuyAmountByValue(284811666433559752360740107,1000000000000000)** through a dependent Multicall at the same B, using the shared read ABI. It returned **49627760779259275379321** raw AIPRO. Apply slippage once: minimum=floor(output*9900/10000)=**49131483171466682625527**. Curve quote=49627.760779259275379321 AIPRO; minimum=49131.483171466682625527 AIPRO. Disclose estimated fees of 0.000006 BNB within the 0.001 BNB spend, with gas separate. Do not pre-deduct those fees from funds or deduct them again from the returned quote.
 
 If curveOut reaches the remaining curve cap, apply the source-verified cap/refund branch in [internal methods](internal.md); do not use the unconstrained output. The observed example did not hit that branch. No wallet signing is needed for a read-only quote, but this buyer-specific eligibility check needs the actual W.
 
@@ -275,7 +275,7 @@ If curveOut reaches the remaining curve cap, apply the source-verified cap/refun
 ```solidity
 // to AIPRO itself; payable; from W; valueWei=1000000000000000
 buyToken(
-    49330023385523107940646, // fresh expected output, NOT the already reduced minimum
+    49627760779259275379321, // fresh expected output, NOT the already reduced minimum
     0x0000000000000000000000000000000000000000, // default fee subject
     100                     // slippage bps applied by the Token once
 )
@@ -284,6 +284,8 @@ buyToken(
 Full signature=buyToken(uint256,address,uint16), selector=0x9c4c5062. Replace the first argument with the **fresh quote** for real use. Do not send this transaction to Pump, Router or wrapper. No BNB approval. The caller receives the tokens; this ABI has no custom recipient argument. With user slippage=0, use the protected transformation in [internal slippage](internal.md), never pass zero and disable protection.
 
 Decode and simulate exact from/to/value/calldata. Unlike Router02's method, this ABI returns uint256; decode with the matched token ABI. Use recipe 4's real wallet preview / confirmation / execute flow with **to=AIPRO** and the internal calldata. Internal buy success can queue migration if it fills the cap; verify the receipt and new state before describing an external market.
+
+The recorded full-call simulation returned 49330023385523107940646 raw AIPRO (49330.023385523107940646), above the protected minimum. That is a simulated delivery estimate, distinct from the full-funds curve quote. Use the actual wallet simulation's asset changes / delivery estimate in the final user preview and keep the quote's protected minimum. Never claim the curve quote is guaranteed delivery, lower its minimum to force a simulation to pass, or report a read-only simulation as a completed purchase.
 
 ## 7. Internal contrast: sell 1000 AIPRO
 

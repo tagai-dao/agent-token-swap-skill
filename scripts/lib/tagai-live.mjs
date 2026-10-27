@@ -169,7 +169,8 @@ export class TagaiLive {
         const ratios = value(info.state, 'buyFees');
         const platform = amountIn * ratios[0] / 10000n, subjectFee = amountIn * ratios[1] / 10000n;
         requireTrade(platform + subjectFee < amountIn, 'QUOTE_UNAVAILABLE', 'Trading fees leave no usable purchase amount.');
-        const quoted = await this.reader.batch(info.snapshot, [call('out', info.curve, P, 'getBuyAmountByValue', [supply, amountIn - platform - subjectFee])]);
+        // The quote method takes the user's full BNB input; fees are disclosed separately.
+        const quoted = await this.reader.batch(info.snapshot, [call('out', info.curve, P, 'getBuyAmountByValue', [supply, amountIn])]);
         quoteOut = value(quoted, 'out');
         fees = { currency: 'BNB', amount: formatUnits(platform + subjectFee, 18), includedInQuote: true };
         if (info.modern) {

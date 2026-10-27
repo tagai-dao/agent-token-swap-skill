@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-27T03:51:44.000Z",
+  "checkedAt": "2026-10-27T04:07:24.000Z",
   "snapshot": {
-    "blockTag": "0x7bff4ee",
-    "blockHash": "0x50cb1722fb19550a3da7471ccb8c08fb22c6740e84ab5254854b36c77ff50b35",
-    "timestamp": 1793073104
+    "blockTag": "0x7bffd17",
+    "blockHash": "0xc5a1fe4d8ccad08b4302fc85873994a4b76db5afbbe6726c1661e0d6010c03c9",
+    "timestamp": 1793074044
   },
   "liveOrder": false,
   "walletConnected": false,
@@ -30,11 +30,12 @@
     ],
     "flapOrdinarySearch": {
       "status": 403,
-      "checkedAt": "2026-10-27T03:51:41.633Z"
+      "checkedAt": "2026-10-27T04:07:22.061Z"
     },
     "flapIdAgentExactCandidates": [],
     "fourme": "not integrated / not checked",
-    "gang": "not integrated / not checked"
+    "gang": "not integrated / not checked",
+    "tagaiCheckedAt": "2026-10-27T04:08:06.139Z"
   },
   "observations": {
     "0x8e11E90B463bf521382E2B88539F053270a3848c": {
@@ -51,7 +52,7 @@
         "includesTradingFees": false
       },
       "internalProgressPercent": null,
-      "observedAt": "2026-10-27T03:51:44.000Z",
+      "observedAt": "2026-10-27T04:07:24.000Z",
       "issuerPump": "0xa77253Ac630502A35A6FcD210A01f613D33ba7cD",
       "abi": "abis/tagai/token-v1.json",
       "internalReleaseId": "1",
@@ -132,7 +133,7 @@
         "includesTradingFees": false
       },
       "internalProgressPercent": null,
-      "observedAt": "2026-10-27T03:51:44.000Z",
+      "observedAt": "2026-10-27T04:07:24.000Z",
       "issuerPump": "0x3DC52C69C3C8be568372E16d50E9F3FEc796610c",
       "abi": "abis/tagai/token-v2.json",
       "internalReleaseId": "2",
@@ -208,7 +209,7 @@
         "includesTradingFees": false
       },
       "internalProgressPercent": "43.81",
-      "observedAt": "2026-10-27T03:51:44.000Z",
+      "observedAt": "2026-10-27T04:07:24.000Z",
       "issuerPump": "0x97f35B4631F4FFBF8050B17fAd6579D6F60A289D",
       "abi": "abis/tagai/token-v15.json",
       "internalReleaseId": "15",
@@ -312,7 +313,7 @@
           "includesTradingFees": false
         },
         "internalProgressPercent": null,
-        "observedAt": "2026-10-27T03:51:44.000Z",
+        "observedAt": "2026-10-27T04:07:24.000Z",
         "side": "buy",
         "input": {
           "amount": "0.001",
@@ -330,7 +331,7 @@
         "fees": null,
         "gasIncluded": false,
         "expectedBnbRefund": null,
-        "expiresAt": "2026-10-27T03:52:44.000Z"
+        "expiresAt": "2026-10-27T04:08:24.000Z"
       },
       "amountInRaw": "1000000000000000",
       "quoteOutRaw": "14880728543974126146100",
@@ -340,7 +341,7 @@
         "from": "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
         "to": "0x10ED43C718714eb63d5aA57B78B54704E256024E",
         "valueWei": "1000000000000000",
-        "inputData": "0xb6f9de9500000000000000000000000000000000000000000000031e9e7a2b92af9adb9f00000000000000000000000000000000000000000000000000000000000000800000000000000000000000008eec229385a366f0ff2f88db27f428b8a7343c08000000000000000000000000000000000000000000000000000000006ae020870000000000000000000000000000000000000000000000000000000000000002000000000000000000000000bb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c0000000000000000000000008e11e90b463bf521382e2b88539f053270a3848c",
+        "inputData": "0xb6f9de9500000000000000000000000000000000000000000000031e9e7a2b92af9adb9f00000000000000000000000000000000000000000000000000000000000000800000000000000000000000008eec229385a366f0ff2f88db27f428b8a7343c08000000000000000000000000000000000000000000000000000000006ae024330000000000000000000000000000000000000000000000000000000000000002000000000000000000000000bb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c0000000000000000000000008e11e90b463bf521382e2b88539f053270a3848c",
         "decoded": {
           "signature": "swapExactETHForTokensSupportingFeeOnTransferTokens(uint256,address[],address,uint256)",
           "selector": "0xb6f9de95",
@@ -351,7 +352,7 @@
               "0x8e11E90B463bf521382E2B88539F053270a3848c"
             ],
             "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
-            "1793073287"
+            "1793074227"
           ]
         }
       },
@@ -365,7 +366,7 @@
             "0x8e11E90B463bf521382E2B88539F053270a3848c"
           ],
           "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
-          "1793073287"
+          "1793074227"
         ]
       },
       "simulation": {
@@ -396,7 +397,7 @@
           "includesTradingFees": false
         },
         "internalProgressPercent": null,
-        "observedAt": "2026-10-27T03:51:44.000Z",
+        "observedAt": "2026-10-27T04:07:24.000Z",
         "side": "sell",
         "input": {
           "amount": "1000.0",
@@ -414,7 +415,7 @@
         "fees": null,
         "gasIncluded": false,
         "expectedBnbRefund": null,
-        "expiresAt": "2026-10-27T03:52:44.000Z"
+        "expiresAt": "2026-10-27T04:08:24.000Z"
       },
       "amountInRaw": "1000000000000000000000",
       "quoteOutRaw": "66863164417538",
@@ -424,7 +425,7 @@
         "from": "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
         "to": "0x10ED43C718714eb63d5aA57B78B54704E256024E",
         "valueWei": "0",
-        "inputData": "0x791ac94700000000000000000000000000000000000000000000003635c9adc5dea0000000000000000000000000000000000000000000000000000000003c341d9cadf200000000000000000000000000000000000000000000000000000000000000a00000000000000000000000008eec229385a366f0ff2f88db27f428b8a7343c08000000000000000000000000000000000000000000000000000000006ae0208800000000000000000000000000000000000000000000000000000000000000020000000000000000000000008e11e90b463bf521382e2b88539f053270a3848c000000000000000000000000bb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c",
+        "inputData": "0x791ac94700000000000000000000000000000000000000000000003635c9adc5dea0000000000000000000000000000000000000000000000000000000003c341d9cadf200000000000000000000000000000000000000000000000000000000000000a00000000000000000000000008eec229385a366f0ff2f88db27f428b8a7343c08000000000000000000000000000000000000000000000000000000006ae0243400000000000000000000000000000000000000000000000000000000000000020000000000000000000000008e11e90b463bf521382e2b88539f053270a3848c000000000000000000000000bb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c",
         "decoded": {
           "signature": "swapExactTokensForETHSupportingFeeOnTransferTokens(uint256,uint256,address[],address,uint256)",
           "selector": "0x791ac947",
@@ -436,7 +437,7 @@
               "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
             ],
             "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
-            "1793073288"
+            "1793074228"
           ]
         }
       },
@@ -451,7 +452,7 @@
             "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
           ],
           "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
-          "1793073288"
+          "1793074228"
         ]
       },
       "simulation": null
@@ -478,18 +479,18 @@
           "includesTradingFees": false
         },
         "internalProgressPercent": "43.81",
-        "observedAt": "2026-10-27T03:51:44.000Z",
+        "observedAt": "2026-10-27T04:07:24.000Z",
         "side": "buy",
         "input": {
           "amount": "0.001",
           "symbol": "BNB"
         },
         "expectedOutput": {
-          "amount": "49330.023385523107940646",
+          "amount": "49627.760779259275379321",
           "symbol": "AIPRO"
         },
         "minimumOutput": {
-          "amount": "48836.723151667876861239",
+          "amount": "49131.483171466682625527",
           "symbol": "AIPRO"
         },
         "slippagePercent": "1.0",
@@ -500,22 +501,22 @@
         },
         "gasIncluded": false,
         "expectedBnbRefund": null,
-        "expiresAt": "2026-10-27T03:52:44.000Z"
+        "expiresAt": "2026-10-27T04:08:24.000Z"
       },
       "amountInRaw": "1000000000000000",
-      "quoteOutRaw": "49330023385523107940646",
-      "minimumOutRaw": "48836723151667876861239",
+      "quoteOutRaw": "49627760779259275379321",
+      "minimumOutRaw": "49131483171466682625527",
       "transaction": {
         "binanceChainId": "56",
         "from": "0x8EEc229385A366F0FF2F88Db27F428B8A7343c08",
         "to": "0xfA81C13f979f0dff4A40B68c4aba147fA0723333",
         "valueWei": "1000000000000000",
-        "inputData": "0x9c4c5062000000000000000000000000000000000000000000000a722f98db77c944492600000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000064",
+        "inputData": "0x9c4c5062000000000000000000000000000000000000000000000a82538891973424027900000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000064",
         "decoded": {
           "signature": "buyToken(uint256,address,uint16)",
           "selector": "0x9c4c5062",
           "args": [
-            "49330023385523107940646",
+            "49627760779259275379321",
             "0x0000000000000000000000000000000000000000",
             "100"
           ]
@@ -525,7 +526,7 @@
         "signature": "buyToken(uint256,address,uint16)",
         "selector": "0x9c4c5062",
         "args": [
-          "49330023385523107940646",
+          "49627760779259275379321",
           "0x0000000000000000000000000000000000000000",
           "100"
         ]
@@ -533,7 +534,20 @@
       "simulation": {
         "mode": "eth_call only",
         "fromIsPublicSampleNotOwned": true,
-        "returnData": "0x000000000000000000000000000000000000000000000a722f98db77c9444926"
+        "returnData": "0x000000000000000000000000000000000000000000000a722f98db77c9444926",
+        "deliveredTokenRaw": "49330023385523107940646",
+        "note": "The full-call simulated token delivery differs from the full-funds curve quote and clears the protected minimum. Use the actual wallet simulation for the final delivery estimate; this is not an executed purchase."
+      },
+      "quoteCall": {
+        "target": "0x97f35B4631F4FFBF8050B17fAd6579D6F60A289D",
+        "signature": "getBuyAmountByValue(uint256,uint256)",
+        "args": [
+          "284811666433559752360740107",
+          "1000000000000000"
+        ],
+        "blockTag": "0x7bffd17",
+        "via": "Multicall3.aggregate3",
+        "inputData": "0xb3368bb2000000000000000000000000000000000000000000eb97375ff479248f66450b00000000000000000000000000000000000000000000000000038d7ea4c68000"
       }
     },
     {
@@ -558,7 +572,7 @@
           "includesTradingFees": false
         },
         "internalProgressPercent": "43.81",
-        "observedAt": "2026-10-27T03:51:44.000Z",
+        "observedAt": "2026-10-27T04:07:24.000Z",
         "side": "sell",
         "input": {
           "amount": "1000.0",
@@ -580,7 +594,7 @@
         },
         "gasIncluded": false,
         "expectedBnbRefund": null,
-        "expiresAt": "2026-10-27T03:52:44.000Z"
+        "expiresAt": "2026-10-27T04:08:24.000Z"
       },
       "amountInRaw": "1000000000000000000000",
       "quoteOutRaw": "20027098573660",

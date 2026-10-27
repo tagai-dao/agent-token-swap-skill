@@ -225,11 +225,11 @@
       "note": "Source-derived interface; production identity and version must be checked at runtime."
     },
     "tagai/read-interfaces.json": {
-      "sha256": "a84c391f2f6889fcd6ead35e0c59ee136e5bd147d2fbee9da3a77fbb5541c925",
+      "sha256": "b43b95f42797902eb63a68155f0b9cba5238aab69afce0e8be808ae1f676e5ca",
       "kind": "source-interface-subset",
       "sourceProject": "TagAI-contract-V2 and pump-contract",
       "sourceCommit": "cb694b648482c33d4ea0f983fb6b37a7af6bbe71",
-      "note": "Methods are version-specific. A missing getter is UNKNOWN, not a negative issuance proof. Do not assume all methods exist on every historical deployment."
+      "note": "Methods are version-specific. A missing getter is UNKNOWN, not a negative issuance proof. Do not assume all methods exist on every historical deployment. The getBuyAmountByValue funds parameter is named for the full requested BNB amount in wei; its ABI signature is unchanged."
     },
     "tagai/pancake.json": {
       "sha256": "fc6c86db29535daa9f7803ab770f42e0920d32e4965ed1e3f21db1d3d0b0d9bb",

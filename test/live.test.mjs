@@ -186,6 +186,34 @@ test('buyer qualification is checked only for buys; sales and reference-price qu
   await assert.rejects(f.live.quote({ token, side: 'buy', amount: '0.001', wallet }), error => error.code === 'BUYER_INELIGIBLE');
 });
 
+test('internal buy quotes pass the full requested BNB to the curve through pinned Multicall and preserve it as transaction value', async () => {
+  const f = fixture();
+  const q = await f.live.quote({ token, side: 'buy', amount: '0.001', wallet });
+  const read = await abiInterface('abis/tagai/read-interfaces.json');
+  const quoteCalls = [];
+  for (const request of f.trace.filter(row => row.method === 'eth_call')) {
+    assert.equal(request.params[0].to, registry.multicall);
+    assert.equal(request.params[1], '0x100');
+    const children = multi.decodeFunctionData('aggregate3', request.params[0].data)[0];
+    for (const child of children) {
+      const parsed = read.parseTransaction({ data: child.callData });
+      if (parsed?.name === 'getBuyAmountByValue') quoteCalls.push({ target: child.target, args: Array.from(parsed.args), children: children.length });
+    }
+  }
+  assert.deepEqual(quoteCalls, [{ target: release.pump, args: [1000000n * 10n ** 18n, 1000000000000000n], children: 1 }]);
+  assert.equal(q.amountIn, 1000000000000000n);
+  assert.equal(q.quoteOut, 1000000000000000000000000n);
+  assert.equal(q.minimum, q.quoteOut * 9900n / 10000n);
+  assert.equal(q.summary.fees.amount, '0.000006');
+  const tx = await f.live.transaction(q, wallet);
+  const parsed = eventAbi.parseTransaction({ data: tx.inputData });
+  assert.equal(tx.to, token);
+  assert.equal(tx.valueWei, '1000000000000000');
+  assert.equal(parsed.name, 'buyToken');
+  assert.equal(parsed.args[0], q.quoteOut);
+  assert.equal(parsed.args[2], 100n);
+});
+
 test('holding percentages use the actual balance and fees are rounded individually once', async () => {
   const q = await fixture().live.quote({ token, side: 'sell', amount: '20%', wallet });
   assert.equal(q.amountIn, 1000n * 10n ** 18n);

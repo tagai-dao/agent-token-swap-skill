@@ -50,7 +50,7 @@ test('the recorded TTAI reference price and amount quotes use their actual reser
   assert.equal(saleScaled * nativeReserve / (tokenReserve * 10000n + saleScaled), BigInt(sale.quoteOutRaw));
 });
 
-test('AIPRO internal vectors pass the net quote as expectation, apply slippage once and keep caller delivery', async () => {
+test('AIPRO internal vectors pass the returned quote as expectation, apply slippage once and keep caller delivery', async () => {
   for (const id of ['aipro-buy-0.001', 'aipro-sell-1000']) {
     const row = sample(id), buy = row.intent.side === 'buy';
     const encoded = await encodeTagai({ chainId: 56, kind: 'internal', version: '15', side: row.intent.side, wallet: row.transaction.from,
@@ -65,4 +65,21 @@ test('AIPRO internal vectors pass the net quote as expectation, apply slippage o
     assert.equal(row.minimumOutRaw, (BigInt(row.quoteOutRaw) * 9900n / 10000n).toString());
     assert.equal(row.transaction.valueWei, buy ? '1000000000000000' : '0');
   }
+});
+
+test('the AIPRO buy observation records full-funds quote arguments and independently simulated delivery above the minimum', async () => {
+  const row = sample('aipro-buy-0.001');
+  const read = await abiInterface('abis/tagai/read-interfaces.json');
+  const parsed = read.parseTransaction({ data: row.quoteCall.inputData });
+  assert.equal(row.quoteCall.target, vectors.observations[row.intent.token].curve);
+  assert.equal(row.quoteCall.blockTag, vectors.snapshot.blockTag);
+  assert.equal(parsed.signature, 'getBuyAmountByValue(uint256,uint256)');
+  assert.deepEqual(Array.from(parsed.args), [BigInt(vectors.observations[row.intent.token].chainState.supply.value), 1000000000000000n]);
+  assert.equal(parsed.args[1], BigInt(row.amountInRaw));
+  assert.equal(parsed.args[1], BigInt(row.transaction.valueWei));
+  const token = await abiInterface('abis/tagai/token-v15.json');
+  const delivered = token.decodeFunctionResult('buyToken', row.simulation.returnData)[0];
+  assert.equal(delivered, BigInt(row.simulation.deliveredTokenRaw));
+  assert.ok(delivered >= BigInt(row.minimumOutRaw));
+  assert.ok(delivered < BigInt(row.quoteOutRaw));
 });

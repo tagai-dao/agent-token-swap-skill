@@ -43,17 +43,17 @@ All post-creation internal buys are checked, including a creator's later purchas
 
 ## Buy quote: source-verified modern family
 
-Stage A reads supply S, the actual curve / Pump, listed / pending state, token decimals, createdAt when needed, wallet eligibility, and current `(platformBps, subjectBps)` from Token.getBuyFeeRatios(). Stage B calls `getBuyAmountByValue(S, netFunds)` on the proven curve at the same block:
+Stage A reads supply S, the actual curve / Pump, listed / pending state, token decimals, createdAt when needed, wallet eligibility, and current `(platformBps, subjectBps)` from Token.getBuyFeeRatios(). Stage B calls `getBuyAmountByValue(S, funds)` on the proven curve at the same block. The second argument is the user's full requested BNB amount in wei:
 
 ```text
-platformFee = floor(grossBnb * platformBps / 10000)
-subjectFee  = floor(grossBnb * subjectBps  / 10000)
-netFunds    = grossBnb - platformFee - subjectFee
-curveOut    = curve.getBuyAmountByValue(S, netFunds)
+funds       = parseUnits(userBnbAmount, 18)
+curveOut    = curve.getBuyAmountByValue(S, funds)
 quotedOut   = min(curveOut, curveCap - S)
+platformFee = floor(funds * platformBps / 10000) // disclosure only
+subjectFee  = floor(funds * subjectBps  / 10000) // disclosure only
 ```
 
-Subtract individually rounded fees. Do not use `grossBnb * 9800 / 10000` from a legacy UI or Pump.getBuyPriceAfterFee as a substitute for dynamic buy fees. The modern anti-snipe window lasts 15 seconds with a quadratic subject-fee decay; read the actual getter instead of copying constants to an unverified version. It may also inject purchased tokens into the calculator and alter post-trade supply beyond the buyer's delivered output.
+Do not deduct trading fees, slippage, gas or a reserve from funds before this call, and do not deduct fees from its returned token quote. For a 0.001 BNB request, funds is exactly 1000000000000000, and the payable buy uses that same value. Fee estimates are a separate disclosure within that spend, not an additional charge or a smaller quote input. Apply slippage once to the returned quote. The modern anti-snipe window lasts 15 seconds with a quadratic subject-fee decay; read the actual getter instead of copying constants to an unverified version. It may also inject purchased tokens into the calculator and alter post-trade supply beyond the buyer's delivered output. A full actual-wallet simulation must validate the final protected transaction.
 
 A fill-to-cap buy uses a separate gross-up calculation, can refund unused BNB, and queues listing in V13+. The pinned source uses `usedBnb=floor(curve.getPrice(S, remaining)*10000/(10000-platformBps-subjectBps))`; exact fee and refund behavior must be checked by full simulation. Filling during the anti-snipe window can revert `ListingDisabledDuringAntiSnipe`. Do not promise immediate external trading after the fill.
 
